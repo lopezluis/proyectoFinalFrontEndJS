@@ -1,0 +1,7 @@
+{
+  "MD033":
+  {
+    "allowed_elements": ["link", "table", "caption", "tbody", "tr", "td", "strong"]
+  },
+  "MD041": false
+}
