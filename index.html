@@ -4,59 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supermercado a Casa</title>
-    <link type="image/x-icon" rel="icon" href="assets/images/favicon.svg">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link type="image/x-icon" rel="icon" href="servicios/assets/images/favicon.svg">
+    <link rel="stylesheet" href="servicios/assets/css/style.css">
+    <link rel="stylesheet" href="servicios/assets/css/style2.css">
   </head>
-  <body class="bg-gray-50 font-sans">
-    <header class="bg-[#0284c7] text-white sticky top-0 z-50 shadow-md">
-      <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <h1 class="text-2xl font-bold tracking-tight">Supermercado <span class="text-[#0ea5e9]">a Casa</span></h1>
-        <nav class="hidden md:flex space-x-6 font-medium">
-          <a href="servicios/productos.html" class="hover:text-[#0ea5e9] transition">Productos</a>
-          <a href="servicios/assets/pages/categorias.html" class="hover:text-[#0ea5e9] transition">Categorías</a>
-          <a href="servicios/assets/pages/envios.html" class="hover:text-[#0ea5e9] transition">Envíos</a>
-          <a href="servicios/assets/pages/contacto.html" class="hover:text-[#0ea5e9] transition">Contacto</a>
+  <body>
+    <header> <!-- Encabezado: linea superior fija y hero section -->
+      <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
+        <div>
+          <img src="servicios/assets/images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
+          <h1>Supermercado <span>a Casa</span></h1>
+        </div>
+        <nav>
+          <a href="servicios/productos.html">Productos</a>
+          <a href="servicios/assets/pages/categorias.html">Categorías</a>
+          <a href="servicios/assets/pages/envios.html">Envíos</a>
+          <a href="servicios/assets/pages/contacto.html">Contacto</a>
         </nav>
-        <div class="flex items-center space-x-4">
-          <button class="relative">
-            <i class="fa-solid fa-cart-shopping text-xl"></i>
-            <span class="absolute -top-2 -right-2 bg-[#0ea5e9] text-[#0284c7] text-xs font-bold px-1.5 rounded-full">3</span>
-          </button>
+        <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
+          <span>3</span>
+        </button>
+      </div>
+      <div class="hero">
+        <div class="contenedor-texto-circulo">
+          <div class="contenedor-izquierdo">
+            <h2>Lo mejor de la zona, directo a tu mesa.</h2>
+            <p>Hacé tu pedido online y recibilo en menos de 60 minutos en Balvanera, San Cristóbal y Parque Patricios.</p>
+            <div class="contenedor-botones-hero">
+              <a href="servicios/productos.html" class="boton-ofertas">Ver Productos</a>
+              <a href="https://wa.me/123456789" class="boton-whatsapp"><i></i>  Pedir por WhatsApp</a>
+            </div>
+          </div>
+          <div class="circulo-derecho"><i></i></div>
         </div>
       </div>
     </header>
-    <section class="bg-sky-700 text-white py-12">
-      <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-8 md:mb-0">
-          <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Lo mejor de la zona, directo a tu mesa.</h2>
-          <p class="text-lg text-green-100 mb-6">Hacé tu pedido online y recibilo en menos de 60 minutos en Balvanera, San Cristóbal y Parque Patricios.</p>
-          <div class="flex space-x-4">
-            <a href="servicios/productos.html" class="bg-[#0ea5e9] text-[#0284c7] px-6 py-3 rounded-lg font-bold hover:bg-[#0284c7] hover:text-white transition shadow-lg">Ver Productos</a>
-            <a href="https://wa.me/123456789" class="bg-white text-sky-700 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition border border-white">
-              <i class="fa-brands fa-whatsapp mr-2"></i>Pedir por WhatsApp
-            </a>
+    <!-- Sección de Ofertas Destacadas. -->
+    <section id="ofertas" class="container section-ofertas">
+      <div class="header-ofertas">
+        <h3 class="titulo-ofertas">Ofertas del Día</h3>
+        <a href="#" class="ver-todas">Ver todas &rarr;</a>
+      </div>
+      <div class="grid-productos">
+        <!-- Tarjeta Aceite -->
+        <div class="card-producto">
+          <span class="badge-promo">2x1</span>
+          <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol">
+          <div class="card-info">
+            <h4>Aceite de Girasol 1.5L</h4>
+            <p>Cocinero</p>
+            <div class="card-footer">
+              <span class="precio">$2.450</span>
+              <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
+            </div>
           </div>
         </div>
-        <div class="md:w-1/2 flex justify-center">
-          <div class="w-80 h-80 bg-sky-500 rounded-full flex items-center justify-center border-8 border-sky-600 shadow-2xl">
-            <i class="fa-solid fa-basket-shopping text-8xl text-white opacity-80"></i>
+        <!-- Tarjeta Leche -->
+        <div class="card-producto">
+          <span class="badge-promo">20% OFF</span>
+          <img src="servicios/assets/images/prod/lecheLaSerenisima.jpg" alt="Leche Entera">
+          <div class="card-info">
+            <h4>Leche Entera 1L</h4>
+            <p>La Serenísima</p>
+            <div class="card-footer">
+              <span class="precio">$1.100</span>
+              <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
+            </div>
           </div>
         </div>
       </div>
     </section>
-    <!-- Sección de Ofertas Destacadas. -->
-    <section id="ofertas" class="container mx-auto px-4 py-12">
+    <!-- Sección Servicios -->
+    <section class="section-servicios">
+      <div class="container grid-servicios">
+        <div class="servicio-item">
+          <i class="fa-solid fa-truck-fast"></i>
+          <h5>Envío Rápido</h5>
+          <p>Entregamos en el día en toda la zona.</p>
+        </div>
+        <div class="servicio-item">
+          <i class="fa-solid fa-credit-card"></i>
+          <h5>Pagá como quieras</h5>
+          <p>Efectivo, Débito, Crédito y Mercado Pago.</p>
+        </div>
+        <div class="servicio-item">
+          <i class="fa-solid fa-store"></i>
+          <h5>Retiro en Local</h5>
+          <p>Comprás online y pasás sin hacer fila.</p>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="container grid-footer">
+        <div class="footer-col">
+          <h6>Supermercado a Casa</h6>
+          <p>Tu mercado de confianza en el corazón de la Ciudad.</p>
+        </div>
+        <div class="footer-col">
+          <h6>Horarios</h6>
+          <p>Lun a Sáb: 08:30 a 20:30</p>
+          <p>Dom: 09:00 a 13:30</p>
+        </div>
+        <div class="footer-col">
+          <h6>Ubicación</h6>
+          <p>Av. Rivadavia 1234, CABA</p>
+          <p style="font-style: italic; margin-top: 0.5rem;">Próximamente en Palermo</p>
+        </div>
+        <div class="footer-col">
+          <h6>Newsletter</h6>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Tu mail" class="newsletter-input">
+            <button type="submit" class="newsletter-btn">OK</button>
+          </form>
+        </div>
+      </div>
+    </footer>
+    <!--section id="ofertas" class="container mx-auto px-4 py-12">
       <div class="flex justify-between items-end mb-8">
         <h3 class="text-3xl font-bold text-gray-800 border-b-4 border-[#0ea5e9] pb-2">Ofertas del Día</h3>
         <span class="text-[#0ea5e9] font-semibold cursor-pointer hover:underline tracking-wider">Ver todas &rarr;</span>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Tarjeta de Producto con Imagen Real. Repetir estructura para más productos. -->
+        <\!-- Tarjeta de Producto con Imagen Real. Repetir estructura para más productos. --\>
         <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 overflow-hidden group">
           <div class="relative">
             <span class="absolute top-3 left-3 z-10 bg-[#0ea5e9] text-white px-2 py-1 text-xs font-bold rounded shadow-sm">2x1</span>
-            <!-- Contenedor de Imagen. -->
+            <\!-- Contenedor de Imagen. --\>
             <div class="aspect-square bg-gray-100 overflow-hidden">
               <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
             </div>
@@ -135,6 +209,6 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer-->
   </body>
 </html>
