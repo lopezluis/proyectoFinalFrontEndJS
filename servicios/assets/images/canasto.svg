@@ -2,10 +2,10 @@
 <svg
    width="32"
    height="32"
-   viewBox="0 0 24 24"
+   viewBox="0 0 16 16"
    version="1.1"
    id="svg1"
-   sodipodi:docname="carrito.svg"
+   sodipodi:docname="canasto.svg"
    inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -23,7 +23,7 @@
      inkscape:pagecheckerboard="1"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="55.09375"
-     inkscape:cx="16.435621"
+     inkscape:cx="16"
      inkscape:cy="16"
      inkscape:window-width="3840"
      inkscape:window-height="2018"
@@ -33,12 +33,7 @@
      inkscape:current-layer="svg1" />
   <path
      fill="#0284c7"
-     d="M4.142 4L6.01 16.136A1 1 0 0 0 7.016 17H18a1 1 0 0 0 .958-.713l3-10A1 1 0 0 0 21 5H6.32l-.33-2.138a1 1 0 0 0-.346-.627A1 1 0 0 0 4.984 2H3a1 1 0 1 0 0 2zm3.716 11l-1.23-8h13.028l-2.4 8zM10 20a2 2 0 1 1-4 0a2 2 0 0 1 4 0m9 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0"
+     d="M5.929 1.757a.5.5 0 1 0-.858-.514L2.217 6H.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h.623l1.844 6.456A.75.75 0 0 0 3.69 15h8.622a.75.75 0 0 0 .722-.544L14.877 8h.623a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1.717L10.93 1.243a.5.5 0 1 0-.858.514L12.617 6H3.383zM4 10a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0zm3 0a1 1 0 0 1 2 0v2a1 1 0 1 1-2 0zm4-1a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1"
      id="path1"
-     style="fill:#000000;stroke-width:0.99975;stroke-dasharray:none" />
-  <path
-     style="fill:#ffffff;fill-opacity:0.558989;stroke-width:0.0241951;stroke-dasharray:none"
-     d="M 10.482988,19.970531 C 10.472364,19.936544 8.857629,9.4043522 8.857629,9.3690409 c 0,-0.028408 0.5714528,-0.030414 8.667391,-0.030414 h 8.66739 l -0.0105,0.040839 c -0.0058,0.022462 -0.723689,2.4176971 -1.59536,5.3227451 l -1.584855,5.281906 -6.255801,0.0046 c -4.995778,0.0036 -6.257231,-1.2e-5 -6.262902,-0.01815 z"
-     id="path2"
-     transform="scale(0.75)" />
+     style="fill:#ffffff;fill-opacity:1" />
 </svg>

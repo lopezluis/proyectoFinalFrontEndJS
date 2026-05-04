@@ -1,0 +1,184 @@
+#!/usr/bin/bash
+function mostrarAyuda()
+{
+  mensajeInicial
+  modoEmpleo
+  exit 0
+}
+function mensajeInicial()
+{
+  echo -en "Utilidad para copiar la web de Supermercado a Casa con CSS puro hacia apache2 para publicarlo. Versión 1.0.\n\n"
+}
+function modoEmpleo()
+{
+  echo -en "Modo de empleo:\n"
+  echo -en "    ${0} [modificadores]\n"
+  echo -en "Donde modificadores pueden ser:\n"
+  echo -en "    --help o -h: muestra éste texto de ayuda y regresa al intérprete de comandos.\n"
+}
+function copiar()
+{
+  if /usr/bin/test -f ${2}
+  then if /usr/bin/test $(/usr/bin/stat -c %Y ${1}) -gt $(/usr/bin/stat -c %Y ${2})
+  then /usr/bin/cp --verbose --recursive --force ${1} ${2}
+  fi
+  else /usr/bin/cp --verbose --recursive --force ${1} ${2}
+  fi
+}
+while /usr/bin/test "${#}" -ne 0
+do
+  case ${1} in
+  --help | -h)
+    shift
+    mostrarAyuda
+    ;;
+  --chkdir | -c)
+    if /usr/bin/test -d /var/www/html/superACasa
+    then /usr/bin/echo -en "El directorio destino existe.\n"
+    # Para chequear el directorio, no hace falta ser root. Mejor hacerlo en el script base.
+    exit 1
+    fi
+    exit 0
+    ;;
+  --copiar | -o)
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/index.html /var/www/html/superACasa/index.html
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/productos.html /var/www/html/superACasa/servicios/productos.html
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/contacto.png /var/www/html/superACasa/servicios/assets/images/contacto.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/mercado.svg /var/www/html/superACasa/servicios/assets/images/mercado.svg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/foto.png /var/www/html/superACasa/servicios/assets/images/foto.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carrito2.svg /var/www/html/superACasa/servicios/assets/images/carrito2.svg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/favicon.svg /var/www/html/superACasa/servicios/assets/images/favicon.svg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carrito.svg /var/www/html/superACasa/servicios/assets/images/carrito.svg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/FluentHandshake24Regular.svg /var/www/html/superACasa/servicios/assets/images/FluentHandshake24Regular.svg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/porotoColorado.jpg /var/www/html/superACasa/servicios/assets/images/prod/porotoColorado.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polenta4quesos.webp /var/www/html/superACasa/servicios/assets/images/prod/polenta4quesos.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/moño.webp /var/www/html/superACasa/servicios/assets/images/prod/moño.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaFrutosBosque.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaFrutosBosque.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaQuarana.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaQuarana.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/tirabuzon.webp /var/www/html/superACasa/servicios/assets/images/prod/tirabuzon.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/galletFrolita.jpg /var/www/html/superACasa/servicios/assets/images/prod/galletFrolita.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/pepas.jpg /var/www/html/superACasa/servicios/assets/images/prod/pepas.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/mostachol.webp /var/www/html/superACasa/servicios/assets/images/prod/mostachol.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/harinaLeudante.png /var/www/html/superACasa/servicios/assets/images/prod/harinaLeudante.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/salFina.webp /var/www/html/superACasa/servicios/assets/images/prod/salFina.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/trufa.webp /var/www/html/superACasa/servicios/assets/images/prod/trufa.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/atunAzul.jpg /var/www/html/superACasa/servicios/assets/images/prod/atunAzul.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/garbanzo.webp /var/www/html/superACasa/servicios/assets/images/prod/garbanzo.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaFrutTrop.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaFrutTrop.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/galletDiversion.webp /var/www/html/superACasa/servicios/assets/images/prod/galletDiversion.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaLimon.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaLimon.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polentaVegetales.webp /var/www/html/superACasa/servicios/assets/images/prod/polentaVegetales.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/porotoNegro.webp /var/www/html/superACasa/servicios/assets/images/prod/porotoNegro.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaPomeloRosado.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaPomeloRosado.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/pepasTrioChips.jpg /var/www/html/superACasa/servicios/assets/images/prod/pepasTrioChips.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/acaiteGirasolCocinero.jpg /var/www/html/superACasa/servicios/assets/images/prod/acaiteGirasolCocinero.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/arvejasSecas.jpg /var/www/html/superACasa/servicios/assets/images/prod/arvejasSecas.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/salGruesa.webp /var/www/html/superACasa/servicios/assets/images/prod/salGruesa.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/salParrillera.jpg /var/www/html/superACasa/servicios/assets/images/prod/salParrillera.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/almidonDeMaiz.jpg /var/www/html/superACasa/servicios/assets/images/prod/almidonDeMaiz.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaFrutValle.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaFrutValle.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/6280foto01g.jpg /var/www/html/superACasa/servicios/assets/images/prod/6280foto01g.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/atun.webp /var/www/html/superACasa/servicios/assets/images/prod/atun.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/azucarImpalpable.jpg /var/www/html/superACasa/servicios/assets/images/prod/azucarImpalpable.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/caballa.jpg /var/www/html/superACasa/servicios/assets/images/prod/caballa.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/harina0000.webp /var/www/html/superACasa/servicios/assets/images/prod/harina0000.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/porotoBlanco.webp /var/www/html/superACasa/servicios/assets/images/prod/porotoBlanco.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/feculaMandioca.jpg /var/www/html/superACasa/servicios/assets/images/prod/feculaMandioca.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/dedalito.webp /var/www/html/superACasa/servicios/assets/images/prod/dedalito.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/avena.jpg /var/www/html/superACasa/servicios/assets/images/prod/avena.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaNaranja.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaNaranja.png
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/mozzarella.webp /var/www/html/superACasa/servicios/assets/images/prod/mozzarella.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/azucar.jpg /var/www/html/superACasa/servicios/assets/images/prod/azucar.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/lentejas.webp /var/www/html/superACasa/servicios/assets/images/prod/lentejas.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/barraCereal.webp /var/www/html/superACasa/servicios/assets/images/prod/barraCereal.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/lecheLaSerenisima.jpg /var/www/html/superACasa/servicios/assets/images/prod/lecheLaSerenisima.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polentaArcor.jpg /var/www/html/superACasa/servicios/assets/images/prod/polentaArcor.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/tallarines.webp /var/www/html/superACasa/servicios/assets/images/prod/tallarines.webp
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carrito.jpg /var/www/html/superACasa/servicios/assets/images/carrito.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carritoFdoTr.jpg /var/www/html/superACasa/servicios/assets/images/carritoFdoTr.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/categorias.html /var/www/html/superACasa/servicios/assets/pages/categorias.html
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/envios.html /var/www/html/superACasa/servicios/assets/pages/envios.html
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/contacto.html /var/www/html/superACasa/servicios/assets/pages/contacto.html
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/style.css /var/www/html/superACasa/servicios/assets/css/style.css
+    exit 0
+    ;;
+  *)
+    mensajeInicial
+    echo -en "Error: Parámetro desconicido\n\n" > /dev/stderr
+    modoEmpleo
+    exit 1
+  esac
+done
+if /usr/bin/test -d /var/www/html/superACasa
+then /usr/bin/echo -en "Error: El directorio destino existe previamente.\n"
+exit 1
+else pushd $(/usr/bin/pwd) > /dev/null
+/usr/bin/mkdir --verbose /var/www/html/superACasa
+/usr/bin/mkdir --verbose /var/www/html/superACasa/servicios
+/usr/bin/mkdir --verbose /var/www/html/superACasa/servicios/assets
+/usr/bin/mkdir --verbose /var/www/html/superACasa/servicios/assets/images
+/usr/bin/mkdir --verbose /var/www/html/superACasa/servicios/assets/images/prod
+/usr/bin/mkdir --verbose /var/www/html/superACasa/servicios/assets/pages
+/usr/bin/mkdir --verbose /var/www/html/superACasa/servicios/assets/css
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/index.html /var/www/html/superACasa/index.html
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/productos.html /var/www/html/superACasa/servicios/productos.html
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/contacto.png /var/www/html/superACasa/servicios/assets/images/contacto.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/mercado.svg /var/www/html/superACasa/servicios/assets/images/mercado.svg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/foto.png /var/www/html/superACasa/servicios/assets/images/foto.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carrito2.svg /var/www/html/superACasa/servicios/assets/images/carrito2.svg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/favicon.svg /var/www/html/superACasa/servicios/assets/images/favicon.svg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carrito.svg /var/www/html/superACasa/servicios/assets/images/carrito.svg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/FluentHandshake24Regular.svg /var/www/html/superACasa/servicios/assets/images/FluentHandshake24Regular.svg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/porotoColorado.jpg /var/www/html/superACasa/servicios/assets/images/prod/porotoColorado.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polenta4quesos.webp /var/www/html/superACasa/servicios/assets/images/prod/polenta4quesos.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/moño.webp /var/www/html/superACasa/servicios/assets/images/prod/moño.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaFrutosBosque.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaFrutosBosque.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaQuarana.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaQuarana.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/tirabuzon.webp /var/www/html/superACasa/servicios/assets/images/prod/tirabuzon.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/galletFrolita.jpg /var/www/html/superACasa/servicios/assets/images/prod/galletFrolita.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/pepas.jpg /var/www/html/superACasa/servicios/assets/images/prod/pepas.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/mostachol.webp /var/www/html/superACasa/servicios/assets/images/prod/mostachol.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/harinaLeudante.png /var/www/html/superACasa/servicios/assets/images/prod/harinaLeudante.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/salFina.webp /var/www/html/superACasa/servicios/assets/images/prod/salFina.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/trufa.webp /var/www/html/superACasa/servicios/assets/images/prod/trufa.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/atunAzul.jpg /var/www/html/superACasa/servicios/assets/images/prod/atunAzul.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/garbanzo.webp /var/www/html/superACasa/servicios/assets/images/prod/garbanzo.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaFrutTrop.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaFrutTrop.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/galletDiversion.webp /var/www/html/superACasa/servicios/assets/images/prod/galletDiversion.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaLimon.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaLimon.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polentaVegetales.webp /var/www/html/superACasa/servicios/assets/images/prod/polentaVegetales.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/porotoNegro.webp /var/www/html/superACasa/servicios/assets/images/prod/porotoNegro.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaPomeloRosado.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaPomeloRosado.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/pepasTrioChips.jpg /var/www/html/superACasa/servicios/assets/images/prod/pepasTrioChips.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/acaiteGirasolCocinero.jpg /var/www/html/superACasa/servicios/assets/images/prod/acaiteGirasolCocinero.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/arvejasSecas.jpg /var/www/html/superACasa/servicios/assets/images/prod/arvejasSecas.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/salGruesa.webp /var/www/html/superACasa/servicios/assets/images/prod/salGruesa.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/salParrillera.jpg /var/www/html/superACasa/servicios/assets/images/prod/salParrillera.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/almidonDeMaiz.jpg /var/www/html/superACasa/servicios/assets/images/prod/almidonDeMaiz.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaFrutValle.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaFrutValle.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/6280foto01g.jpg /var/www/html/superACasa/servicios/assets/images/prod/6280foto01g.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/atun.webp /var/www/html/superACasa/servicios/assets/images/prod/atun.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/azucarImpalpable.jpg /var/www/html/superACasa/servicios/assets/images/prod/azucarImpalpable.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/caballa.jpg /var/www/html/superACasa/servicios/assets/images/prod/caballa.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/harina0000.webp /var/www/html/superACasa/servicios/assets/images/prod/harina0000.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/porotoBlanco.webp /var/www/html/superACasa/servicios/assets/images/prod/porotoBlanco.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/feculaMandioca.jpg /var/www/html/superACasa/servicios/assets/images/prod/feculaMandioca.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/dedalito.webp /var/www/html/superACasa/servicios/assets/images/prod/dedalito.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/avena.jpg /var/www/html/superACasa/servicios/assets/images/prod/avena.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/yerbaNaranja.png /var/www/html/superACasa/servicios/assets/images/prod/yerbaNaranja.png
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/mozzarella.webp /var/www/html/superACasa/servicios/assets/images/prod/mozzarella.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/azucar.jpg /var/www/html/superACasa/servicios/assets/images/prod/azucar.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/lentejas.webp /var/www/html/superACasa/servicios/assets/images/prod/lentejas.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/barraCereal.webp /var/www/html/superACasa/servicios/assets/images/prod/barraCereal.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/lecheLaSerenisima.jpg /var/www/html/superACasa/servicios/assets/images/prod/lecheLaSerenisima.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polentaArcor.jpg /var/www/html/superACasa/servicios/assets/images/prod/polentaArcor.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/tallarines.webp /var/www/html/superACasa/servicios/assets/images/prod/tallarines.webp
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carrito.jpg /var/www/html/superACasa/servicios/assets/images/carrito.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/carritoFdoTr.jpg /var/www/html/superACasa/servicios/assets/images/carritoFdoTr.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/categorias.html /var/www/html/superACasa/servicios/assets/pages/categorias.html
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/envios.html /var/www/html/superACasa/servicios/assets/pages/envios.html
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/contacto.html /var/www/html/superACasa/servicios/assets/pages/contacto.html
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/style.css /var/www/html/superACasa/servicios/assets/css/style.css
+popd > /dev/null
+fi
+exit 0

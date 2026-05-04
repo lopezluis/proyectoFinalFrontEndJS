@@ -1,3 +1,240 @@
+/* --- Variables de Color y Configuración --- */
+:root
+{
+  --azul-muy-oscuro: #1f2937;
+  --azul-hero: #0369a1;
+  --azul-oscuro: #0284c7;
+  --azul-brillante: #0ea5e9;
+  --azul-circulo: #0ea5e9;
+  --blanco: #ffffff;
+  --gris-claro: #f3f4f6;
+  --sombra: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+*
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html>body
+{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  color: var(--azul-muy-oscuro);
+}
+
+/* Encabezado: linea superior fija y hero section */
+html>body>header
+{
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--sombra);
+}
+
+/* Encabezado: linea superior fija */
+html>body>header .encabezado
+{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Encabezado: linea superior fija, contenedor de logo y nombre comercio */
+html>body>header>div.encabezado>div
+{
+  display: flex;
+  align-items: center; /* Centra verticalmente la imagen y el h1 */
+  gap: 15px; /* Crea una separación exacta entre la imagen y el h1 */
+}
+
+/* Encabezado: linea superior fija, nombre comercio */
+html>body>header>div.encabezado>div>h1
+{
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+/* Encabezado: linea superior fija, nombre comercio segunda parte */
+html>body>header>div.encabezado>div>h1>span
+{
+  color: var(--azul-brillante);
+}
+
+/* Encabezado: linea superior fija, navegación */
+html>body>header>div.encabezado>nav
+{
+  display: none; /* Oculto por defecto (mobile) */
+}
+
+/* Encabezado: linea superior fija, listado de secciones */
+html>body>header>div.encabezado>nav>a
+{
+  color: var(--blanco);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+html>body>header>div.encabezado>nav>a:hover
+{
+  color: var(--azul-brillante);
+}
+
+/* Encabezado: linea superior fija, carrito de compras */
+html>body>header>div.encabezado>button
+{
+  position: relative; /* Obligatorio para que el span se ubique respecto al botón */
+  width: 70px; /* Tamaño del botón */
+  height: 50px;
+  border: none; /* Sin borde */
+  cursor: pointer;
+  background-color: transparent;
+  background-image: url('../images/carrito.svg');
+  background-position: center; /* Centra la imagen horizontal y verticalmente */
+  background-size: 30px 30px; /* Establece el tamaño de la imagen del carrito */
+  background-repeat: no-repeat;
+}
+
+html>body>header>div.encabezado>button>span
+{
+  position: absolute; /* Despega el span y lo posiciona con coordenadas */
+  top: -0.01rem; /* Lo empuja hacia arriba (ajústalo si es necesario) */
+  right: -0.01rem; /* Lo empuja hacia la derecha (ajústalo si es necesario) */
+  width: 22px; /* Diseño del círculo: Ancho del círculo */
+  height: 22px; /* Alto del círculo */
+  background-color: var(--azul-brillante); /* Color de fondo usando tu variable */
+  border-radius: 50%; /* Hace que el fondo sea perfectamente redondo */
+  color: #ffffff; /* Tipografía y alineación del texto: Letras blancas */
+  font-family: Arial, sans-serif; /* Tipografía Arial */
+  font-size: 12px; /* Tamaño de la letra */
+  font-weight: bold; /* Texto en negrita para mejor lectura */
+  display: flex; /* Centrar el número dentro del círculo */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Encabezado: hero section */
+html>body>header>div.hero
+{
+  background-color: var(--azul-hero);
+}
+
+html>body>header .contenedor-texto-circulo
+{
+  display: flex; /* Activa Flexbox */
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Encabezado: hero section, contenedor izquierdo */
+html>body>header .contenedor-izquierdo
+{
+  width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html>body>header>div>div.contenedor-izquierdo>h2
+{
+  font-size: 2.25rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+html>body>header>div>div.contenedor-izquierdo>p
+{
+  font-size: 1.125rem;
+  color: #d1fae5; /* text-green-100 */
+  margin-bottom: 1.5rem;
+}
+
+/* Botones del Hero */
+html>body>header>div>div.contenedor-izquierdo>div.contenedor-botones-hero>a
+{
+  display: flex;
+  gap: 1rem;
+}
+
+html>body>header>div>div.contenedor-izquierdo>div.contenedor-botones-hero>a.boton-ofertas
+{
+  background-color: var(--azul-brillante);
+  color: var(--azul-oscuro);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+html>body>header>div>div.contenedor-izquierdo>div.contenedor-botones-hero>a.boton-ofertas:hover
+{
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+}
+
+html>body>header>div>div.contenedor-izquierdo>div.contenedor-botones-hero>a.boton-whatsapp
+{
+  background-color: var(--blanco);
+  color: var(--azul-hero);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: 1px solid var(--blanco);
+  transition: background-color 0.3s ease;
+}
+
+html>body>header>div>div.contenedor-izquierdo>div.contenedor-botones-hero>a.boton-whatsapp:hover
+{
+  background-color: var(--gris-claro);
+}
+
+html>body>header>div>div.contenedor-izquierdo>div.contenedor-botones-hero>a.boton-whatsapp>i
+{
+  display: inline-block; /* Convertir el tag i en bloque para que acepte dimensiones */
+  width: 20px; /* Definir el tamaño de la imagen */
+  height: 20px;
+  background-image: url('../images/whatsApp.svg'); /* Cargar la imagen */
+  background-size: contain; /* Ajustar la visualización de la imagen sin cortarse */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Imagen/Círculo del Hero */
+html>body>header .circulo-derecho
+{
+  width: 48%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html>body>header>div>div.circulo-derecho>i
+{
+  display: inline-block; /* Convertir el tag i en bloque para que acepte dimensiones */
+  width: 112px; /* Definir el tamaño de la imagen */
+  height: 112px;
+  background-image: url('../images/canasto.svg'); /* Cargar la imagen */
+  background-size: contain; /* Ajustar la visualización de la imagen sin cortarse */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Main*/
 div.card
 {
   display: inline-block;
