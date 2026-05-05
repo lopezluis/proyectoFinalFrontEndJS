@@ -22,7 +22,6 @@
             <a href="../../productos.html">Productos</a>
             <a href="categorias.html">Categorías</a>
             <a href="envios.html">Envíos</a>
-            <a href="contacto.html">Contacto</a>
           </nav>
           <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
             <span>3</span>
@@ -49,7 +48,7 @@
         <p>Si deseas ponerte en contacto con el desarrollador de este sitio web, puedes hacerlo a través de los siguientes medios:</p>
         <ul>
           <li>Nombre: Luis Fernando López</li>
-          <li><div class="foto_item"><p>Foto:</p><img src="../images/foto.png" alt="Foto de Luis Fernando López" width="100"/></div></li>
+          <li><div class="foto-item"><p>Foto:</p><img src="../images/foto.png" alt="Foto de Luis Fernando López" width="100"/></div></li>
           <li>Teléfono: <a href="tel:+5491134567890">+54 9 11 3456-7890</a></li>
           <li>Email: <a href="mailto:lsfrnndlpz@gmail.com">lsfrnndlpz@gmail.com</a></li>
           <li>LinkedIn: <a href="https://www.linkedin.com/in/luis-fernando-lopez/" target="_blank">https://www.linkedin.com/in/luis-fernando-lopez/</a></li>
@@ -59,20 +58,20 @@
           <li>Instagram: <a href="https://www.instagram.com/lsfrnndlpz" target="_blank">https://www.instagram.com/lsfrnndlpz</a></li>
           <li>Dirección: Avenida Independencia esq1uina Pichincha, Código Postal C12225AAR, Barrio San Cristóbal, Ciudad Autónoma de Buenos Aires, Argentina</li>
           <li>Horario de atención: Lunes a Viernes de 9:00 a 18:00</li>
-          <li>Formulario de contacto: Puedes completar el siguiente formulario para enviar un mensaje directo al desarrollador:</li>
+          <li>Formulario de contacto: Puedes completar el formulario de la derechapara enviar un mensaje directo al desarrollador del sitio.</li>
         </ul>
       </section>
+      <form class="dialogo-contacto" action="mailto:lsfrnndlpz@gmail.com" method="post" enctype="text/plain">
+        <p>Formulario de Contacto</p>
+        <label class="dialogo-contacto-etiqueta" for="nombre">Nombre:</label>
+        <input class="dialogo-contacto-controles" type="text" id="nombre" name="nombre" required>
+        <label class="dialogo-contacto-etiqueta" for="email">Email:</label>
+        <input class="dialogo-contacto-controles" type="email" id="email" name="email" required>
+        <label class="dialogo-contacto-etiqueta-mensaje" for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
     </main>
-    <form class="dialogo_contacto" action="mailto:lsfrnndlpz@gmail.com" method="post" enctype="text/plain">
-      <p>Formulario de Contacto</p>
-      <label class="dialogo_contacto_etiqueta" for="nombre">Nombre:</label>
-      <input class="dialogo_contacto_controles" type="text" id="nombre" name="nombre" required>
-      <label class="dialogo_contacto_etiqueta" for="email">Email:</label>
-      <input class="dialogo_contacto_controles" type="email" id="email" name="email" required>
-      <label class="dialogo_contacto_etiqueta_mensaje" for="mensaje">Mensaje:</label>
-      <textarea id="mensaje" name="mensaje" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
     <!-- Sección de Servicios (encima del footer) -->
     <section class="servicios">
       <div class="servicios-container">

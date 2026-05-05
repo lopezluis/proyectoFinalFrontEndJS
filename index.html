@@ -44,39 +44,45 @@
     </header>
     <!-- Sección de Ofertas Destacadas. -->
     <main>
-      <section id="ofertas" class="container section-ofertas">
-        <div class="header-ofertas">
-          <h3 class="titulo-ofertas">Ofertas del Día</h3>
-          <a href="#" class="ver-todas">Ver todas &rarr;</a>
+      <section class="productos">
+        <!-- div class="header-productos" -->
+          <h2 class="titulo-ofertas">Ofertas del Día</h2>
+          <!-- a class="ver-todas">Ver todas &rarr;</a>
+        </div -->
+        <!-- Tarjeta Aceite -->
+        <div class="card">
+          <span class="promocion">2x1</span>
+          <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol">
+          <h3>Aceite de Girasol</h3>
+          <p>Aceite de girasol 1.5L Cocinero.</p>
+          <p>Precio: $2.450</p>
+          <button>Agregar al carrito</button>
+          <!-- button class="agregar-carrito"><i></i></button -->
         </div>
-        <div class="grid-productos">
-          <!-- Tarjeta Aceite -->
-          <div class="card-producto">
-            <span class="badge-promo">2x1</span>
-            <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol">
-            <div class="card-info">
-              <h4>Aceite de Girasol 1.5L</h4>
-              <p>Cocinero</p>
-              <div class="card-footer">
-                <span class="precio">$2.450</span>
-                <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
-              </div>
-            </div>
-          </div>
-          <!-- Tarjeta Leche -->
-          <div class="card-producto">
-            <span class="badge-promo">20% OFF</span>
-            <img src="servicios/assets/images/prod/lecheLaSerenisima.jpg" alt="Leche Entera">
-            <div class="card-info">
-              <h4>Leche Entera 1L</h4>
-              <p>La Serenísima</p>
-              <div class="card-footer">
-                <span class="precio">$1.100</span>
-                <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
-              </div>
-            </div>
-          </div>
+        <!-- Tarjeta Leche -->
+        <div class="card">
+          <span class="promocion">20% OFF</span>
+          <img src="servicios/assets/images/prod/lecheLaSerenisima.jpg" alt="Leche Entera">
+          <h3>Leche Entera 1L</h3>
+          <p>Leche al 3% La Serenísima</p>
+          <p>Precio: $1.100</p>
+          <button>Agregar al carrito</button>
         </div>
+        <!-- TODO: El esqueleto de las tarjetas deberían se así: -->
+        <!-- div class="card-producto">
+          <div class="card-header">
+            <img src="" alt="">
+            <span class="promocion"></span>
+          </div>
+          <div class="card-info">
+            <h3></h3>
+            <p></p>
+          </div>
+          <div class="card-footer">
+            <span class="precio"></span>
+            <button class="agregar-carrito"><i></i></button>
+          </div>
+        </div-->
       </section>
     </main>
     <!-- Sección de Servicios (encima del footer) -->
