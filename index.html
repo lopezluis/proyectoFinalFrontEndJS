@@ -5,25 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supermercado a Casa</title>
     <link type="image/x-icon" rel="icon" href="servicios/assets/images/favicon.svg">
+    <link rel="stylesheet" href="servicios/assets/css/styleHeader.css">
     <link rel="stylesheet" href="servicios/assets/css/style.css">
-    <link rel="stylesheet" href="servicios/assets/css/style2.css">
+    <link rel="stylesheet" href="servicios/assets/css/styleFooter.css">
   </head>
   <body>
     <header> <!-- Encabezado: linea superior fija y hero section -->
-      <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
-        <div>
-          <img src="servicios/assets/images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
-          <h1>Supermercado <span>a Casa</span></h1>
+      <div> <!-- Necasario para pintar el fondo en forma completa -->
+        <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
+          <div>
+            <img src="servicios/assets/images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
+            <h1>Supermercado <span>a Casa</span></h1>
+          </div>
+          <nav>
+            <a href="servicios/productos.html">Productos</a>
+            <a href="servicios/assets/pages/categorias.html">Categorías</a>
+            <a href="servicios/assets/pages/envios.html">Envíos</a>
+            <a href="servicios/assets/pages/contacto.html">Contacto</a>
+          </nav>
+          <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
+            <span>3</span>
+          </button>
         </div>
-        <nav>
-          <a href="servicios/productos.html">Productos</a>
-          <a href="servicios/assets/pages/categorias.html">Categorías</a>
-          <a href="servicios/assets/pages/envios.html">Envíos</a>
-          <a href="servicios/assets/pages/contacto.html">Contacto</a>
-        </nav>
-        <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
-          <span>3</span>
-        </button>
       </div>
       <div class="hero">
         <div class="contenedor-texto-circulo">
@@ -40,71 +43,72 @@
       </div>
     </header>
     <!-- Sección de Ofertas Destacadas. -->
-    <section id="ofertas" class="container section-ofertas">
-      <div class="header-ofertas">
-        <h3 class="titulo-ofertas">Ofertas del Día</h3>
-        <a href="#" class="ver-todas">Ver todas &rarr;</a>
-      </div>
-      <div class="grid-productos">
-        <!-- Tarjeta Aceite -->
-        <div class="card-producto">
-          <span class="badge-promo">2x1</span>
-          <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol">
-          <div class="card-info">
-            <h4>Aceite de Girasol 1.5L</h4>
-            <p>Cocinero</p>
-            <div class="card-footer">
-              <span class="precio">$2.450</span>
-              <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
+    <main>
+      <section id="ofertas" class="container section-ofertas">
+        <div class="header-ofertas">
+          <h3 class="titulo-ofertas">Ofertas del Día</h3>
+          <a href="#" class="ver-todas">Ver todas &rarr;</a>
+        </div>
+        <div class="grid-productos">
+          <!-- Tarjeta Aceite -->
+          <div class="card-producto">
+            <span class="badge-promo">2x1</span>
+            <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol">
+            <div class="card-info">
+              <h4>Aceite de Girasol 1.5L</h4>
+              <p>Cocinero</p>
+              <div class="card-footer">
+                <span class="precio">$2.450</span>
+                <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <!-- Tarjeta Leche -->
+          <div class="card-producto">
+            <span class="badge-promo">20% OFF</span>
+            <img src="servicios/assets/images/prod/lecheLaSerenisima.jpg" alt="Leche Entera">
+            <div class="card-info">
+              <h4>Leche Entera 1L</h4>
+              <p>La Serenísima</p>
+              <div class="card-footer">
+                <span class="precio">$1.100</span>
+                <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
+              </div>
             </div>
           </div>
         </div>
-        <!-- Tarjeta Leche -->
-        <div class="card-producto">
-          <span class="badge-promo">20% OFF</span>
-          <img src="servicios/assets/images/prod/lecheLaSerenisima.jpg" alt="Leche Entera">
-          <div class="card-info">
-            <h4>Leche Entera 1L</h4>
-            <p>La Serenísima</p>
-            <div class="card-footer">
-              <span class="precio">$1.100</span>
-              <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Sección Servicios -->
-    <section class="section-servicios">
-      <div class="container grid-servicios">
+      </section>
+    </main>
+    <!-- Sección de Servicios (encima del footer) -->
+    <section class="servicios">
+      <div class="servicios-container">
         <div class="servicio-item">
-          <i class="fa-solid fa-truck-fast"></i>
+          <i></i>
           <h5>Envío Rápido</h5>
           <p>Entregamos en el día en toda la zona.</p>
         </div>
         <div class="servicio-item">
-          <i class="fa-solid fa-credit-card"></i>
+          <i></i>
           <h5>Pagá como quieras</h5>
           <p>Efectivo, Débito, Crédito y Mercado Pago.</p>
         </div>
         <div class="servicio-item">
-          <i class="fa-solid fa-store"></i>
+          <i></i>
           <h5>Retiro en Local</h5>
           <p>Comprás online y pasás sin hacer fila.</p>
         </div>
       </div>
     </section>
-    <!-- Footer -->
-    <footer class="main-footer">
-      <div class="container grid-footer">
+    <!-- Footer Principal -->
+    <footer class="footer">
+      <div class="footer-container">
         <div class="footer-col">
           <h6>Supermercado a Casa</h6>
           <p>Tu mercado de confianza en el corazón de la Ciudad.</p>
         </div>
         <div class="footer-col">
           <h6>Horarios</h6>
-          <p>Lun a Sáb: 08:30 a 20:30</p>
-          <p>Dom: 09:00 a 13:30</p>
+          <p>Lun a Sáb: 08:30 a 20:30<br>Dom: 09:00 a 13:30</p>
         </div>
         <div class="footer-col">
           <h6>Ubicación</h6>
@@ -120,95 +124,5 @@
         </div>
       </div>
     </footer>
-    <!--section id="ofertas" class="container mx-auto px-4 py-12">
-      <div class="flex justify-between items-end mb-8">
-        <h3 class="text-3xl font-bold text-gray-800 border-b-4 border-[#0ea5e9] pb-2">Ofertas del Día</h3>
-        <span class="text-[#0ea5e9] font-semibold cursor-pointer hover:underline tracking-wider">Ver todas &rarr;</span>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <\!-- Tarjeta de Producto con Imagen Real. Repetir estructura para más productos. --\>
-        <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 overflow-hidden group">
-          <div class="relative">
-            <span class="absolute top-3 left-3 z-10 bg-[#0ea5e9] text-white px-2 py-1 text-xs font-bold rounded shadow-sm">2x1</span>
-            <\!-- Contenedor de Imagen. --\>
-            <div class="aspect-square bg-gray-100 overflow-hidden">
-              <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-bold text-gray-800 mb-1 leading-tight">Aceite de Girasol 1.5L</h4>
-            <p class="text-sm text-gray-500 mb-3">Cocinero</p>
-            <div class="flex justify-between items-center">
-              <span class="text-xl font-extrabold text-[#0ea5e9]">$2.450</span>
-              <button class="bg-[#0ea5e9] text-white p-2 rounded-full hover:bg-[#0284c7] hover:text-white transition shadow-sm">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition border border-gray-100 overflow-hidden group">
-          <div class="relative">
-            <span class="absolute top-3 left-3 z-10 bg-[#0ea5e9] text-white px-2 py-1 text-xs font-bold rounded shadow-sm">20% OFF</span>
-            <div class="aspect-square bg-gray-100 overflow-hidden">
-              <img src="servicios/assets/images/prod/lecheLaSerenisima.jpg" alt="Leche 3% La Serenisima" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
-            </div>
-          </div>
-          <div class="p-4">
-            <h4 class="font-bold text-gray-800 mb-1 leading-tight">Leche Entera 1L</h4>
-            <p class="text-sm text-gray-500 mb-3">La Serenísima</p>
-            <div class="flex justify-between items-center">
-              <span class="text-xl font-extrabold text-[#0ea5e9]">$1.100</span>
-              <button class="bg-[#0ea5e9] text-white p-2 rounded-full hover:bg-[#0284c7] hover:text-white transition shadow-sm">
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="bg-gray-100 py-10">
-      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div>
-          <i class="fa-solid fa-truck-fast text-4xl text-[#0284c7] mb-4"></i>
-          <h5 class="font-bold text-lg">Envío Rápido</h5>
-          <p class="text-gray-600">Entregamos en el día en toda la zona.</p>
-        </div>
-        <div>
-          <i class="fa-solid fa-credit-card text-4xl text-[#0284c7] mb-4"></i>
-          <h5 class="font-bold text-lg">Pagá como quieras</h5>
-          <p class="text-gray-600">Efectivo, Débito, Crédito y Mercado Pago.</p>
-        </div>
-        <div>
-          <i class="fa-solid fa-store text-4xl text-[#0284c7] mb-4"></i>
-          <h5 class="font-bold text-lg">Retiro en Local</h5>
-          <p class="text-gray-600">Comprás online y pasás sin hacer fila.</p>
-        </div>
-      </div>
-    </section>
-    <footer class="bg-gray-800 text-gray-300 py-10">
-      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h6 class="text-white font-bold text-lg mb-4">Supermercado a Casa</h6>
-          <p class="text-sm">Tu mercado de confianza en el corazón de la Ciudad.</p>
-        </div>
-        <div>
-          <h6 class="text-white font-bold mb-4">Horarios</h6>
-          <p class="text-sm">Lun a Sáb: 08:30 a 20:30</p>
-          <p class="text-sm">Dom: 09:00 a 13:30</p>
-        </div>
-        <div>
-          <h6 class="text-white font-bold mb-4">Ubicación</h6>
-          <p class="text-sm">Av. Rivadavia 1234, CABA</p>
-          <p class="text-sm italic mt-2">Próximamente en Palermo</p>
-        </div>
-        <div>
-          <h6 class="text-white font-bold mb-4">Newsletter</h6>
-          <div class="flex">
-            <input type="email" placeholder="Tu mail" class="bg-gray-700 px-3 py-2 rounded-l w-full focus:outline-none">
-            <button class="bg-[#0284c7] px-4 py-2 rounded-r hover:bg-[#0284c7] hover:text-white transition">OK</button>
-          </div>
-        </div>
-      </div>
-    </footer-->
   </body>
 </html>

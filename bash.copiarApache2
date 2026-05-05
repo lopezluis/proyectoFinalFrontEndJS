@@ -93,13 +93,17 @@ do
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polentaArcor.jpg /var/www/html/superACasa/servicios/assets/images/prod/polentaArcor.jpg
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/tallarines.webp /var/www/html/superACasa/servicios/assets/images/prod/tallarines.webp
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/whatsApp.svg /var/www/html/superACasa/servicios/assets/images/whatsApp.svg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/envioRapido.jpg /var/www/html/superACasa/servicios/assets/images/envioRapido.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/pagaComoQuieras.jpg /var/www/html/superACasa/servicios/assets/images/pagaComoQuieras.jpg
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/retiroEnLocal.jpg /var/www/html/superACasa/servicios/assets/images/retiroEnLocal.jpg
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/categorias.html /var/www/html/superACasa/servicios/assets/pages/categorias.html
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/envios.html /var/www/html/superACasa/servicios/assets/pages/envios.html
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/contacto.html /var/www/html/superACasa/servicios/assets/pages/contacto.html
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/readme_md.css /var/www/html/superACasa/servicios/assets/css/readme_md.css
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/styleHeader.css /var/www/html/superACasa/servicios/assets/css/styleHeader.css
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/style.css /var/www/html/superACasa/servicios/assets/css/style.css
+    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/styleFooter.css /var/www/html/superACasa/servicios/assets/css/styleFooter.css
     copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/index.html /var/www/html/superACasa/index.html
-    copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/style2.css /var/www/html/superACasa/servicios/assets/css/style2.css
     exit 0
     ;;
   *)
@@ -172,13 +176,17 @@ copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFina
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/polentaArcor.jpg /var/www/html/superACasa/servicios/assets/images/prod/polentaArcor.jpg
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/prod/tallarines.webp /var/www/html/superACasa/servicios/assets/images/prod/tallarines.webp
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/whatsApp.svg /var/www/html/superACasa/servicios/assets/images/whatsApp.svg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/envioRapido.jpg /var/www/html/superACasa/servicios/assets/images/envioRapido.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/pagaComoQuieras.jpg /var/www/html/superACasa/servicios/assets/images/pagaComoQuieras.jpg
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/images/retiroEnLocal.jpg /var/www/html/superACasa/servicios/assets/images/retiroEnLocal.jpg
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/categorias.html /var/www/html/superACasa/servicios/assets/pages/categorias.html
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/envios.html /var/www/html/superACasa/servicios/assets/pages/envios.html
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/pages/contacto.html /var/www/html/superACasa/servicios/assets/pages/contacto.html
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/readme_md.css /var/www/html/superACasa/servicios/assets/css/readme_md.css
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/styleHeader.css /var/www/html/superACasa/servicios/assets/css/styleHeader.css
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/style.css /var/www/html/superACasa/servicios/assets/css/style.css
+copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/styleFooter.css /var/www/html/superACasa/servicios/assets/css/styleFooter.css
 copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/index.html /var/www/html/superACasa/index.html
-copiar /home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/css/style2.css /var/www/html/superACasa/servicios/assets/css/style2.css
 popd > /dev/null
 fi
 exit 0

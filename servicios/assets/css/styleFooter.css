@@ -1,0 +1,135 @@
+/* Sección Servicios */
+html>body>section.servicios
+{
+  color: var(--azul-muy-oscuro);
+  background-color: var(--gris-claro-bg);
+  padding: 0;
+  text-align: center;
+  margin-bottom: 90px; /* espacio para que no quede debajo del footer fijo */
+}
+
+/* Layout Servicios */
+html>body>section.servicios>div.servicios-container
+{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid; /* Habilita el contenedor como grid */
+  grid-template-columns: repeat(3, 1fr);  /* define 3 columnas de igual ancho */
+  gap: 0.15%; /* Espacio entre columnas */
+}
+
+html>body>section.servicios>div.servicios-container>div.servicio-item>i
+{
+  display: block;
+  width: 100%; /* Ocupa el 100% del ancho del contenedor, necesario para que la imagen que es menos ancha que el ancho de i se muestre centrada, respecto a i */
+  height: 100px;
+  background-color: transparent;
+  background-position: center center; /* Centra la imagen horizontal y verticalmente, si lo hubiese definido con los valores left top; hubiera dicho izquierda arriba, right bottom; derecha abajo */
+  background-size: 100px 100px; /* Establece el tamaño de la imagen del carrito */
+  background-repeat: no-repeat;
+}
+
+html>body>section.servicios>div.servicios-container>div.servicio-item:nth-child(1)>i
+{
+  background-image: url('../images/envioRapido.jpg');
+}
+
+html>body>section.servicios>div.servicios-container>div.servicio-item:nth-child(2)>i
+{
+  background-image: url('../images/pagaComoQuieras.jpg');
+}
+
+html>body>section.servicios>div.servicios-container>div.servicio-item:nth-child(3)>i
+{
+  background-image: url('../images/retiroEnLocal.jpg');
+}
+
+html>body>section.servicios>div.servicios-container>div.servicio-item>h5
+{
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+html>body>section.servicios>div.servicios-container>div.servicio-item>p
+{
+  color: #4b5563;
+}
+
+/* Footer */
+html>body>footer.footer
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  color: var(--blanco);
+  background-color: var(--azul-muy-oscuro);
+  padding: 0;
+  z-index: 10;
+}
+
+/* Layout Footer */
+html>body>footer.footer>div.footer-container
+{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid; /* Habilita el contenedor como grid */
+  grid-template-columns: repeat(4, 1fr);  /* define 4 columnas de igual ancho */
+  gap: 0.15%; /* Espacio entre columnas */
+}
+
+html>body>footer.footer>div.footer-container>div.footer-col>h6
+{
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+html>body>footer.footer>div.footer-container>div.footer-col>p
+{
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* --- Formulario Newsletter --- */
+html>body>footer.footer>div.footer-container>div.footer-col>form.newsletter-form
+{
+  display: flex;
+}
+
+html>body>footer.footer>div.footer-container>div.footer-col>form.newsletter-form>input.newsletter-input
+{
+  background-color: var(--azul-oscuro);
+  border: none;
+  color: var(--blanco);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem 0 0 0.25rem;
+  width: 100%;
+  outline: none;
+}
+
+html>body>footer.footer>div.footer-container>div.footer-col>form.newsletter-form>input.newsletter-input::placeholder
+{
+  color: var(--blanco);
+}
+
+html>body>footer.footer>div.footer-container>div.footer-col>form.newsletter-form>button.newsletter-btn
+{
+  color: var(--blanco);
+  background-color: var(--azul-brillante);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0.25rem 0.25rem 0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+html>body>footer.footer>div.footer-container>div.footer-col>form.newsletter-form>button.newsletter-btn:hover
+{
+  background-color: #0369a1; /* Un azul más oscuro al pasar el mouse */
+}

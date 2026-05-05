@@ -5,24 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Envíos</title>
     <link type="image/x-icon" rel="icon" href="../images/favicon.svg">
+    <link rel="stylesheet" href="../css/styleHeader.css">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/styleFooter.css">
   </head>
   <body>
     <header> <!-- Encabezado: linea superior fija y hero section -->
-      <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
-        <div>
-          <img src="../images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
-          <h1>Supermercado <span>a Casa</span></h1>
+      <div> <!-- Necasario para pintar el fondo en forma completa -->
+        <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
+          <div>
+            <img src="../images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
+            <h1>Supermercado <span>a Casa</span></h1>
+          </div>
+          <nav>
+            <a href="../../../index.html">Ofertas</a>
+            <a href="../../productos.html">Productos</a>
+            <a href="../pages/categorias.html">Categorías</a>
+            <a href="../pages/contacto.html">Contacto</a>
+          </nav>
+          <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
+            <span>3</span>
+          </button>
         </div>
-        <nav>
-          <a href="../../../index.html">Ofertas</a>
-          <a href="../../productos.html">Productos</a>
-          <a href="../pages/categorias.html">Categorías</a>
-          <a href="../pages/contacto.html">Contacto</a>
-        </nav>
-        <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
-          <span>3</span>
-        </button>
       </div>
       <div class="hero">
         <div class="contenedor-texto-circulo">
@@ -44,47 +48,48 @@
         <p>Envíos: TODO.</p>
       </section>
     </main>
-    <section class="bg-gray-100 py-10">
-      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-        <div>
-          <i class="fa-solid fa-truck-fast text-4xl text-[#0284c7] mb-4"></i>
-          <h5 class="font-bold text-lg">Envío Rápido</h5>
-          <p class="text-gray-600">Entregamos en el día en toda la zona.</p>
+    <!-- Sección de Servicios (encima del footer) -->
+    <section class="servicios">
+      <div class="servicios-container">
+        <div class="servicio-item">
+          <i></i>
+          <h5>Envío Rápido</h5>
+          <p>Entregamos en el día en toda la zona.</p>
         </div>
-        <div>
-          <i class="fa-solid fa-credit-card text-4xl text-[#0284c7] mb-4"></i>
-          <h5 class="font-bold text-lg">Pagá como quieras</h5>
-          <p class="text-gray-600">Efectivo, Débito, Crédito y Mercado Pago.</p>
+        <div class="servicio-item">
+          <i></i>
+          <h5>Pagá como quieras</h5>
+          <p>Efectivo, Débito, Crédito y Mercado Pago.</p>
         </div>
-        <div>
-          <i class="fa-solid fa-store text-4xl text-[#0284c7] mb-4"></i>
-          <h5 class="font-bold text-lg">Retiro en Local</h5>
-          <p class="text-gray-600">Comprás online y pasás sin hacer fila.</p>
+        <div class="servicio-item">
+          <i></i>
+          <h5>Retiro en Local</h5>
+          <p>Comprás online y pasás sin hacer fila.</p>
         </div>
       </div>
     </section>
-    <footer class="bg-gray-800 text-gray-300 py-10">
-      <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div>
-          <h6 class="text-white font-bold text-lg mb-4">Supermercado a Casa</h6>
-          <p class="text-sm">Tu mercado de confianza en el corazón de la Ciudad.</p>
+    <!-- Footer Principal -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-col">
+          <h6>Supermercado a Casa</h6>
+          <p>Tu mercado de confianza en el corazón de la Ciudad.</p>
         </div>
-        <div>
-          <h6 class="text-white font-bold mb-4">Horarios</h6>
-          <p class="text-sm">Lun a Sáb: 08:30 a 20:30</p>
-          <p class="text-sm">Dom: 09:00 a 13:30</p>
+        <div class="footer-col">
+          <h6>Horarios</h6>
+          <p>Lun a Sáb: 08:30 a 20:30<br>Dom: 09:00 a 13:30</p>
         </div>
-        <div>
-          <h6 class="text-white font-bold mb-4">Ubicación</h6>
-          <p class="text-sm">Av. Rivadavia 1234, CABA</p>
-          <p class="text-sm italic mt-2">Próximamente en Palermo</p>
+        <div class="footer-col">
+          <h6>Ubicación</h6>
+          <p>Av. Rivadavia 1234, CABA</p>
+          <p style="font-style: italic; margin-top: 0.5rem;">Próximamente en Palermo</p>
         </div>
-        <div>
-          <h6 class="text-white font-bold mb-4">Newsletter</h6>
-          <div class="flex">
-            <input type="email" placeholder="Tu mail" class="bg-gray-700 px-3 py-2 rounded-l w-full focus:outline-none">
-            <button class="bg-[#0284c7] px-4 py-2 rounded-r hover:bg-[#0284c7] hover:text-white transition">OK</button>
-          </div>
+        <div class="footer-col">
+          <h6>Newsletter</h6>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Tu mail" class="newsletter-input">
+            <button type="submit" class="newsletter-btn">OK</button>
+          </form>
         </div>
       </div>
     </footer>
