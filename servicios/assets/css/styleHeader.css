@@ -219,8 +219,9 @@ html>body>header>div.hero>div.contenedor-texto-circulo>div.contenedor-izquierdo>
 html>body>header>div.hero>div.contenedor-texto-circulo>div.contenedor-izquierdo>div.contenedor-botones-hero>a.boton-whatsapp>i
 {
   display: inline-block; /* Convertir el tag i en bloque para que acepte dimensiones */
-  width: 15px; /* Definir el tamaño de la imagen */
-  height: 15px;
+  width: 30px; /* Definir el tamaño de la imagen */
+  height: 30px;
+  vertical-align: -10px;
   background-image: url('../images/whatsApp.svg'); /* Cargar la imagen */
   background-size: contain; /* Ajustar la visualización de la imagen sin cortarse */
   background-repeat: no-repeat;
