@@ -1,3 +1,13 @@
 bash.copiarApache2
 bash.transferirApache2
+readme.html
+database.md
+database.html
+getRecordSetArticulos.js
+servidorSuperACasa.js
 servicios/assets/images/whatsAppIntentoCentrado.svg
+package.json
+package-lock.json
+node_modules/*
+.htaccess
+.markdownlint.json

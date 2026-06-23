@@ -1,4 +1,3 @@
-/* Main*/
 html>body>main
 {
   color: var(--azul-muy-oscuro);
@@ -10,7 +9,11 @@ html>body>main
   align-items: center;
 }
 
-/* Sección Ofertas y Productos */
+html>body>main>section.productos>ul>li
+{
+  margin: 0 0 0 90px;
+}
+
 html>body>main>section.productos>div.card
 {
   position: relative;
@@ -24,12 +27,16 @@ html>body>main>section.productos>div.card
 html>body>main>section.productos>div.card>span.promocion
 {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   top: 0.5rem;
   left: 0.5rem;
+  width: 80px;
+  height: 28px;
   z-index: 10;
   background: var(--azul-brillante-transparente);
   color: var(--azul-muy-oscuro);
-  padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 }
 
@@ -64,17 +71,17 @@ html>body>main>section.productos>div.card>button
 }
 
 
-html>body>main>form.dialogo-contacto
+html>body>main>form
 {
   margin: 10px;
-  border: solid 1px var(--azul-muy-oscuro);
-  width: 300px;
+  border: 1px solid var(--azul-muy-oscuro);
+  width: 400px;
   border-radius: 10px;
 }
 
-html>body>main>form.dialogo-contacto>p
+html>body>main>form>p
 {
-  margin: 0;
+  margin: 0 0 10px 0;
   background-color: lightblue;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -82,32 +89,46 @@ html>body>main>form.dialogo-contacto>p
   text-align: center;
 }
 
-html>body>main>form.dialogo-contacto>label.dialogo-contacto-etiqueta
+html>body>main>form>label
 {
   margin: 10px 0px 10px 10px;
 }
 
-html>body>main>form.dialogo-contacto>label.dialogo-contacto-etiqueta-mensaje
+html>body>main>form>input:nth-child(3)
+{
+  margin: 0 0 10px 0;
+  width: 210px;
+}
+
+html>body>main>form>input:nth-child(5)
+{
+  margin: 0 0 0 16px;
+  width: 210px;
+}
+
+html>body>main>form>label:nth-child(6)
 {
   margin: 10px;
-  width: 100%;
 }
 
-html>body>main>form.dialogo-contacto>input.dialogo-contacto-controles
+html>body>main>form>textarea
 {
-  margin: 10px;
+  margin: 0 10px;
+  width: 275px;
+  height: 330px;
+  resize: none;
 }
 
-html>body>main>form.dialogo-contacto>textarea
-{
-  margin: 0 10px 10px 10px;
-  width: 270px;
-}
-
-html>body>main>form.dialogo-contacto>button
+html>body>main>form>button
 {
   display: block;
-  margin: 10px auto;
+  margin: 0 auto 10px;
+  background-color: var(--azul-brillante);
+  color: var(--azul-oscuro);
+  padding: 0.75rem 1.5rem;
+  border-color: var(--azul-brillante);
+  border-radius: 0.5rem;
+  font-weight: 700;
 }
 
 html>body>main>section>ul>li>div.foto-item

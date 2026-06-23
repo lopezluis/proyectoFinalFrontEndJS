@@ -13,19 +13,23 @@
     <header> <!-- Encabezado: linea superior fija y hero section -->
       <div> <!-- Necasario para pintar el fondo en forma completa -->
         <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
-          <div>
+          <a href="../pages/index.html">
             <img src="../images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
             <h1>Supermercado <span>a Casa</span></h1>
-          </div>
+          </a>
           <nav>
             <a href="../../../index.html">Ofertas</a>
             <a href="../../productos.html">Productos</a>
             <a href="../pages/categorias.html">Categorías</a>
             <a href="../pages/contacto.html">Contacto</a>
           </nav>
-          <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
-            <span>3</span>
-          </button>
+          <div class="botonera">
+            <button id="administrarBtn">  <!-- Cliente inicie una compra o un administrador realice tareas de mantenimiento de productos y ofertas -->
+            </button>
+            <button id="carritoBtn"> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
+              <span>3</span>
+            </button>
+          </div>
         </div>
       </div>
       <div class="hero">

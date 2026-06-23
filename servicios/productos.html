@@ -8,24 +8,29 @@
     <link rel="stylesheet" href="assets/css/styleHeader.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/styleFooter.css">
+    <link rel="stylesheet" href="assets/css/dialog.css">
   </head>
   <body>
     <header> <!-- Encabezado: linea superior fija y hero section -->
-      <div> <!-- Necasario para pintar el fondo en forma completa -->
+      <div>
         <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
-          <div>
+          <a href="assets/pages/index.html">
             <img src="assets/images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
             <h1>Supermercado <span>a Casa</span></h1>
-          </div>
+          </a>
           <nav>
             <a href="../index.html">Ofertas</a>
             <a href="assets/pages/categorias.html">Categorías</a>
             <a href="assets/pages/envios.html">Envíos</a>
             <a href="assets/pages/contacto.html">Contacto</a>
           </nav>
-          <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
-            <span>3</span>
-          </button>
+          <div class="botonera">
+            <button id="administrarBtn">  <!-- Cliente inicia una compra o un administrador realiza tareas de mantenimiento de productos y ofertas -->
+            </button>
+            <button id="carritoBtn">
+              <span></span>
+            </button>
+          </div>
         </div>
       </div>
       <div class="hero">
@@ -45,97 +50,6 @@
     <main>
       <section class="productos">
         <h2>Productos</h2>
-        <div class="card">
-          <img src="assets/images/prod/atunAzul.jpg" alt="Atun">
-          <h3>Atun</h3>
-          <p>Atun desmenuzado al natural del Mar.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/caballa.jpg" alt="Caballa">
-          <h3>Caballa</h3>
-          <p>Caballa al natural La Campagnola.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/tirabuzon.webp" alt="Fideos">
-          <h3>Fideos</h3>
-          <p>Fideos de trigo integral Matarazzo.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/atun.webp" alt="Atun">
-          <h3>Atun</h3>
-          <p>Atun desmenuzado en aceite del Mar.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/almidonDeMaiz.jpg" alt="Almidón de Maíz">
-          <h3>Almidón de Maíz</h3>
-          <p>Almidón de maíz 100% natural Egran.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/arvejasSecas.jpg" alt="Arvejas Secas">
-          <h3>Arvejas Secas</h3>
-          <p>Arvejas secas partidas Egran.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/avena.jpg" alt="Avena">
-          <h3>Avena</h3>
-          <p>Avena Tradicional Cosechada Cotini.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/azucar.jpg" alt="Azúcar">
-          <h3>Azúcar</h3>
-          <p>Azúcar Blanca Común Ledezma.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/azucarImpalpable.jpg" alt="Azúcar Impalpable">
-          <h3>Azúcar Impalpable</h3>
-          <p>Azúcar Molida Impalpable Hierbapar.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/barraCereal.webp" alt="Barra Cereal">
-          <h3>Barra Cereal</h3>
-          <p>Barra Cereal com Miel Food.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <div class="card">
-          <img src="assets/images/prod/galletDiversion.webp" alt="Galletitas">
-          <h3>Galletitas</h3>
-          <p>Galletitas Surtidas Diversion Arcor.</p>
-          <p>Precio: $100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <!--div class="card">
-          <div class="card-img-container">
-            <span class="badge">2x1</span>
-            <img src="assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol">
-          </div>
-          <div class="card-body">
-            <h4 class="product-name">Aceite de Girasol</h4>
-            <p class="product-brand">Cocinero</p>
-            <div class="card-footer">
-              <span class="price">$2.450</span>
-              <button class="btn-add"><i class="fa-solid fa-plus"></i></button>
-            </div>
-          </div>
-        </div-->
       </section>
     </main>
     <!-- Sección de Servicios (encima del footer) -->
@@ -177,11 +91,247 @@
         <div class="footer-col">
           <h6>Newsletter</h6>
           <form class="newsletter-form">
-            <input type="email" placeholder="Tu mail" class="newsletter-input">
+            <input type="email" id="correo" name="correo" required placeholder="tu_mail@servidor.com" class="newsletter-input">
             <button type="submit" class="newsletter-btn">OK</button>
           </form>
         </div>
       </div>
     </footer>
+    <dialog id="altaArticulo">
+      <form>
+        <header>
+          <p>Agregar articulo</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="combo-input-fecha"><span style="text-decoration: underline;">F</span>echa:</label>
+          <div class="combo-calendario">
+            <!-- El cuadro de texto superior -->
+            <div id="combo-input-fecha" class="combo-input-fecha">Seleccione un día...</div>
+            <!-- El cuadro de lista oculto que contiene el calendario -->
+            <div id="combo-lista-fecha" class="combo-lista-fecha hidden">
+              <div id="mes-titulo-fecha" class="mes-titulo-fecha"></div>
+              <table>
+                <thead>
+                  <tr><th>D</th><th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th></tr>
+                </thead>
+                <tbody id="calendario-dias"></tbody>
+              </table>
+            </div>
+          </div>
+          <!--input type="date" id="fecha" name="fecha" required placeholder="Fecha" -->
+          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
+          <label for="precio"><span style="text-decoration: underline;">P</span>recio:</label>
+          <input type="text" id="precio" name="precio" autocomplete="given-name" required placeholder="Apellido" />
+          <!-- select categoria a partir del query: 'SELECT id, nombre FROM superacasa.devel.categ_art WHERE activo = TRUE;' -->
+          <label for="categoria">Ca<span style="text-decoration: underline;">t</span>egoría:</label>
+          <select id="categoria" name="categoria" required></select>
+          <label for="notas">N<span style="text-decoration: underline;">o</span>tas:</label>
+          <textarea id="notas" name="notas" rows="8" cols="64" placeholder="Cualquier acotación o recordatorio&#10;que necesite para este artículo." maxlength="500" wrap="soft" required></textarea>
+          <label for="descripcion"><span style="text-decoration: underline;">D</span>escripción:</label>
+          <input type="text" id="descripcion" name="descripcion" autocomplete="given-name" required placeholder="Descripción" />
+          <!-- select a partir de archivos existentes en el directorio: '/var/www/html/superACasa/servicios/assets/images/prod/' -->
+          <label for="imagen"><span style="text-decoration: underline;">I</span>magen:</label>
+          <select id="imagen" name="imagen" required></select>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="cuadroMensaje"> <!-- teclas con acción xc-->
+      <form>
+        <header>
+          <p></p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p></p>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="cuadroSiNo"> <!-- teclas con acción xsn-->
+      <form>
+        <header>
+          <p></p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p></p>
+        </main>
+        <footer>
+          <button type="submit" value="si"><span style="text-decoration: underline;">S</span>i</button>
+          <button type="submit" value="no"><span style="text-decoration: underline;">N</span>o</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="perfil"> <!-- teclas con acción: xpca -->
+      <form>
+        <header>
+          <h2>Elija el perfil</h2>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="perfil"><span style="text-decoration: underline;">P</span>erfil:</label>
+          <select id="perfil" name="perfil" required></select>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="cantidad_producto"> <!-- teclas con acción: xnca -->
+      <form>
+        <header>
+          <p>Cantidad</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <input type="hidden" id="articuloId" name="articuloId" value="0">
+          <label for="cantidad">Ca<span style="text-decoration: underline;">n</span>tidad:</label>
+          <input type="number" id="cantidad" name="cantidad" min="1" value="1" required />
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="carrito"> <!-- teclas con acción: xcp -->
+      <form>
+        <header>
+          <p>Carrito de Compras</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
+          <button type="submit" value="confirm" disabled><span style="text-decoration: underline;">P</span>agar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="altaCliente"> <!-- teclas con acción: xnptdourca -->
+      <form>
+        <header>
+          <p>Nuevo Cliente</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
+          <label for="apellido">A<span style="text-decoration: underline;">p</span>ellido:</label>
+          <input type="text" id="apellido" name="apellido" autocomplete="family-name" required placeholder="Apellido" />
+          <label for="telefono"><span style="text-decoration: underline;">T</span>eléfono:</label>
+          <input type="text" id="telefono" name="telefono" required placeholder="+54 11 7890 1234" />
+          <label for="direccion"><span style="text-decoration: underline;">D</span>ireccion:</label>
+          <textarea id="direccion" name="direccion" rows="5" cols="45" placeholder="Av. Rivadavia N° 1000&#10;Piso 1 Departamento A&#10;entre calles Pichincha y Pasco&#10;C1225AAR Ciudad Autónoma de Buenos Aires&#10;Argentina" maxlength="200" wrap="soft" required></textarea>
+          <label for="email">C<span style="text-decoration: underline;">o</span>rreo electrónico:</label>
+          <input type="email" id="email" name="email" autocomplete="off" required placeholder="tu_mail@servidor.com" />
+          <label for="usuario"><span style="text-decoration: underline;">U</span>suario:</label>
+          <input type="text" id="usuario" name="usuario" required placeholder="" />
+          <label for="contrasena">Cont<span style="text-decoration: underline;">r</span>aseña:</label>
+          <input type="password" id="contrasena" name="contrasena" required placeholder="" />
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="login"> <!-- teclas con acción: xlocrea -->
+      <form>
+        <header>
+          <p>Acceso</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p>Por favor:<br>
+            Identifíquese con sus credenciales y presione el botón "Aceptar".<br>
+            Si olvidó sus credenciales, presione el botón "Recuperar".<br>
+            Si quiere crear nuevas, presione el botón "Crear".<br>
+            O presione "Cancelar" para cerrar el cuadro.</p>
+          <label for="usuario">C<span style="text-decoration: underline;">l</span>iente:</label>
+          <input type="text" id="usuario" name="usuario" required />
+          <label for="contrasena">C<span style="text-decoration: underline;">o</span>ntraseña:</label>
+          <input type="password" id="contrasena" name="contrasena" required />
+        </main>
+        <!-- Atención: el atributo "for" de un label solo se puede utilizar si se lo referencia a un control que tenga su
+             atributo "name" con el mismo valor que el "for". Además ambos tienen que estar englobados por <form></form>. -->
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="recuperar"><span style="text-decoration: underline;">R</span>ecuperar</button>
+          <button type="submit" value="crear">Cr<span style="text-decoration: underline;">e</span>ar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="administrar">
+      <form>
+        <header>
+          <h2>Administración</h2>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <div class="tabs-nav">
+            <button class="active" onclick="event.preventDefault();document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p'}))"><span style="text-decoration: underline;">P</span>roducto</button>
+            <button class="" onclick="event.preventDefault();document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'o'}))"><span style="text-decoration: underline;">O</span>ferta</button>
+            <button class="" onclick="event.preventDefault();document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'u'}))"><span style="text-decoration: underline;">U</span>suario</button>
+          </div>
+          <!-- Contenido de las pestañas -->
+          <div class="tabs-content">
+            <!-- Pestaña Productos -->
+            <div id="productos" class="active">
+              <table id="tabla-articulos">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <!-- Pestaña Ofertas -->
+            <div id="ofertas" class="">
+              <table id="tabla-articulos">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Oferta</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <!-- Pestaña Usuarios -->
+            <div id="ofertas" class="">
+              <table id="tabla-articulos">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Categoria</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+        <footer>
+          <button><span style="text-decoration: underline;">A</span>gregar</button>
+          <button><span style="text-decoration: underline;">Q</span>uitar</button>
+          <button><span style="text-decoration: underline;">M</span>odificar</button>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
+        </footer>
+      </form>
+    </dialog>
+    <script src="assets/js/productos.js"></script>
   </body>
 </html>

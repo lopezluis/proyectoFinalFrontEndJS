@@ -8,24 +8,29 @@
     <link rel="stylesheet" href="servicios/assets/css/styleHeader.css">
     <link rel="stylesheet" href="servicios/assets/css/style.css">
     <link rel="stylesheet" href="servicios/assets/css/styleFooter.css">
+    <link rel="stylesheet" href="servicios/assets/css/dialog.css">
   </head>
   <body>
     <header> <!-- Encabezado: linea superior fija y hero section -->
       <div> <!-- Necasario para pintar el fondo en forma completa -->
         <div class="encabezado"> <!-- Contenedor del encabezado: logo, título, navegación y carrito de compras -->
-          <div>
+          <a href="servicios/assets/pages/index.html">
             <img src="servicios/assets/images/logo.svg" alt="Logo de Supermercado a Casa" width="40" height="40">
             <h1>Supermercado <span>a Casa</span></h1>
-          </div>
+          </a>
           <nav>
             <a href="servicios/productos.html">Productos</a>
             <a href="servicios/assets/pages/categorias.html">Categorías</a>
             <a href="servicios/assets/pages/envios.html">Envíos</a>
             <a href="servicios/assets/pages/contacto.html">Contacto</a>
           </nav>
-          <button> <!-- Carrito de compras, TODO: la funcionalidad deba ser desarrollada por javascript -->
-            <span>3</span>
-          </button>
+          <div class="botonera">
+            <button id="administrarBtn">  <!-- Cliente inicie una compra o un administrador realice tareas de mantenimiento de productos y ofertas -->
+            </button>
+            <button id="carritoBtn">
+              <span>0</span>
+            </button>
+          </div>
         </div>
       </div>
       <div class="hero">
@@ -45,44 +50,6 @@
     <!-- Sección de Ofertas Destacadas. -->
     <main>
       <section class="productos">
-        <!-- div class="header-productos" -->
-          <h2 class="titulo-ofertas">Ofertas del Día</h2>
-          <!-- a class="ver-todas">Ver todas &rarr;</a>
-        </div -->
-        <!-- Tarjeta Aceite -->
-        <div class="card">
-          <span class="promocion">2x1</span>
-          <img src="servicios/assets/images/prod/acaiteGirasolCocinero.jpg" alt="Aceite de Girasol">
-          <h3>Aceite de Girasol</h3>
-          <p>Aceite de girasol 1.5L Cocinero.</p>
-          <p>Precio: $2.450</p>
-          <button>Agregar al carrito</button>
-          <!-- button class="agregar-carrito"><i></i></button -->
-        </div>
-        <!-- Tarjeta Leche -->
-        <div class="card">
-          <span class="promocion">20% OFF</span>
-          <img src="servicios/assets/images/prod/lecheLaSerenisima.jpg" alt="Leche Entera">
-          <h3>Leche Entera 1L</h3>
-          <p>Leche al 3% La Serenísima</p>
-          <p>Precio: $1.100</p>
-          <button>Agregar al carrito</button>
-        </div>
-        <!-- TODO: El esqueleto de las tarjetas deberían se así: -->
-        <!-- div class="card-producto">
-          <div class="card-header">
-            <img src="" alt="">
-            <span class="promocion"></span>
-          </div>
-          <div class="card-info">
-            <h3></h3>
-            <p></p>
-          </div>
-          <div class="card-footer">
-            <span class="precio"></span>
-            <button class="agregar-carrito"><i></i></button>
-          </div>
-        </div-->
       </section>
     </main>
     <!-- Sección de Servicios (encima del footer) -->
@@ -124,11 +91,145 @@
         <div class="footer-col">
           <h6>Newsletter</h6>
           <form class="newsletter-form">
-            <input type="email" placeholder="Tu mail" class="newsletter-input">
+            <input id="emailNewsletter" type="email" placeholder="Tu mail" class="newsletter-input">
             <button type="submit" class="newsletter-btn">OK</button>
           </form>
         </div>
       </div>
     </footer>
+    <dialog id="login"> <!-- teclas con acción: xlocrea -->
+      <form>
+        <header>
+          <p>Acceso</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p>Por favor:<br>
+            Identifíquese con sus credenciales y presione el botón "Aceptar".<br>
+            Si olvidó sus credenciales, presione el botón "Recuperar".<br>
+            Si quiere crear nuevas, presione el botón "Crear".<br>
+            O presione "Cancelar" para cerrar el cuadro.</p>
+          <label for="usuario">C<span style="text-decoration: underline;">l</span>iente:</label>
+          <input type="text" id="usuario" name="usuario" required />
+          <label for="contrasena">C<span style="text-decoration: underline;">o</span>ntraseña:</label>
+          <input type="password" id="contrasena" name="contrasena" required />
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="recuperar"><span style="text-decoration: underline;">R</span>ecuperar</button>
+          <button type="submit" value="crear">Cr<span style="text-decoration: underline;">e</span>ar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="cuadroMensaje"> <!-- teclas con acción xc-->
+      <form>
+        <header>
+          <p></p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p></p>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="cuadroSiNo"> <!-- teclas con acción xsn-->
+      <form>
+        <header>
+          <p></p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p></p>
+        </main>
+        <footer>
+          <button type="submit" value="si"><span style="text-decoration: underline;">S</span>i</button>
+          <button type="submit" value="no"><span style="text-decoration: underline;">N</span>o</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="carrito"> <!-- teclas con acción: xcfaqmp -->
+      <form>
+        <header>
+          <p>Carrito de Compras</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar&#10;Diálogo</button>
+          <button type="submit" value="finalizar"><span style="text-decoration: underline;">F</span>inalizar&#10;Compra</button>
+          <button type="submit" value="anular"><span style="text-decoration: underline;">A</span>nular&#10;Compra</button>
+          <button type="submit" value="quitar"><span style="text-decoration: underline;">Q</span>uitar&#10;Producto</button>
+          <button type="submit" value="modificar"><span style="text-decoration: underline;">M</span>odificar&#10;Cantidad</button>
+          <button type="submit" value="pagar"><span style="text-decoration: underline;">P</span>agar&#10;Compra</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="altaCliente"> <!-- teclas con acción: xnptdourca -->
+      <form>
+        <header>
+          <p>Nuevo Cliente</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
+          <label for="apellido">A<span style="text-decoration: underline;">p</span>ellido:</label>
+          <input type="text" id="apellido" name="apellido" autocomplete="family-name" required placeholder="Apellido" />
+          <label for="telefono"><span style="text-decoration: underline;">T</span>eléfono:</label>
+          <input type="text" id="telefono" name="telefono" required placeholder="+54 11 7890 1234" />
+          <label for="direccion"><span style="text-decoration: underline;">D</span>ireccion:</label>
+          <textarea id="direccion" name="direccion" rows="5" cols="45" placeholder="Av. Rivadavia N° 1000&#10;Piso 1 Departamento A&#10;entre calles Pichincha y Pasco&#10;C1225AAR Ciudad Autónoma de Buenos Aires&#10;Argentina" maxlength="200" wrap="soft" required></textarea>
+          <label for="email">C<span style="text-decoration: underline;">o</span>rreo electrónico:</label>
+          <input type="email" id="email" name="email" autocomplete="off" required placeholder="tu_mail@servidor.com" />
+          <label for="usuario"><span style="text-decoration: underline;">U</span>suario:</label>
+          <input type="text" id="usuario" name="usuario" required placeholder="" />
+          <label for="contrasena">Cont<span style="text-decoration: underline;">r</span>aseña:</label>
+          <input type="password" id="contrasena" name="contrasena" required placeholder="" />
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="perfil"> <!-- teclas con acción: xpca -->
+      <form>
+        <header>
+          <h2>Elija el perfil</h2>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="comboPerfil"><span style="text-decoration: underline;">P</span>erfil:</label>
+          <select id="comboPerfil" name="comboPerfil" required></select>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="cantidad_producto"> <!-- teclas con acción: xnca -->
+      <form>
+        <header>
+          <p>Cantidad</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <input type="hidden" id="articuloId" name="articuloId" value="0">
+          <label for="cantidad">Ca<span style="text-decoration: underline;">n</span>tidad:</label>
+          <input type="number" id="cantidad" name="cantidad" min="1" value="1" required />
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
+    <script src="servicios/assets/js/index.js"></script>
   </body>
 </html>
