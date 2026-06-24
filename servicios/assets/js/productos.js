@@ -985,27 +985,27 @@ document.addEventListener
                             const jsonAceptacion = await respuesta.json();
                             if (jsonAceptacion.exito == true)
                             {
-                                if (jsonAceptacion.cliente.length > 1)
+                                if (jsonAceptacion.recordset.length > 1)
                                 {
-                                    infoCliente.id = jsonAceptacion.cliente[0].id;
-                                    infoCliente.nombre = jsonAceptacion.cliente[0].nombre;
-                                    infoCliente.apellido = jsonAceptacion.cliente[0].apellido;
-                                    infoCliente.telefono = jsonAceptacion.cliente[0].telefono;
-                                    infoCliente.direccion = jsonAceptacion.cliente[0].direccion;
-                                    infoCliente.email = jsonAceptacion.cliente[0].email;
+                                    infoCliente.id = jsonAceptacion.recordset[0].id;
                                     localStorage.setItem('cliente_id', infoCliente.id);
+                                    infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                    infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                    infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                    infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                    infoCliente.email = jsonAceptacion.recordset[0].email;
                                     perfil.showModal();
                                     dialogoAbierto = 'perfil';
                                     comboPerfPerfil.innerHTML = '';
-                                    for (let i = (jsonAceptacion.cliente.length - 1); i >= 0; i--)
+                                    for (let i = (jsonAceptacion.recordset.length - 1); i >= 0; i--)
                                     {
                                         comboPerfPerfil.insertAdjacentHTML('beforeend',
-                                            `<option value="${jsonAceptacion.cliente[i].id_categoria}">${jsonAceptacion.cliente[i].nombre_categoria}</option>`);
+                                            `<option value="${jsonAceptacion.recordset[i].id_categoria}">${jsonAceptacion.recordset[i].nombre_categoria}</option>`);
                                     }
                                 }
                                 else
                                 {
-                                    if (jsonAceptacion.cliente.length == 0)
+                                    if (jsonAceptacion.recordset.length == 0)
                                     {
                                         // El usuario escribió mal sus credenciales o no tiene acceso
                                         cuadroMensaje.showModal();
@@ -1021,28 +1021,28 @@ document.addEventListener
                                     {
                                         // El usuario que accedió tiene un solo perfil, seguramente cliente,
                                         // dado que ser administrador sin ser cliente. no tendría sentido.
-                                        switch (jsonAceptacion.cliente[0].nombre_categoria)
+                                        switch (jsonAceptacion.recordset[0].nombre_categoria)
                                         {
                                         case 'administrador':
-                                            infoCliente.id = jsonAceptacion.cliente[0].id;
-                                            infoCliente.nombre = jsonAceptacion.cliente[0].nombre;
-                                            infoCliente.apellido = jsonAceptacion.cliente[0].apellido;
-                                            infoCliente.telefono = jsonAceptacion.cliente[0].telefono;
-                                            infoCliente.direccion = jsonAceptacion.cliente[0].direccion;
-                                            infoCliente.email = jsonAceptacion.cliente[0].email;
+                                            infoCliente.id = jsonAceptacion.recordset[0].id;
                                             localStorage.setItem('cliente_id', infoCliente.id);
+                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                            infoCliente.email = jsonAceptacion.recordset[0].email;
                                             infoCliente.perfil = 'administrador';
                                             administracion.showModal();
                                             dialogoAbierto = 'administrar';
                                             break;
                                         case 'cliente':
-                                            infoCliente.id = jsonAceptacion.cliente[0].id;
-                                            infoCliente.nombre = jsonAceptacion.cliente[0].nombre;
-                                            infoCliente.apellido = jsonAceptacion.cliente[0].apellido;
-                                            infoCliente.telefono = jsonAceptacion.cliente[0].telefono;
-                                            infoCliente.direccion = jsonAceptacion.cliente[0].direccion;
-                                            infoCliente.email = jsonAceptacion.cliente[0].email;
+                                            infoCliente.id = jsonAceptacion.recordset[0].id;
                                             localStorage.setItem('cliente_id', infoCliente.id);
+                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                            infoCliente.email = jsonAceptacion.recordset[0].email;
                                             dialogoAbierto = '';
                                             infoCliente.perfil = 'cliente';
                                             break;

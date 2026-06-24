@@ -31,10 +31,9 @@ document.addEventListener
         const botonModifCarrito = carrito.getElementsByTagName('button')[5];
         const botonPagarCarrito = carrito.getElementsByTagName('button')[6];
         const tagPrincipCarrito = carrito.getElementsByTagName('main')[0];
-        const tagPrTablaCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead');
+        const tagPrTablaCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead')[0];
         const tagPrTaBodCarrito = carrito.getElementsByTagName('main>table#tabla-datos>tbody')[0];
         const tagPrInpFiCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead>tr>th>div.th-contenedor>input.filtro-columna')[0];
-        const tagPrTitOrCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead>tr>th>div.th-contenedor>span.th-titulo')[0];
         const altaCliente = document.getElementById('altaCliente');
         const botonXsupeAltaCliente = altaCliente.getElementsByTagName('button')[0];
         const botonCanceAltaCliente = altaCliente.getElementsByTagName('button')[1];
@@ -57,12 +56,38 @@ document.addEventListener
         const botonPagarCantProducto = cantProducto.getElementsByTagName('button')[2];
         const inputArtIdCantProducto = cantProducto.getElementsByTagName('input')[0];
         const inputCantiCantProducto = cantProducto.getElementsByTagName('input')[1];
+        const administrar = document.getElementById('administrar');
+        const botonXsupAdministrar = administrar.getElementsByTagName('button')[0];
+        const botonProdAdministrar = administrar.getElementsByTagName('button')[1];
+        const botonOferAdministrar = administrar.getElementsByTagName('button')[2];
+        const botonUsuaAdministrar = administrar.getElementsByTagName('button')[3];
+        const botonAgreAdministrar = administrar.getElementsByTagName('button')[4];
+        const botonQuitAdministrar = administrar.getElementsByTagName('button')[5];
+        const botonModiAdministrar = administrar.getElementsByTagName('button')[6];
+        const botonCerrAdministrar = administrar.getElementsByTagName('button')[7];
+        const arePestPrAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#productos>table#tabla-articulos>tbody')[0];
+        const arePestOfAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#ofertas>table#tabla-ofertas>tbody')[0];
+        const arePestUsAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#usuarios>table#tabla-usuarios>tbody')[0];
+        const altaArticulo = document.getElementById('altaArticulo');
+        const botonXsupAltaArticulo = altaArticulo.getElementsByTagName('button')[0];
+        const botonCancAltaArticulo = altaArticulo.getElementsByTagName('button')[1];
+        const botonAcepAltaArticulo = altaArticulo.getElementsByTagName('button')[2];
+        const inputFechAltaArticulo = document.getElementById('combo-input-fecha');
+        const comboListAltaArticulo = document.getElementById('combo-lista-fecha');
+        const calendariAltaArticulo = document.getElementById('calendario-dias');
+        const mesTituloAltaArticulo = document.getElementById('mes-titulo-fecha');
+        const inputNombAltaArticulo = altaArticulo.getElementsByTagName('input')[0];
+        const inputPrecAltaArticulo = altaArticulo.getElementsByTagName('input')[1];
+        const inputDescAltaArticulo = altaArticulo.getElementsByTagName('input')[2];
+        const selecCateAltaArticulo = altaArticulo.getElementsByTagName('select')[0];
+        const selecImagAltaArticulo = altaArticulo.getElementsByTagName('select')[0];
+        const textaNotaAltaArticulo = altaArticulo.getElementsByTagName('textarea')[0];
         let servidorActivo = 0;
         let dialogoAbierto = '';
         let respuestaServidor = null;
         let infoCliente =
         {
-            id: localStorage.getItem('cliente_id') === null ? null : parseInt(localStorage.getItem('cliente_id')),
+            id: 0,
             nombre: '',
             apellido: '',
             telefono: '',
@@ -112,6 +137,24 @@ document.addEventListener
             document.querySelector('html>body>header>div>div.encabezado>div.botonera>button#carritoBtn>span').innerText =
                 (Number.isNaN(info.cantidadArticulosCarrito) ? '¿?' : info.cantidadArticulosCarrito);
         };
+        if(localStorage.getItem('cliente_id') !== null)
+        {
+            infoCliente.id = parseInt(localStorage.getItem('cliente_id'));
+            if(localStorage.getItem('cliente_perfil') === null)
+            {
+                infoCliente.perfil =  'cliente';
+                localStorage.setItem('cliente_perfil', infoCliente.perfil);
+            }
+            else
+            {
+                infoCliente.perfil = localStorage.getItem('cliente_perfil');
+                if((infoCliente.perfil !== 'cliente') && (infoCliente.perfil !== 'administrador'))
+                {
+                    infoCliente.perfil =  'cliente';
+                    localStorage.setItem('cliente_perfil', infoCliente.perfil);
+                }
+            }
+        }
         try
         {
             const FingerprintJS = await import('https://openfpcdn.io/fingerprintjs/v5');
@@ -167,12 +210,14 @@ document.addEventListener
                 if (cliente.exito == true)
                 {
                     infoCliente.id = cliente.id;
+                    localStorage.setItem('cliente_id', infoCliente.id);
                     infoCliente.nombre = cliente.nombre;
                     infoCliente.apellido = cliente.apellido;
                     infoCliente.telefono = cliente.telefono;
                     infoCliente.direccion = cliente.direccion;
                     infoCliente.email = cliente.email;
-                    localStorage.setItem('cliente_id', infoCliente.id);
+                    infoCliente.perfil =  'cliente';
+                    localStorage.setItem('cliente_perfil', infoCliente.perfil);
                 }
             }
             await cantidad_articulos_carrito(infoCliente);
@@ -242,6 +287,101 @@ document.addEventListener
         }
         document.addEventListener('keydown', async function(event)
         {
+            const mostrarDialogoAdministrar = async () =>
+            {
+                administrar.showModal();
+                dialogoAbierto = 'administrar';
+                let paginacion =
+                {
+                    registrosPagina: 5,
+                    paginaSolicitada: 1
+                };
+                try
+                {
+                    respuestaServidor = await fetch
+                    (
+                        'http://www.luislopez.com.ar:3000/api/articulos_paginados',
+                        {
+                            method: 'POST',
+                            headers:
+                            {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(paginacion)
+                        }
+                    );
+                }
+                catch (error)
+                {
+                    cuadroMensaje.showModal();
+                    textoTituCuadroMensaje.innerText = 'Error';
+                    textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve los productos<br />' +
+                                                       'en forma paginada. Respuesta:<br />"' + error + '".';
+                    cuadroMensaje.style.width = '320px';
+                    cuadroMensaje.style.height = '214px';
+                    dialogoAbierto = 'cuadroMensaje';
+                    botonCerrCuadroMensaje.focus();
+                    console.error('Error: El servidor no devuelve los productos en forma paginada. Respuesta: "' + error + '".');
+                }
+                if(respuestaServidor.status == 200)
+                {
+                    const jsonArticulosPaginados = await respuestaServidor.json();
+                    const saltoDeLinea = String.fromCharCode(10);
+                    if(jsonArticulosPaginados.recordset.length > 0)
+                    {
+                        let articulosPaginados = '';
+                        let alto = 0;
+                        if(jsonArticulosPaginados.exito)
+                        {
+                            jsonArticulosPaginados.recordset.forEach
+                            (
+                                articulo =>
+                                {
+                                    articulosPaginados +=
+                                        '              <tr>' + saltoDeLinea +
+                                        `                <td>${articulo.nombre}</td>` + saltoDeLinea +
+                                        `                <td>${articulo.descripcion}</td>` + saltoDeLinea +
+                                        `                <td>${articulo.precio}</td>` + saltoDeLinea +
+                                        '              </tr>' + saltoDeLinea;
+                                    alto++;
+                                }
+                            );
+                        }
+                        else
+                        {
+                            cuadroMensaje.showModal();
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de productos paginada.<br /> Respuesta: "' +
+                                jsonArticulosEnCarrito.error + '".';
+                            cuadroMensaje.style.width = '320px';
+                            cuadroMensaje.style.height = '214px';
+                            dialogoAbierto = 'cuadroMensaje';
+                            botonCerrCuadroMensaje.focus();
+                            console.error('Error: El servidor no devuelve la lista de productos paginada. Respuesta: "' +
+                                jsonArticulosEnCarrito.error + '".');
+                        }
+                        arePestPrAdministrar.innerHTML = articulosPaginados;
+                    }
+                    else
+                    {
+                        arePestPrAdministrar.innerHTML =
+                            '          <tr><td colspan="3" style="text-align: center;">Sin productos.</td></tr>' + saltoDeLinea;
+                    }
+                }
+                else
+                {
+                    cuadroMensaje.showModal();
+                    textoTituCuadroMensaje.innerText = 'Error';
+                    textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve los productos<br />' +
+                                                       'en forma paginada. Estado: ' + respuestaServidor.status + '.';
+                    cuadroMensaje.style.width = '320px';
+                    cuadroMensaje.style.height = '214px';
+                    dialogoAbierto = 'cuadroMensaje';
+                    botonCerrCuadroMensaje.focus();
+                    console.error('Error: El servidor no devuelve los productos en forma paginada. Estado: "' + respuestaServidor.status + '".');
+                }
+                // TODO: cargar las tablas de Oferta y Usuario
+            }
             switch (dialogoAbierto)
             {
             case '':
@@ -318,21 +458,21 @@ document.addEventListener
                                 '                <th data-columna="0" data-tipo="numero" style="width: 15%;">' + saltoDeLinea +
                                 '                  <div class="th-contenedor">' + saltoDeLinea +
                                 '                    <span class="th-titulo">Cantidad</span>' + saltoDeLinea +
-                                '                    <input type="text" class="filtro-columna" placeholder="Filtrar cantidad..." />' +
+                                '                    <input type="text" name="filtro-columna" class="filtro-columna" placeholder="Filtrar cantidad..." />' +
                                 saltoDeLinea +
                                 '                  </div>' + saltoDeLinea +
                                 '                </th>' + saltoDeLinea +
                                 '                <th data-columna="1" data-tipo="texto" style="width: 60%;">' + saltoDeLinea +
                                 '                  <div class="th-contenedor">' + saltoDeLinea +
                                 '                    <span class="th-titulo">Artículo</span>' + saltoDeLinea +
-                                '                    <input type="text" class="filtro-columna" placeholder="Filtrar artículo..." />' +
+                                '                    <input type="text" name="filtro-columna" class="filtro-columna" placeholder="Filtrar artículo..." />' +
                                 saltoDeLinea +
                                 '                  </div>' + saltoDeLinea +
                                 '                </th>' + saltoDeLinea +
                                 '                <th data-columna="2" data-tipo="numero" style="width: 25%;">' + saltoDeLinea +
                                 '                  <div class="th-contenedor">' + saltoDeLinea +
                                 '                    <span class="th-titulo">Precio</span>' + saltoDeLinea +
-                                '                    <input type="text" class="filtro-columna" placeholder="Filtrar precio..." />' +
+                                '                    <input type="text" name="filtro-columna" class="filtro-columna" placeholder="Filtrar precio..." />' +
                                 saltoDeLinea +
                                 '                  </div>' + saltoDeLinea +
                                 '                </th>' + saltoDeLinea +
@@ -388,6 +528,60 @@ document.addEventListener
                             carrito.style.width = '770px';
                             alto = alto * 49 + 253;
                             carrito.style.height = alto.toString() + 'px';
+                            const tagPrTitOrCarrito = document.getElementById('tabla-datos');
+                            tagPrTitOrCarrito.querySelector("thead").addEventListener('click', async function (evento)
+                            {
+                                let columnaActual = -1;
+                                let ordenAscendente = true;
+                                const ejecutarOrdenamiento = async (tituloCliqueado) =>
+                                {
+                                    const thPadre = tituloCliqueado.closest('th');
+                                    const indiceColumna = parseInt(thPadre.dataset.columna);
+                                    const tipoDato = thPadre.dataset.tipo;
+                                    if (columnaActual === indiceColumna)
+                                    {
+                                        ordenAscendente = !ordenAscendente;
+                                    }
+                                    else
+                                    {
+                                        ordenAscendente = true;
+                                        columnaActual = indiceColumna;
+                                    }
+                                    // Actualizar indicadores visuales (flechas)
+                                    // tagPrTitOrCarrito.forEach(t => t.classList.remove('orden-asc', 'orden-desc'));
+                                    for (const tituloQuitarClasesAscDesc of tagPrTitOrCarrito.getElementsByTagName("span.th-titulo"))
+                                    {
+                                        tituloQuitarClasesAscDesc.classList.remove('orden-asc', 'orden-desc');
+                                    }
+                                    tituloCliqueado.classList.add(ordenAscendente ? 'orden-asc' : 'orden-desc');
+                                    // Ordenar las filas en memoria
+                                    const filasArray = Array.from(document.querySelectorAll('#carrito tbody tr'));
+                                    filasArray.sort
+                                    (
+                                        (filaA, filaB) =>
+                                        {
+                                            const celdaA = filaA.children[indiceColumna].textContent.trim();
+                                            const celdaB = filaB.children[indiceColumna].textContent.trim();
+                                            if (tipoDato === 'numero')
+                                            {
+                                                return ordenAscendente ? celdaA - celdaB : celdaB - celdaA;
+                                            }
+                                            else
+                                            {
+                                                return ordenAscendente ? celdaA.localeCompare(celdaB) : celdaB.localeCompare(celdaA);
+                                            }
+                                        }
+                                    );
+                                    // Reinyectar filas ordenadas manteniendo los filtros actuales
+                                    filasArray.forEach(fila => tagPrTaBodCarrito.appendChild(fila));
+                                }
+                                if (evento.target.classList.contains("th-titulo"))
+                                {
+                                    const spanPresionado = evento.target;
+                                    const textoColumna = spanPresionado.textContent;
+                                    await ejecutarOrdenamiento(spanPresionado);
+                                }
+                            });
                         }
                         else
                         {
@@ -515,29 +709,29 @@ document.addEventListener
                             const jsonAceptacion = await respuestaServidor.json();
                             if (jsonAceptacion.exito == true)
                             {
-                                if (jsonAceptacion.cliente.length > 1)
+                                if (jsonAceptacion.recordset.length > 1)
                                 {
-                                    infoCliente.id = jsonAceptacion.cliente[0].id;
-                                    infoCliente.nombre = jsonAceptacion.cliente[0].nombre;
-                                    infoCliente.apellido = jsonAceptacion.cliente[0].apellido;
-                                    infoCliente.telefono = jsonAceptacion.cliente[0].telefono;
-                                    infoCliente.direccion = jsonAceptacion.cliente[0].direccion;
-                                    infoCliente.email = jsonAceptacion.cliente[0].email;
+                                    infoCliente.id = jsonAceptacion.recordset[0].id;
                                     localStorage.setItem('cliente_id', infoCliente.id);
+                                    infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                    infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                    infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                    infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                    infoCliente.email = jsonAceptacion.recordset[0].email;
                                     perfil.showModal();
                                     dialogoAbierto = 'perfil';
                                     comboPerfPerfil.innerHTML = '';
-                                    for (let i = (jsonAceptacion.cliente.length - 1); i >= 0; i--)
+                                    for (let i = (jsonAceptacion.recordset.length - 1); i >= 0; i--)
                                     {
                                         comboPerfPerfil.insertAdjacentHTML('beforeend',
-                                            `<option value="${jsonAceptacion.cliente[i].id_categoria}">` +
-                                            `${jsonAceptacion.cliente[i].nombre_categoria}` +
+                                            `<option value="${jsonAceptacion.recordset[i].id_categoria}">` +
+                                            `${jsonAceptacion.recordset[i].nombre_categoria}` +
                                             '</option>');
                                     }
                                 }
                                 else
                                 {
-                                    if (jsonAceptacion.cliente.length == 0)
+                                    if (jsonAceptacion.recordset.length == 0)
                                     {
                                         // El usuario escribió mal sus credenciales o no tiene acceso
                                         cuadroMensaje.showModal();
@@ -548,39 +742,44 @@ document.addEventListener
                                         cuadroMensaje.style.height = '164px';
                                         dialogoAbierto = 'cuadroMensaje';
                                         botonCerrCuadroMensaje.focus();
+                                        infoCliente.cliente_id = 0;
+                                        localStorage.removeItem('cliente_id');
+                                        infoCliente.perfil = '';
+                                        localStorage.removeItem('cliente_perfil');
                                     }
                                     else
                                     {
                                         // El usuario que accedió tiene un solo perfil, seguramente cliente,
                                         // dado que ser administrador sin ser cliente. no tendría sentido.
-                                        switch (jsonAceptacion.cliente[0].nombre_categoria)
+                                        switch (jsonAceptacion.recordset[0].nombre_categoria)
                                         {
                                         case 'administrador':
-                                            infoCliente.id = jsonAceptacion.cliente[0].id;
-                                            infoCliente.nombre = jsonAceptacion.cliente[0].nombre;
-                                            infoCliente.apellido = jsonAceptacion.cliente[0].apellido;
-                                            infoCliente.telefono = jsonAceptacion.cliente[0].telefono;
-                                            infoCliente.direccion = jsonAceptacion.cliente[0].direccion;
-                                            infoCliente.email = jsonAceptacion.cliente[0].email;
+                                            infoCliente.id = jsonAceptacion.recordset[0].id;
                                             localStorage.setItem('cliente_id', infoCliente.id);
+                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                            infoCliente.email = jsonAceptacion.recordset[0].email;
                                             infoCliente.perfil = 'administrador';
-                                            administracion.showModal();
-                                            dialogoAbierto = 'administrar';
+                                            localStorage.setItem('cliente_perfil', infoCliente.perfil);
+                                            await mostrarDialogoAdministrar();
                                             break;
                                         case 'cliente':
-                                            infoCliente.id = jsonAceptacion.cliente[0].id;
-                                            infoCliente.nombre = jsonAceptacion.cliente[0].nombre;
-                                            infoCliente.apellido = jsonAceptacion.cliente[0].apellido;
-                                            infoCliente.telefono = jsonAceptacion.cliente[0].telefono;
-                                            infoCliente.direccion = jsonAceptacion.cliente[0].direccion;
-                                            infoCliente.email = jsonAceptacion.cliente[0].email;
-                                            localStorage.setItem('cliente_id', infoCliente.id);
                                             dialogoAbierto = '';
+                                            infoCliente.id = jsonAceptacion.recordset[0].id;
+                                            localStorage.setItem('cliente_id', infoCliente.id);
+                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                            infoCliente.email = jsonAceptacion.recordset[0].email;
                                             infoCliente.perfil = 'cliente';
+                                            localStorage.setItem('cliente_perfil', infoCliente.perfil);
                                             break;
                                         default:
-                                            // Nunca se debería nunca poder acceder a este punto, si se puede, es necesario
-                                            // identificar y reproducir la acción, para asegurar ejecución correcta.
+                                            // Nunca se debería poder acceder a este punto, si se accede, es porque se agregó
+                                            // a la base de datos una nueva categoría y no se implementó en el código.
                                             localStorage.removeItem('cliente_id');
                                             cuadroMensaje.showModal();
                                             textoTituCuadroMensaje.innerText = 'Error Interno';
@@ -640,32 +839,37 @@ document.addEventListener
                     {
                     case 'x':
                     case 'X':
+                    case 'n':
+                    case 'N':
                         event.preventDefault();
-                        // Naturalmente quiero unificar el punto de cierre del cuadro, por eso genero el evento en lugar de cerrar directo
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 's':
                     case 'S':
                         event.preventDefault();
-                        // Naturalmente quiero unificar el punto de cierre del cuadro, por eso genero el evento en lugar de cerrar directo
-                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
-                        localStorage.removeItem('cliente_id');
-                        document.querySelector('html>body>header>div>div.encabezado>div.botonera>button#carritoBtn>span').innerText = '0';
+                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
                         break;
-                    case 'n':
-                    case 'N':
-                        event.preventDefault();
-                        // Naturalmente quiero unificar el punto de cierre del cuadro, por eso genero el evento en lugar de cerrar directo
-                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                     }
                 }
                 else
                 {
-                    if (event.key === 'Escape')
+                    switch (event.key)
                     {
+                    case 'Escape':
+                        event.preventDefault();
+                        cuadroSiNo.close();
+                        if(infoCliente.perfil === 'administrador')
+                        {
+                            await mostrarDialogoAdministrar();
+                        }
+                        break;
+                    case 'Enter':
                         event.preventDefault();
                         cuadroSiNo.close();
                         dialogoAbierto = '';
+                        localStorage.removeItem('cliente_id');
+                        document.querySelector('html>body>header>div>div.encabezado>div.botonera>button#carritoBtn>span').innerText = '0';
+                        break;
                     }
                 }
                 break;
@@ -878,6 +1082,7 @@ document.addEventListener
                                 infoCliente.perfil = 'cliente';
                                 // Se asume que datos.relacion fue correctamente guardado, porque datos.exito es verdadero
                                 localStorage.setItem('cliente_id', infoCliente.id);
+                                localStorage.setItem('cliente_perfil', infoCliente.perfil);
                             }
                         }
                         break;
@@ -922,12 +1127,12 @@ document.addEventListener
                         if (comboPerfPerfil.value)
                         {
                             infoCliente.perfil = comboPerfPerfil.options[comboPerfPerfil.selectedIndex].text;
+                            localStorage.setItem('cliente_perfil', infoCliente.perfil);
                         }
                         perfil.close();
                         if (infoCliente.perfil === 'administrador')
                         {
-                            administracion.showModal();
-                            dialogoAbierto = 'administrar';
+                            await mostrarDialogoAdministrar();
                         }
                         else
                         {
@@ -1034,6 +1239,235 @@ document.addEventListener
                     default:
                         event.preventDefault();
                         // TODO: Preguntar al usuario ¿qué desea hacer? la tecla presionada no tiene funcionalidad definida.
+                    }
+                }
+                break;
+            case 'administrar':
+                if (event.altKey)
+                {
+                    switch (event.key)
+                    {
+                    case 'x': // xpouaqmc
+                    case 'X':
+                    case 'c':
+                    case 'C':
+                        event.preventDefault();
+                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+                        break;
+                    case 'p':
+                    case 'P':
+                        event.preventDefault();
+                        botonProdAdministrar.classList.add('active');
+                        botonOferAdministrar.classList.remove('active');
+                        botonUsuaAdministrar.classList.remove('active');
+                        break;
+                    case 'o':
+                    case 'O':
+                        event.preventDefault();
+                        botonProdAdministrar.classList.remove('active');
+                        botonOferAdministrar.classList.add('active');
+                        botonUsuaAdministrar.classList.remove('active');
+                        break;
+                    case 'u':
+                    case 'U':
+                        event.preventDefault();
+                        botonProdAdministrar.classList.remove('active');
+                        botonOferAdministrar.classList.remove('active');
+                        botonUsuaAdministrar.classList.add('active');
+                        break;
+                    case 'a':
+                    case 'A':
+                        event.preventDefault();
+                        if (botonProdAdministrar.classList.contains('active'))
+                        {
+                            administrar.close();
+                            altaArticulo.showModal();
+                            dialogoAbierto = 'altaArticulo';
+                            {
+                                const fechaActual = new Date();
+                                const anyoAct = fechaActual.getFullYear();
+                                const mesAct = fechaActual.getMonth();
+
+                                // Nombres de los meses para el título
+                                const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+                                mesTituloAltaArticulo.textContent = `${meses[mesAct]} ${anyoAct}`;
+
+                                const primerDiaSemana = new Date(anyoAct, mesAct, 1).getDay(); // Día de la semana del día 1 (0=Dom, 1=Lun...)
+                                const totalDias = new Date(anyoAct, mesAct + 1, 0).getDate();  // Total de días en el mes
+
+                                let html = '<tr>';
+                                let diaCuenta = 1;
+
+                                // Rellenar espacios vacíos de la primera semana
+                                for (let i = 0; i < primerDiaSemana; i++)
+                                {
+                                    html += '<td class="vacio"></td>';
+                                }
+
+                                // Generar los días del mes
+                                for (let i = primerDiaSemana; diaCuenta <= totalDias; i++)
+                                {
+                                    if (i > 0 && i % 7 === 0)
+                                    {
+                                        html += '</tr><tr>'; // Siguiente semana / fila
+                                    }
+                                    html += `<td class="dia-click" data-dia="${diaCuenta}">${diaCuenta}</td>`;
+                                    diaCuenta++;
+                                }
+
+                                html += '</tr>';
+                                calendariAltaArticulo.innerHTML = html;
+                            }
+                            try
+                            {
+                                respuesta = await fetch
+                                (
+                                    'http://www.luislopez.com.ar:3000/api/lista_categ_art',
+                                    {
+                                        method: 'GET'
+                                    }
+                                );
+                                servidorActivo = 1;
+                            }
+                            catch(error)
+                            {
+                                cuadroMensaje.showModal();
+                                textoTituloCuadroMensaje.innerText = 'Error';
+                                textoMensajCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de categorías solicitada.<br /> Respuesta: "' +
+                                    error + '".';
+                                cuadroMensaje.style.width = '320px';
+                                cuadroMensaje.style.height = '214px';
+                                dialogoAbierto = 'cuadroMensaje';
+                                botonCerrCuadroMensaje.focus();
+                                console.error('Error: El servidor no devuelve la lista de categorías solicitada. Respuesta: "' + error + '".');
+                            }
+                            if (respuesta.status == 200)
+                            {
+                                const categorias = await respuesta.json();
+                                const listaCategorias = document.querySelector('html>body>dialog#altaArticulo>form>main>select#categoria');
+                                for (let i = (categorias.dataset.length - 1); i >= 0; i--)
+                                {
+                                    const opcionHTML = `<option value="${categorias.dataset[i].id}">${categorias.dataset[i].nombre}</option>`;
+                                    listaCategorias.insertAdjacentHTML('beforeend', opcionHTML);
+                                }
+                            }
+                            // imgsrc select de los archivos existentes en el directorio: '/var/www/html/superACasa/servicios/assets/images/prod/'
+                        }
+                        else
+                        {
+                            if (botonOferAdministrar.classList.contains('active'))
+                            {
+                                // TODO: Llamar al servidor para agregar una oferta
+                                administrar.close();
+                                altaOferta.showModal();
+                                dialogoAbierto = 'altaOferta';
+                            }
+                        }
+                        break;
+                    case 'q':
+                    case 'Q':
+                        event.preventDefault();
+                        if (botonProdAdministrar.classList.contains('active'))
+                        {
+                            // TODO: Llamar al servidor para quitar un producto
+                            administrar.close();
+                            bajaArticulo.showModal();
+                            dialogoAbierto = 'bajaArticulo';
+                        }
+                        else
+                        {
+                            if (botonOferAdministrar.classList.contains('active'))
+                            {
+                                // TODO: Llamar al servidor para quitar una oferta
+                                administrar.close();
+                                bajaOferta.showModal();
+                                dialogoAbierto = 'bajaOferta';
+                            }
+                        }
+                        break;
+                    case 'm':
+                    case 'M':
+                        event.preventDefault();
+                        if (botonProdAdministrar.classList.contains('active'))
+                        {
+                            // TODO: Llamar al servidor para modificar un producto
+                            administrar.close();
+                            modiArticulo.showModal();
+                            dialogoAbierto = 'modiArticulo';
+                        }
+                        else
+                        {
+                            if (botonOferAdministrar.classList.contains('active'))
+                            {
+                                // TODO: Llamar al servidor para modificar una oferta
+                                administrar.close();
+                                modiOferta.showModal();
+                                dialogoAbierto = 'modiOferta';
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (event.key === 'Escape')
+                    {
+                        event.preventDefault();
+                        administrar.close();
+                        dialogoAbierto = '';
+                    }
+                }
+                break;
+            case 'altaArticulo':
+                if (event.altKey)
+                {
+                    switch (event.key)
+                    {
+                    case 'x': // xfnptodica
+                    case 'X':
+                    case 'c':
+                    case 'C':
+                        event.preventDefault();
+                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+                        break;
+                    case 'a':
+                    case 'A':
+                        event.preventDefault();
+                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+                        break;
+                    case 'f':
+                    case 'F':
+                        break;
+                    case 'n':
+                    case 'N':
+                        break;
+                    case 'p':
+                    case 'P':
+                        break;
+                    case 't':
+                    case 'T':
+                        break;
+                    case 'o':
+                    case 'O':
+                        break;
+                    case 'd':
+                    case 'D':
+                        break;
+                    case 'i':
+                    case 'I':
+                    }
+                }
+                else
+                {
+                    switch (event.key)
+                    {
+                    case 'Escape':
+                        event.preventDefault();
+                        altaArticulo.close();
+                        dialogoAbierto = '';
+                        break;
+                    case 'Enter':
+                        event.preventDefault();
+                        break;
                     }
                 }
                 break;
@@ -1212,6 +1646,68 @@ document.addEventListener
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
+        botonXsupAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonProdAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p', 'code': 'KeyP', 'altKey': true, 'bubbles': true}));
+        });
+        botonOferAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'o', 'code': 'KeyO', 'altKey': true, 'bubbles': true}));
+        });
+        botonUsuaAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'u', 'code': 'KeyU', 'altKey': true, 'bubbles': true}));
+        });
+        botonAgreAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a', 'code': 'KeyA', 'altKey': true, 'bubbles': true}));
+        });
+        botonQuitAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'q', 'code': 'KeyQ', 'altKey': true, 'bubbles': true}));
+        });
+        botonModiAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'm', 'code': 'KeyM', 'altKey': true, 'bubbles': true}));
+        });
+        botonCerrAdministrar.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonXsupAltaArticulo.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonCancAltaArticulo.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonAcepAltaArticulo.addEventListener('click', async function(event)
+        {
+            event.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+        });
+        // inputFechAltaArticulo click default es correcto
+        // inputNombAltaArticulo click default es correcto
+        // inputPrecAltaArticulo click default es correcto
+        // inputDescAltaArticulo click default es correcto
+        // selecCateAltaArticulo click default es correcto
+        // selecImagAltaArticulo click default es correcto
+        // textaNotaAltaArticulo click default es correcto
         // Ocultar el cuadro de lista del cuadro combinado, al hacer click en el cuadro de texto
 /*        inputFechAltaArticulo.addEventListener('click', async function()
         {
@@ -1242,34 +1738,28 @@ document.addEventListener
                 comboListAltaArticulo.classList.add('hidden');
             }
         });
-*/        tagPrTablaCarrito.addEventListener('input', (evento) =>
+*/        carrito.addEventListener('input', async function(evento)
         {
             if (evento.target.classList.contains('filtro-columna'))
             {
-                const filas = tagPrTaBodCarrito.querySelectorAll('tr');
-                
+                const filas = carrito.querySelectorAll('form>main>table#tabla-datos>tbody>tr');
                 filas.forEach
                 (
                     fila =>
                     {
                         let mostrarFila = true;
-                    
-                        // Evaluamos cada input de filtro existente
-                        tagPrInpFiCarrito.forEach
+                        carrito.querySelectorAll('form>main>table#tabla-datos>thead>tr>th>div.th-contenedor>input.filtro-columna').forEach
                         (
                             (input, indiceColumna) =>
                             {
                                 const valorFiltro = input.value.toLowerCase().trim();
-                                
                                 // Si el input está vacío, no restringe esta columna
                                 if (valorFiltro === '')
                                 {
                                     return;
                                 }
-                                
                                 // Obtenemos el texto de la celda correspondiente a esta columna
                                 const textoCelda = fila.children[indiceColumna].textContent.toLowerCase();
-                                
                                 // Si la celda NO incluye lo que busca el usuario, marcamos la fila para ocultar
                                 if (!textoCelda.includes(valorFiltro))
                                 {
@@ -1277,8 +1767,6 @@ document.addEventListener
                                 }
                             }
                         );
-                    
-                        // Aplicamos el cambio visual en base al resultado de todos los inputs
                         if (mostrarFila)
                         {
                             fila.classList.remove('oculto');
@@ -1290,58 +1778,6 @@ document.addEventListener
                     }
                 );
             }
-        });
-        let columnaActual = -1;
-        let ordenAscendente = true;
-        tagPrTablaCarrito.addEventListener('click', function(evento)
-        {
-            // Validamos que el click haya sido estrictamente en el texto del título y no en el input
-            const tituloCliqueado = evento.target.closest('.th-titulo');
-            if (!tituloCliqueado)
-            {
-                return;
-            }  
-            
-            const thPadre = tituloCliqueado.closest('th');
-            const indiceColumna = parseInt(thPadre.dataset.columna);
-            const tipoDato = thPadre.dataset.tipo;
-            
-            if (columnaActual === indiceColumna)
-            {
-                ordenAscendente = !ordenAscendente;
-            }
-            else
-            {
-                ordenAscendente = true;
-                columnaActual = indiceColumna;
-            }
-            
-            // Actualizar indicadores visuales (flechas)
-            tagPrTitOrCarrito.forEach(t => t.classList.remove('orden-asc', 'orden-desc'));
-            tituloCliqueado.classList.add(ordenAscendente ? 'orden-asc' : 'orden-desc');
-            
-            // Ordenar las filas en memoria
-            const filasArray = Array.from(tagPrTaBodCarrito.querySelectorAll('tr'));
-            filasArray.sort
-            (
-                (filaA, filaB) =>
-                {
-                    const celdaA = filaA.children[indiceColumna].textContent.trim();
-                    const celdaB = filaB.children[indiceColumna].textContent.trim();
-                    
-                    if (tipoDato === 'numero')
-                    {
-                        return ordenAscendente ? celdaA - celdaB : celdaB - celdaA;
-                    }
-                    else
-                    {
-                        return ordenAscendente ? celdaA.localeCompare(celdaB) : celdaB.localeCompare(celdaA);
-                    }
-                }
-            );
-            
-            // Reinyectar filas ordenadas manteniendo los filtros actuales
-            filasArray.forEach(fila => tagPrTaBodCarrito.appendChild(fila));
         });
     }
 );

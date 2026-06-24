@@ -230,6 +230,113 @@
         </footer>
       </form>
     </dialog>
+    <dialog id="administrar">
+      <form>
+        <header>
+          <h2>Administración</h2>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <div class="tabs-nav">
+            <button class="active" onclick="event.preventDefault();document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p'}))"><span style="text-decoration: underline;">P</span>roducto</button>
+            <button class="" onclick="event.preventDefault();document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'o'}))"><span style="text-decoration: underline;">O</span>ferta</button>
+            <button class="" onclick="event.preventDefault();document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'u'}))"><span style="text-decoration: underline;">U</span>suario</button>
+          </div>
+          <!-- Contenido de las pestañas -->
+          <div class="tabs-content">
+            <!-- Pestaña Productos -->
+            <div id="productos" class="active">
+              <table id="tabla-articulos">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <!-- Pestaña Ofertas -->
+            <div id="ofertas" class="">
+              <table id="tabla-ofertas">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Descripcion</th>
+                    <th>Oferta</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+            <!-- Pestaña Usuarios -->
+            <div id="usuarios" class="">
+              <table id="tabla-usuarios">
+                <thead>
+                  <tr>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>Perfil</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </main>
+        <footer>
+          <button><span style="text-decoration: underline;">A</span>gregar</button>
+          <button><span style="text-decoration: underline;">Q</span>uitar</button>
+          <button><span style="text-decoration: underline;">M</span>odificar</button>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="altaArticulo">
+      <form>
+        <header>
+          <p>Agregar articulo</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="combo-input-fecha"><span style="text-decoration: underline;">F</span>echa:</label>
+          <div class="combo-calendario">
+            <!-- El cuadro de texto superior -->
+            <div id="combo-input-fecha" class="combo-input-fecha">Seleccione un día...</div>
+            <!-- El cuadro de lista oculto que contiene el calendario -->
+            <div id="combo-lista-fecha" class="combo-lista-fecha hidden">
+              <div id="mes-titulo-fecha" class="mes-titulo-fecha"></div>
+              <table>
+                <thead>
+                  <tr><th>D</th><th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th></tr>
+                </thead>
+                <tbody id="calendario-dias"></tbody>
+              </table>
+            </div>
+          </div>
+          <!--input type="date" id="fecha" name="fecha" required placeholder="Fecha" -->
+          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
+          <label for="precio"><span style="text-decoration: underline;">P</span>recio:</label>
+          <input type="text" id="precio" name="precio" autocomplete="given-name" required placeholder="Apellido" />
+          <!-- select categoria a partir del query: 'SELECT id, nombre FROM superacasa.devel.categ_art WHERE activo = TRUE;' -->
+          <label for="categoria">Ca<span style="text-decoration: underline;">t</span>egoría:</label>
+          <select id="categoria" name="categoria" required></select>
+          <label for="notas">N<span style="text-decoration: underline;">o</span>tas:</label>
+          <textarea id="notas" name="notas" rows="8" cols="64" placeholder="Cualquier acotación o recordatorio&#10;que necesite para este artículo." maxlength="500" wrap="soft" required></textarea>
+          <label for="descripcion"><span style="text-decoration: underline;">D</span>escripción:</label>
+          <input type="text" id="descripcion" name="descripcion" autocomplete="given-name" required placeholder="Descripción" />
+          <!-- select a partir de archivos existentes en el directorio: '/var/www/html/superACasa/servicios/assets/images/prod/' -->
+          <label for="imagen"><span style="text-decoration: underline;">I</span>magen:</label>
+          <select id="imagen" name="imagen" required></select>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
     <script src="servicios/assets/js/index.js"></script>
   </body>
 </html>
