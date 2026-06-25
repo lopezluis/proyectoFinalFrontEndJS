@@ -34,8 +34,13 @@ dialog#altaArticulo>form>header>p
 dialog#altaArticulo>form>header>button
 {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    background-color: var(--azul-brillante);
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 20px;
+    height: 24px;
+    top: 7px;
+    right: 7px;
 }
 
 dialog#altaArticulo>form>main
@@ -211,8 +216,13 @@ dialog#cuadroMensaje>form>header>p
 dialog#cuadroMensaje>form>header>button
 {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    background-color: var(--azul-brillante);
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 20px;
+    height: 24px;
+    top: 7px;
+    right: 7px;
 }
 
 dialog#cuadroMensaje>form>main
@@ -275,8 +285,13 @@ dialog#cuadroSiNo>form>header>p
 dialog#cuadroSiNo>form>header>button
 {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    background-color: var(--azul-brillante);
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 20px;
+    height: 24px;
+    top: 7px;
+    right: 7px;
 }
 
 dialog#cuadroSiNo>form>main
@@ -430,30 +445,50 @@ dialog#carrito>form>main
 dialog#carrito>form>main>table#tabla-datos
 {
     width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
+    border: 3px solid var(--azul-hero);
+    border-radius: 10px;
+    border-spacing: 0px;
+    margin: 10px 0 5px 0;
     table-layout: fixed;
+    background-color: #cccccc;
 }
 
-dialog#carrito>form>main>table#tabla-datos>thead>tr>th, dialog#carrito>form>main>table#tabla-datos>tbody>tr>td
+dialog#carrito>form>main>table#tabla-datos>thead>tr>th
+{
+    border: 1px solid var(--azul-hero);
+}
+
+dialog#carrito>form>main>table#tabla-datos>thead>tr>th:first
+{
+    width: 15%;
+    border-top-left-radius: 10px;
+}
+
+dialog#carrito>form>main>table#tabla-datos>thead>tr>th:nth-child(2)
+{
+    width: 60%;
+}
+
+dialog#carrito>form>main>table#tabla-datos>thead>tr>th:last-child
+{
+    width: 25%;
+    border-top-right-radius: 10px;
+}
+
+dialog#carrito>form>main>table#tabla-datos>tbody>tr>td
 {
     padding: 12px;
-    border: 1px solid #ddd;
     text-align: left;
+    user-select: none;
+    border: 1px solid var(--azul-hero);
 }
     
-/* Contenedor del encabezado para separar el título del input */
-th
-{
-    background-color: #f4f4f4;
-    user-select: none;
-}
-
 dialog#carrito>form>main>table#tabla-datos>thead>tr>th>div.th-contenedor
 {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    padding: 8px;
 }
 
 /* El texto del título reacciona al click para ordenar */
@@ -491,6 +526,16 @@ dialog#carrito>form>main>table#tabla-datos>thead>tr>th>div.th-contenedor>input.f
     box-sizing: border-box; /* Evita que el padding sume ancho extra */
 }
 
+dialog#carrito>form>main>table#tabla-datos>tbody>tr:last-child>td:first
+{
+    border-bottom-left-radius: 10px;
+}
+
+dialog#carrito>form>main>table#tabla-datos>tbody>tr:last-child>td:last-child
+{
+    border-bottom-right-radius: 10px;
+}
+
 dialog#carrito>form>main>table#tabla-datos>tbody>tr:hover
 {
     background-color: #f9f9f9;
@@ -512,13 +557,22 @@ dialog#carrito>form>footer
 
 dialog#carrito>form>footer>button
 {
-    background-color: var(--azul-brillante);
+    background-color: var(--azul-oscuro);
     color: white;
     padding: 0.75rem 1.5rem;
+    border: solid 3px var(--azul-muy-oscuro);
     border-radius: 0.5rem;
     font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
+    width: 110px;
+    height: 60px;
+}
+
+dialog#carrito>form>footer>button:disabled
+{
+    background-color: var(--azul-brillante);
+    border: solid 2px var(--azul-oscuro);
 }
 
 dialog#cantidad_producto

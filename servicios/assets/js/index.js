@@ -31,9 +31,6 @@ document.addEventListener
         const botonModifCarrito = carrito.getElementsByTagName('button')[5];
         const botonPagarCarrito = carrito.getElementsByTagName('button')[6];
         const tagPrincipCarrito = carrito.getElementsByTagName('main')[0];
-        const tagPrTablaCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead')[0];
-        const tagPrTaBodCarrito = carrito.getElementsByTagName('main>table#tabla-datos>tbody')[0];
-        const tagPrInpFiCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead>tr>th>div.th-contenedor>input.filtro-columna')[0];
         const altaCliente = document.getElementById('altaCliente');
         const botonXsupeAltaCliente = altaCliente.getElementsByTagName('button')[0];
         const botonCanceAltaCliente = altaCliente.getElementsByTagName('button')[1];
@@ -249,24 +246,24 @@ document.addEventListener
                 if(articulos.recordset.length > 0)
                 {
                     seccionProductos.insertAdjacentHTML('beforeend', '<h2>Ofertas del Día</h2>');
+                    articulos.recordset.forEach
+                    (
+                        prod =>
+                        {
+                            const saltoDeLinea = String.fromCharCode(10);
+                            const tarjeta =
+                            '        <div class="card">' + saltoDeLinea +
+                            `          <span class="promocion">${prod.promo_nombre}</span>` + saltoDeLinea +
+                            `          <img src="${prod.imgsrc}" alt="${prod.nombre}">` + saltoDeLinea +
+                            `          <h3>${prod.nombre}</h3>` + saltoDeLinea +
+                            `          <p>${prod.descripcion}</p>` + saltoDeLinea +
+                            `          <p>Precio: \$${prod.precio}</p>` + saltoDeLinea +
+                            `          <button id="${prod.id}">Agregar al carrito</button>` + saltoDeLinea +
+                            '        </div>' + saltoDeLinea;
+                            seccionProductos.insertAdjacentHTML('beforeend', tarjeta);
+                        }
+                    );
                 }
-                articulos.recordset.forEach
-                (
-                    prod =>
-                    {
-                        const saltoDeLinea = String.fromCharCode(10);
-                        const tarjeta =
-                        '        <div class="card">' + saltoDeLinea +
-                        `          <span class="promocion">${prod.promo_nombre}</span>` + saltoDeLinea +
-                        `          <img src="${prod.imgsrc}" alt="${prod.nombre}">` + saltoDeLinea +
-                        `          <h3>${prod.nombre}</h3>` + saltoDeLinea +
-                        `          <p>${prod.descripcion}</p>` + saltoDeLinea +
-                        `          <p>Precio: \$${prod.precio}</p>` + saltoDeLinea +
-                        `          <button id="${prod.id}">Agregar al carrito</button>` + saltoDeLinea +
-                        '        </div>' + saltoDeLinea;
-                        seccionProductos.insertAdjacentHTML('beforeend', tarjeta);
-                    }
-                );
             }
             else
             {
@@ -285,7 +282,7 @@ document.addEventListener
         {
             document.querySelector('html>body>header>div>div.encabezado>div.botonera>button#carritoBtn>span').innerText = '¿?';
         }
-        document.addEventListener('keydown', async function(event)
+        document.addEventListener('keydown', async function(evento)
         {
             const mostrarDialogoAdministrar = async () =>
             {
@@ -385,9 +382,9 @@ document.addEventListener
             switch (dialogoAbierto)
             {
             case '':
-                if ((event.ctrlKey && event.altKey && event.shiftKey && event.key === 'A') || (event.key === 'a') || (event.key === 'A'))
+                if ((evento.ctrlKey && evento.altKey && evento.shiftKey && evento.key === 'A') || (evento.key === 'a') || (evento.key === 'A'))
                 {
-                    event.preventDefault();
+                    evento.preventDefault();
                     if(localStorage.getItem('cliente_id') === null)
                     {
                         // Este diálogo pide credenciales para ingresar como usuario cliente para iniciar una compra
@@ -403,9 +400,13 @@ document.addEventListener
                     else
                     {
                         cuadroSiNo.showModal();
-                        textoTiCuadroSiNo.innerText = infoCliente.apellido + ', ' + infoCliente.nombre;
+                        textoTiCuadroSiNo.innerHTML = infoCliente.apellido + ',&nbsp;' + infoCliente.nombre + '&nbsp;&nbsp;&nbsp;';
                         textoMeCuadroSiNo.innerHTML = '¿Desea finalizar la sesión?';
-                        cuadroSiNo.style.width = '500px';
+                        let contextoTextoTitulo = document.createElement('canvas').getContext('2d');
+                        contextoTextoTitulo.font = 'font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; font-size: 26px;' +
+                            ' font-family: Arial, sans-serif;';
+                        cuadroSiNo.style.width =
+                            (Math.round(contextoTextoTitulo.measureText(document.querySelector('dialog#cuadroSiNo>form>header>p').innerText).width) + 238) + 'px';
                         cuadroSiNo.style.height = '140px';
                         dialogoAbierto = 'cuadroSiNo';
                         botonSiCuadroSiNo.focus();
@@ -413,9 +414,9 @@ document.addEventListener
                 }
                 else
                 {
-                    if ((event.ctrlKey && event.altKey && event.shiftKey && event.key === 'C') || (event.key === 'c') || (event.key === 'C'))
+                    if ((evento.ctrlKey && evento.altKey && evento.shiftKey && evento.key === 'C') || (evento.key === 'c') || (evento.key === 'C'))
                     {
-                        event.preventDefault();
+                        evento.preventDefault();
                         try
                         {
                             respuestaServidor = await fetch
@@ -455,21 +456,21 @@ document.addEventListener
                                 '          <table id="tabla-datos">' + saltoDeLinea +
                                 '            <thead>' + saltoDeLinea +
                                 '              <tr>' + saltoDeLinea +
-                                '                <th data-columna="0" data-tipo="numero" style="width: 15%;">' + saltoDeLinea +
+                                '                <th data-columna="0" data-tipo="numero">' + saltoDeLinea +
                                 '                  <div class="th-contenedor">' + saltoDeLinea +
                                 '                    <span class="th-titulo">Cantidad</span>' + saltoDeLinea +
                                 '                    <input type="text" name="filtro-columna" class="filtro-columna" placeholder="Filtrar cantidad..." />' +
                                 saltoDeLinea +
                                 '                  </div>' + saltoDeLinea +
                                 '                </th>' + saltoDeLinea +
-                                '                <th data-columna="1" data-tipo="texto" style="width: 60%;">' + saltoDeLinea +
+                                '                <th data-columna="1" data-tipo="texto">' + saltoDeLinea +
                                 '                  <div class="th-contenedor">' + saltoDeLinea +
                                 '                    <span class="th-titulo">Artículo</span>' + saltoDeLinea +
                                 '                    <input type="text" name="filtro-columna" class="filtro-columna" placeholder="Filtrar artículo..." />' +
                                 saltoDeLinea +
                                 '                  </div>' + saltoDeLinea +
                                 '                </th>' + saltoDeLinea +
-                                '                <th data-columna="2" data-tipo="numero" style="width: 25%;">' + saltoDeLinea +
+                                '                <th data-columna="2" data-tipo="numero">' + saltoDeLinea +
                                 '                  <div class="th-contenedor">' + saltoDeLinea +
                                 '                    <span class="th-titulo">Precio</span>' + saltoDeLinea +
                                 '                    <input type="text" name="filtro-columna" class="filtro-columna" placeholder="Filtrar precio..." />' +
@@ -487,7 +488,8 @@ document.addEventListener
                                     enCarrito =>
                                     {
                                         tablaDeArticulosEnCarrito +=
-                                            '              <tr>' + saltoDeLinea +
+                                            `              <tr id="${enCarrito.id}" articulo_id="${enCarrito.articulo_id}" cliente_id="${enCarrito.cliente_id}">` +
+                                            saltoDeLinea +
                                             `                <td>${enCarrito.cantidad}</td>` + saltoDeLinea +
                                             `                <td>${enCarrito.nombre}</td>` + saltoDeLinea +
                                             `                <td>${enCarrito.precio}</td>` + saltoDeLinea +
@@ -513,22 +515,13 @@ document.addEventListener
                                 '            </tbody>' + saltoDeLinea +
                                 '          </table>' + saltoDeLinea;
                             tagPrincipCarrito.innerHTML = tablaDeArticulosEnCarrito;
-                            botonCanceCarrito.style.width = '110px';
-                            botonCanceCarrito.style.height = '60px';
-                            botonFinalCarrito.style.width = '110px';
-                            botonFinalCarrito.style.height = '60px';
-                            botonAnulaCarrito.style.width = '110px';
-                            botonAnulaCarrito.style.height = '60px';
-                            botonQuitaCarrito.style.width = '110px';
-                            botonQuitaCarrito.style.height = '60px';
-                            botonModifCarrito.style.width = '110px';
-                            botonModifCarrito.style.height = '60px';
-                            botonPagarCarrito.style.width = '110px';
-                            botonPagarCarrito.style.height = '60px';
                             carrito.style.width = '770px';
                             alto = alto * 49 + 253;
                             carrito.style.height = alto.toString() + 'px';
                             const tagPrTitOrCarrito = document.getElementById('tabla-datos');
+                            const tagPrTablaCarrito = document.querySelector('#tabla-datos thead');
+                            const tagPrTaBodCarrito = document.querySelector('#tabla-datos tbody');
+                            const tagPrInpFiCarrito = document.querySelector('#tabla-datos thead>tr>th>div.th-contenedor>input.filtro-columna');
                             tagPrTitOrCarrito.querySelector("thead").addEventListener('click', async function (evento)
                             {
                                 let columnaActual = -1;
@@ -582,6 +575,65 @@ document.addEventListener
                                     await ejecutarOrdenamiento(spanPresionado);
                                 }
                             });
+                            tagPrTaBodCarrito.addEventListener('click', async (evento) =>
+                            {
+                                const filaSeleccionada = evento.target.closest('tr');
+                                if (!filaSeleccionada)
+                                {
+                                    return;
+                                }
+                                if((filaSeleccionada.style.color === 'black') || (filaSeleccionada.style.color === ''))
+                                {
+                                    filaSeleccionada.style.backgroundColor = '#0ea5e9';
+                                    filaSeleccionada.style.color = 'white';
+                                }
+                                else
+                                {
+                                    filaSeleccionada.style.backgroundColor = '';
+                                    filaSeleccionada.style.color = '';
+                                }
+                                let quitar = '';
+                                let modificar = '';
+                                for (const fila of document.querySelectorAll('table#tabla-datos>tbody>tr'))
+                                {
+                                    if(fila.style.color === 'white')
+                                    {
+                                        if(quitar !== '')
+                                        {
+                                            quitar += ',';
+                                        }
+                                        quitar += fila.attributes[0].textContent;
+                                        if(modificar === '')
+                                        {
+                                            modificar = fila.attributes[0].textContent;
+                                        }
+                                        else
+                                        {
+                                            modificar = '-';
+                                        }
+                                    }
+                                }
+                                if(quitar === '')
+                                {
+                                    botonQuitaCarrito.disabled = true;
+                                    botonQuitaCarrito.value = 'quitar';
+                                }
+                                else
+                                {
+                                    botonQuitaCarrito.removeAttribute('disabled');
+                                    botonQuitaCarrito.value = 'quitar(' + quitar + ')';
+                                }
+                                if((modificar === '') || (modificar === '-'))
+                                {
+                                    botonModifCarrito.disabled = true;
+                                    botonModifCarrito.value = 'modificar';
+                                }
+                                else
+                                {
+                                    botonModifCarrito.removeAttribute('disabled');
+                                    botonModifCarrito.value = 'modificar(' + modificar + ')';
+                                }
+                            });
                         }
                         else
                         {
@@ -613,30 +665,30 @@ document.addEventListener
                 }
                 break;
             case 'login':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x': // xlocrea
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 'l':
                     case 'L':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputUsuaLogin.focus();
                         break;
                     case 'o':
                     case 'O':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputCntrLogin.focus();
                         break;
                     case 'r':
                     case 'R':
-                        event.preventDefault();
+                        evento.preventDefault();
                         login.close();
                         cuadroMensaje.showModal();
                         textoTituCuadroMensaje.innerText = 'ToDo';
@@ -648,7 +700,7 @@ document.addEventListener
                         break;
                     case 'e':
                     case 'E':
-                        event.preventDefault();
+                        evento.preventDefault();
                         login.close();
                         altaCliente.showModal();
                         dialogoAbierto = 'altaCliente';
@@ -656,21 +708,21 @@ document.addEventListener
                         break;
                     case 'a':
                     case 'A':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
                     }
                 }
                 else
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'Escape':
-                        event.preventDefault();
+                        evento.preventDefault();
                         login.close();
                         dialogoAbierto = '';
                         break;
                     case 'Enter':
-                        event.preventDefault();
+                        evento.preventDefault();
                         try
                         {
                             respuestaServidor = await fetch
@@ -809,62 +861,63 @@ document.addEventListener
                 }
                 break;
             case 'cuadroMensaje':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x':
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         // Naturalmente quiero unificar el punto de cierre del cuadro, por eso genero el evento en lugar de cerrar directo
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                     }
                 }
                 else
                 {
-                    if (event.key === 'Escape')
+                    if (evento.key === 'Escape')
                     {
-                        event.preventDefault();
+                        evento.preventDefault();
                         cuadroMensaje.close();
                         dialogoAbierto = '';
                     }
                 }
                 break;
             case 'cuadroSiNo':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x':
                     case 'X':
                     case 'n':
                     case 'N':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 's':
                     case 'S':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
                         break;
                     }
                 }
                 else
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'Escape':
-                        event.preventDefault();
+                        evento.preventDefault();
                         cuadroSiNo.close();
+                        dialogoAbierto = '';
                         if(infoCliente.perfil === 'administrador')
                         {
                             await mostrarDialogoAdministrar();
                         }
                         break;
                     case 'Enter':
-                        event.preventDefault();
+                        evento.preventDefault();
                         cuadroSiNo.close();
                         dialogoAbierto = '';
                         localStorage.removeItem('cliente_id');
@@ -874,20 +927,20 @@ document.addEventListener
                 }
                 break;
             case 'carrito':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x':
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 'f':
                     case 'F':
-                        event.preventDefault();
+                        evento.preventDefault();
                         // TODO: Llamar al servidor para finalizar la compra
                         carrito.close();
                         cuadroMensaje.showModal();
@@ -900,7 +953,7 @@ document.addEventListener
                         break;
                     case 'a':
                     case 'A':
-                        event.preventDefault();
+                        evento.preventDefault();
                         // TODO: Llamar al servidor para anular la compra
                         carrito.close();
                         cuadroMensaje.showModal();
@@ -913,20 +966,148 @@ document.addEventListener
                         break;
                     case 'q':
                     case 'Q':
-                        event.preventDefault();
-                        // TODO: Llamar al servidor para quitar artículo seleccionado
-                        carrito.close();
-                        cuadroMensaje.showModal();
-                        textoTituCuadroMensaje.innerText = 'ToDo';
-                        textoMensCuadroMensaje.innerHTML = 'Implementar que se pueda seleccionar un producto de la lista.';
-                        cuadroMensaje.style.width = '320px';
-                        cuadroMensaje.style.height = '214px';
-                        dialogoAbierto = 'cuadroMensaje';
-                        botonCerrCuadroMensaje.focus();
+                        evento.preventDefault();
+                        if(botonQuitaCarrito.value === 'quitar')
+                        {
+                            carrito.close();
+                            cuadroMensaje.showModal();
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'Debe seleccionar previamente uno o más<br />' +
+                                                               'productos del carrito para quitarlos.';
+                            cuadroMensaje.style.width = '320px';
+                            cuadroMensaje.style.height = '214px';
+                            dialogoAbierto = 'cuadroMensaje';
+                            botonCerrCuadroMensaje.focus();
+                        }
+                        else
+                        {
+                            carrito.close();
+                            if((botonQuitaCarrito.value.substring(0, 7) === 'quitar(') && (botonQuitaCarrito.value.slice(-1) === ')'))
+                            {
+                                const validarCadenaNumerica = async (texto) =>
+                                {
+                                    // Expresión regular:
+                                    // ^\d+    -> Debe iniciar con uno o más dígitos numéricos
+                                    // (,\d+)* -> Puede tener un grupo de (coma seguida de números) repetido 0 o más veces
+                                    // $       -> Fin de la cadena (asegura que termine en número y no en coma)
+                                    const patron = /^\d+(,\d+)*$/;
+                                    return patron.test(texto);
+                                }
+                                let quitar = botonQuitaCarrito.value.slice(7, -1).trim();
+                                if(await validarCadenaNumerica(quitar))
+                                {
+                                    // const respuesta = await fetch(`/api/articulo/detalles?id=${idArticulo}`);
+                                    // if (!respuesta.ok)
+                                    // {
+                                    //     throw new Error(`Error en el servidor: ${respuesta.status}`);
+                                    // }
+                                    // const datosDetalle = await respuesta.json();
+                                    // const btnConfirmar = document.getElementById("btn-confirmar");
+                                    // if (btnConfirmar)
+                                    // {
+                                    //     btnConfirmar.style.visibility = ""; // Desocultar
+                                    // }
+                                    // Para comentar un bloque de código, selecciono las líneas del bloque y luego presiono Ctrl+Shift+7.
+                                    // Para ver todos los atajos de teclado: menú Archivo/Preferencias/Métodos abreviados de teclado (Crtl+K, Crtl+S)
+                                    try
+                                    {
+                                        respuestaServidor = await fetch
+                                        (
+                                            'http://www.luislopez.com.ar:3000/api/quitar_artic_de_carrito',
+                                            {
+                                                method: 'POST',
+                                                headers:
+                                                {
+                                                    'Content-Type': 'text/plain; charset=utf-8'
+                                                },
+                                                body: quitar
+                                            }
+                                        );
+                                    }
+                                    catch (error)
+                                    {
+                                        cuadroMensaje.showModal();
+                                        textoTituCuadroMensaje.innerText = 'Error';
+                                        textoMensCuadroMensaje.innerHTML = 'Error al obtener la cantidad de artículos en el carrito.<br />Mensaje: "' + error + '".';
+                                        cuadroMensaje.style.width = '320px';
+                                        cuadroMensaje.style.height = '214px';
+                                        dialogoAbierto = 'cuadroMensaje';
+                                        botonCerrCuadroMensaje.focus();
+                                        console.error('Error al obtener la cantidad de artículos en el carrito. Mensaje: "' + error + '".');
+                                    }
+                                    if((respuestaServidor.status === 200) && respuestaServidor.ok)
+                                    {
+                                        const jsonIdsEliminados = await respuestaServidor.json();
+                                        if (jsonIdsEliminados.exito == true)
+                                        {
+                                            if(jsonIdsEliminados.recordset.length === 0)
+                                            {
+                                                cuadroMensaje.showModal();
+                                                textoTituCuadroMensaje.innerText = 'Error';
+                                                textoMensCuadroMensaje.innerHTML = 'El servidor de base de datos no eliminó registros.<br />' +
+                                                    'Mensaje: "Sin errores".';
+                                                cuadroMensaje.style.width = '320px';
+                                                cuadroMensaje.style.height = '214px';
+                                                dialogoAbierto = 'cuadroMensaje';
+                                                botonCerrCuadroMensaje.focus();
+                                                console.error('El servidor de base de datos no eliminó registros. Mensaje: "Sin errores".');
+                                            }
+                                            else
+                                            {
+                                                let idRegistrosNoEliminados = '';
+                                                jsonIdsEliminados.recordset.forEach
+                                                (
+                                                    identificadores =>
+                                                    {
+                                                        if(idRegistrosNoEliminados !== '')
+                                                        {
+                                                            idRegistrosNoEliminados += ',';
+                                                        }
+                                                        idRegistrosNoEliminados += `${identificadores.id}`;
+                                                    }
+                                                );
+                                                await cantidad_articulos_carrito(infoCliente);
+                                                cuadroMensaje.showModal();
+                                                textoTituCuadroMensaje.innerText = 'Registros Eliminados';
+                                                textoMensCuadroMensaje.innerHTML = idRegistrosNoEliminados + '.<br />' +
+                                                    'Mensaje: "Sin errores".';
+                                                cuadroMensaje.style.width = '340px';
+                                                cuadroMensaje.style.height = '214px';
+                                                dialogoAbierto = 'cuadroMensaje';
+                                                botonCerrCuadroMensaje.focus();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            cuadroMensaje.showModal();
+                                            textoTituCuadroMensaje.innerText = 'Error';
+                                            textoMensCuadroMensaje.innerHTML = 'El servidor de base de datos no indica acción finalizada correctamente.<br />' +
+                                                'Mensaje: "' + jsonIdsEliminados.error + '".';
+                                            cuadroMensaje.style.width = '320px';
+                                            cuadroMensaje.style.height = '214px';
+                                            dialogoAbierto = 'cuadroMensaje';
+                                            botonCerrCuadroMensaje.focus();
+                                            console.error('Error al obtener la cantidad de artículos en el carrito. Mensaje: "' + error + '".');
+                                        }
+                                    }
+                                }
+                                // TODO: Llamar al servidor para quitar artículo seleccionado
+                            }
+                            else
+                            {
+                                cuadroMensaje.showModal();
+                                textoTituCuadroMensaje.innerText = 'ToDo';
+                                textoMensCuadroMensaje.innerHTML = 'No se recibe indicación esperada.<br />Quizás es necesario implementar la funcionalidad.';
+                                cuadroMensaje.style.width = '320px';
+                                cuadroMensaje.style.height = '214px';
+                                dialogoAbierto = 'cuadroMensaje';
+                                botonCerrCuadroMensaje.focus();
+                            }
+                        }
                         break;
                     case 'm':
                     case 'M':
-                        event.preventDefault();
+                        evento.preventDefault();
                         // TODO: Llamar al servidor para modificar la cantidad del artículo seleccionado
                         carrito.close();
                         cuadroMensaje.showModal();
@@ -940,7 +1121,7 @@ document.addEventListener
                         break;
                     case 'p':
                     case 'P':
-                        event.preventDefault();
+                        evento.preventDefault();
                         // TODO: Aquí se implementaría la funcionalidad de pagar la compra.
                         carrito.close();
                         cuadroMensaje.showModal();
@@ -955,79 +1136,79 @@ document.addEventListener
                 }
                 else
                 {
-                    if(event.key === 'Escape')
+                    if(evento.key === 'Escape')
                     {
-                        event.preventDefault();
+                        evento.preventDefault();
                         carrito.close();
                         dialogoAbierto = '';
                     }
                 }
                 break;
             case 'altaCliente':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x': // xnptdourca
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 'n':
                     case 'N':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputNombrAltaCliente.focus();
                         break;
                     case 'p':
                     case 'P':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputApellAltaCliente.focus();
                         break;
                     case 't':
                     case 'T':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputTelefAltaCliente.focus();
                         break;
                     case 'd':
                     case 'D':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputDirecAltaCliente.focus();
                         break;
                     case 'o':
                     case 'O':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputEmailAltaCliente.focus();
                         break;
                     case 'u':
                     case 'U':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputUsuarAltaCliente.focus();
                         break;
                     case 'r':
                     case 'R':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputContrAltaCliente.focus();
                         break;
                     case 'a':
                     case 'A':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
                         break;
                     }
                 }
                 else
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'Escape':
-                        event.preventDefault();
+                        evento.preventDefault();
                         altaCliente.close();
                         dialogoAbierto = '';
                         break;
                     case 'Enter':
-                        event.preventDefault();
+                        evento.preventDefault();
                         infoCliente.nombre = inputNombrAltaCliente.value;
                         infoCliente.apellido = inputApellAltaCliente.value;
                         infoCliente.telefono = inputTelefAltaCliente.value;
@@ -1090,40 +1271,40 @@ document.addEventListener
                 }
                 break;
             case 'perfil':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x': // xpca
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 'p':
                     case 'P':
-                        event.preventDefault();
+                        evento.preventDefault();
                         comboPerfPerfil.focus();
                         break;
                     case 'a':
                     case 'A':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
                         break;
                     }
                 }
                 else
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'Escape':
-                        event.preventDefault();
+                        evento.preventDefault();
                         perfil.close();
                         dialogoAbierto = '';
                         break;
                     case 'Enter':
-                        event.preventDefault();
+                        evento.preventDefault();
                         if (comboPerfPerfil.value)
                         {
                             infoCliente.perfil = comboPerfPerfil.options[comboPerfPerfil.selectedIndex].text;
@@ -1143,39 +1324,39 @@ document.addEventListener
                 }
                 break;
             case 'cantProducto':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x':
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 'n':
                     case 'N':
-                        event.preventDefault();
+                        evento.preventDefault();
                         inputCantiCantProducto.focus();
                         break;
                     case 'a':
                     case 'A':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
                     }
                 }
                 else
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'Escape':
-                        event.preventDefault();
+                        evento.preventDefault();
                         cantProducto.close();
                         dialogoAbierto = '';
                         break;
                     case 'Enter':
-                        event.preventDefault();
+                        evento.preventDefault();
                         let idProductoPonerCarrito = parseInt(inputArtIdCantProducto.value);
                         let cantidadProductoPonerCarrito = parseFloat(inputCantiCantProducto.value) || 1;
                         try
@@ -1237,47 +1418,47 @@ document.addEventListener
                         }
                         break;
                     default:
-                        event.preventDefault();
+                        evento.preventDefault();
                         // TODO: Preguntar al usuario ¿qué desea hacer? la tecla presionada no tiene funcionalidad definida.
                     }
                 }
                 break;
             case 'administrar':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x': // xpouaqmc
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 'p':
                     case 'P':
-                        event.preventDefault();
+                        evento.preventDefault();
                         botonProdAdministrar.classList.add('active');
                         botonOferAdministrar.classList.remove('active');
                         botonUsuaAdministrar.classList.remove('active');
                         break;
                     case 'o':
                     case 'O':
-                        event.preventDefault();
+                        evento.preventDefault();
                         botonProdAdministrar.classList.remove('active');
                         botonOferAdministrar.classList.add('active');
                         botonUsuaAdministrar.classList.remove('active');
                         break;
                     case 'u':
                     case 'U':
-                        event.preventDefault();
+                        evento.preventDefault();
                         botonProdAdministrar.classList.remove('active');
                         botonOferAdministrar.classList.remove('active');
                         botonUsuaAdministrar.classList.add('active');
                         break;
                     case 'a':
                     case 'A':
-                        event.preventDefault();
+                        evento.preventDefault();
                         if (botonProdAdministrar.classList.contains('active'))
                         {
                             administrar.close();
@@ -1366,7 +1547,7 @@ document.addEventListener
                         break;
                     case 'q':
                     case 'Q':
-                        event.preventDefault();
+                        evento.preventDefault();
                         if (botonProdAdministrar.classList.contains('active'))
                         {
                             // TODO: Llamar al servidor para quitar un producto
@@ -1387,7 +1568,7 @@ document.addEventListener
                         break;
                     case 'm':
                     case 'M':
-                        event.preventDefault();
+                        evento.preventDefault();
                         if (botonProdAdministrar.classList.contains('active'))
                         {
                             // TODO: Llamar al servidor para modificar un producto
@@ -1409,29 +1590,29 @@ document.addEventListener
                 }
                 else
                 {
-                    if (event.key === 'Escape')
+                    if (evento.key === 'Escape')
                     {
-                        event.preventDefault();
+                        evento.preventDefault();
                         administrar.close();
                         dialogoAbierto = '';
                     }
                 }
                 break;
             case 'altaArticulo':
-                if (event.altKey)
+                if (evento.altKey)
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'x': // xfnptodica
                     case 'X':
                     case 'c':
                     case 'C':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                         break;
                     case 'a':
                     case 'A':
-                        event.preventDefault();
+                        evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
                         break;
                     case 'f':
@@ -1458,15 +1639,15 @@ document.addEventListener
                 }
                 else
                 {
-                    switch (event.key)
+                    switch (evento.key)
                     {
                     case 'Escape':
-                        event.preventDefault();
+                        evento.preventDefault();
                         altaArticulo.close();
                         dialogoAbierto = '';
                         break;
                     case 'Enter':
-                        event.preventDefault();
+                        evento.preventDefault();
                         break;
                     }
                 }
@@ -1478,9 +1659,9 @@ document.addEventListener
         const botonesConIdNumerico = Array.from(document.querySelectorAll('button[id]')).filter(elemento => {return /\d+/.test(elemento.id);});
         botonesConIdNumerico.forEach(boton =>
         {
-            boton.addEventListener('click', async function(event)
+            boton.addEventListener('click', async function(evento)
             {
-                event.preventDefault();
+                evento.preventDefault();
                 if (infoCliente.id === null)
                 {
                     infoCliente.id = localStorage.getItem('cliente_id');
@@ -1493,212 +1674,212 @@ document.addEventListener
                     }
                 }
                 cantProducto.showModal();
-                inputArtIdCantProducto.value = parseInt(event.currentTarget.id);
+                inputArtIdCantProducto.value = parseInt(evento.currentTarget.id);
                 dialogoAbierto = 'cantProducto';
             });
         });
-        document.getElementById('administrarBtn').addEventListener('click', async function(event)
+        document.getElementById('administrarBtn').addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a'}));
         });
-        document.getElementById('carritoBtn').addEventListener('click', async function(event)
+        document.getElementById('carritoBtn').addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'c'}));
         });
-        botonXsupCuadroMensaje.addEventListener('click', async function(event)
+        botonXsupCuadroMensaje.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonCerrCuadroMensaje.addEventListener('click', async function(event)
+        botonCerrCuadroMensaje.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
         // textoTituCuadroMensaje click no tiene acción
         // textoMensCuadroMensaje click no tiene acción
-        botonXsCuadroSiNo.addEventListener('click', async function(event)
+        botonXsCuadroSiNo.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonSiCuadroSiNo.addEventListener('click', async function(event)
+        botonSiCuadroSiNo.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 's', 'code': 'KeyS', 'altKey': true, 'bubbles': true}));
         });
-        botonNoCuadroSiNo.addEventListener('click', async function(event)
+        botonNoCuadroSiNo.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'n', 'code': 'KeyN', 'altKey': true, 'bubbles': true}));
         });
         // textoTiCuadroSiNo click no tiene acción
         // textoMeCuadroSiNo click no tiene acción
-        botonXsupPerfil.addEventListener('click', async function(event)
+        botonXsupPerfil.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonCancPerfil.addEventListener('click', async function(event)
+        botonCancPerfil.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonAcepPerfil.addEventListener('click', async function(event)
+        botonAcepPerfil.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
-        comboPerfPerfil.addEventListener('click', async function(event)
+        comboPerfPerfil.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p', 'code': 'KeyP', 'altKey': true, 'bubbles': true}));
         });
-        botonXsupeCantProducto.addEventListener('click', async function(event)
+        botonXsupeCantProducto.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonCanceCantProducto.addEventListener('click', async function(event)
+        botonCanceCantProducto.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonPagarCantProducto.addEventListener('click', async function(event)
+        botonPagarCantProducto.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
-        botonXsupeCarrito.addEventListener('click', async function(event)
+        botonXsupeCarrito.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonCanceCarrito.addEventListener('click', async function(event)
+        botonCanceCarrito.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonFinalCarrito.addEventListener('click', async function(event)
+        botonFinalCarrito.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'f', 'code': 'KeyF', 'altKey': true, 'bubbles': true}));
         });
-        botonAnulaCarrito.addEventListener('click', async function(event)
+        botonAnulaCarrito.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a', 'code': 'KeyA', 'altKey': true, 'bubbles': true}));
         });
-        botonQuitaCarrito.addEventListener('click', async function(event)
+        botonQuitaCarrito.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'q', 'code': 'KeyQ', 'altKey': true, 'bubbles': true}));
         });
-        botonModifCarrito.addEventListener('click', async function(event)
+        botonModifCarrito.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'm', 'code': 'KeyM', 'altKey': true, 'bubbles': true}));
         });
-        botonPagarCarrito.addEventListener('click', async function(event)
+        botonPagarCarrito.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p', 'code': 'KeyP', 'altKey': true, 'bubbles': true}));
         });
-        botonXsupeAltaCliente.addEventListener('click', async function(event)
+        botonXsupeAltaCliente.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonCanceAltaCliente.addEventListener('click', async function(event)
+        botonCanceAltaCliente.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonAceptAltaCliente.addEventListener('click', async function(event)
+        botonAceptAltaCliente.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
-        botonXsupLogin.addEventListener('click', async function(event)
+        botonXsupLogin.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonCancLogin.addEventListener('click', async function(event)
+        botonCancLogin.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonRecuLogin.addEventListener('click', async function(event)
+        botonRecuLogin.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'r', 'code': 'KeyR', 'altKey': true, 'bubbles': true}));
         });
-        botonCreaLogin.addEventListener('click', async function(event)
+        botonCreaLogin.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'e', 'code': 'KeyE', 'altKey': true, 'bubbles': true}));
         });
-        botonAcepLogin.addEventListener('click', async function(event)
+        botonAcepLogin.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
-        botonXsupAdministrar.addEventListener('click', async function(event)
+        botonXsupAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonProdAdministrar.addEventListener('click', async function(event)
+        botonProdAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p', 'code': 'KeyP', 'altKey': true, 'bubbles': true}));
         });
-        botonOferAdministrar.addEventListener('click', async function(event)
+        botonOferAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'o', 'code': 'KeyO', 'altKey': true, 'bubbles': true}));
         });
-        botonUsuaAdministrar.addEventListener('click', async function(event)
+        botonUsuaAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'u', 'code': 'KeyU', 'altKey': true, 'bubbles': true}));
         });
-        botonAgreAdministrar.addEventListener('click', async function(event)
+        botonAgreAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a', 'code': 'KeyA', 'altKey': true, 'bubbles': true}));
         });
-        botonQuitAdministrar.addEventListener('click', async function(event)
+        botonQuitAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'q', 'code': 'KeyQ', 'altKey': true, 'bubbles': true}));
         });
-        botonModiAdministrar.addEventListener('click', async function(event)
+        botonModiAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'm', 'code': 'KeyM', 'altKey': true, 'bubbles': true}));
         });
-        botonCerrAdministrar.addEventListener('click', async function(event)
+        botonCerrAdministrar.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonXsupAltaArticulo.addEventListener('click', async function(event)
+        botonXsupAltaArticulo.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonCancAltaArticulo.addEventListener('click', async function(event)
+        botonCancAltaArticulo.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonAcepAltaArticulo.addEventListener('click', async function(event)
+        botonAcepAltaArticulo.addEventListener('click', async function(evento)
         {
-            event.preventDefault();
+            evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
         // inputFechAltaArticulo click default es correcto
@@ -1713,9 +1894,9 @@ document.addEventListener
         {
             comboListAltaArticulo.classList.toggle('hidden');
         });
-        calendariAltaArticulo.addEventListener('click', async function(event)
+        calendariAltaArticulo.addEventListener('click', async function(evento)
         {
-            if (event.target.classList.contains('dia-click'))
+            if (evento.target.classList.contains('dia-click'))
             {
                 // Desmarcar el anterior
                 const anterior = calendariAltaArticulo.querySelector('.seleccionado');
@@ -1725,7 +1906,7 @@ document.addEventListener
                 }
                 
                 // Marcar el nuevo
-                event.target.classList.add('seleccionado');
+                evento.target.classList.add('seleccionado');
                 
                 const fechaActual = new Date();
                 const mesAct = fechaActual.getMonth();
@@ -1733,7 +1914,7 @@ document.addEventListener
                 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
                 // Actualizar el valor visual del cuadro combinado y cerrar la lista
-                const diaSeleccionado = event.target.dataset.dia;
+                const diaSeleccionado = evento.target.dataset.dia;
                 inputFechAltaArticulo.textContent = `${diaSeleccionado} de ${meses[mesAct]}`;
                 comboListAltaArticulo.classList.add('hidden');
             }
