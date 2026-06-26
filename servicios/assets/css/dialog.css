@@ -671,8 +671,8 @@ dialog#altaCliente
     transform: translate(-50%, -50%);
     margin: 10px;
     border: solid 1px var(--azul-muy-oscuro);
-    width: 318px;
-    height: 398px;
+    width: 400px;
+    height: 470px;
     border-radius: 10px;
     color: var(--azul-muy-oscuro);
 }

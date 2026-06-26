@@ -62,9 +62,6 @@ document.addEventListener
         const botonQuitAdministrar = administrar.getElementsByTagName('button')[5];
         const botonModiAdministrar = administrar.getElementsByTagName('button')[6];
         const botonCerrAdministrar = administrar.getElementsByTagName('button')[7];
-        const arePestPrAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#productos>table#tabla-articulos>tbody')[0];
-        const arePestOfAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#ofertas>table#tabla-ofertas>tbody')[0];
-        const arePestUsAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#usuarios>table#tabla-usuarios>tbody')[0];
         const altaArticulo = document.getElementById('altaArticulo');
         const botonXsupAltaArticulo = altaArticulo.getElementsByTagName('button')[0];
         const botonCancAltaArticulo = altaArticulo.getElementsByTagName('button')[1];
@@ -90,13 +87,12 @@ document.addEventListener
             telefono: '',
             direccion: '',
             email: '',
-            perfil: '',
+            perfil: 'cliente',
             fingerprint: null,
             cantidadArticulosCarrito: NaN
         };
         const cantidad_articulos_carrito = async (info) =>
         {
-            let respuestaServidor = null;
             try
             {
                 respuestaServidor = await fetch
@@ -134,7 +130,12 @@ document.addEventListener
             document.querySelector('html>body>header>div>div.encabezado>div.botonera>button#carritoBtn>span').innerText =
                 (Number.isNaN(info.cantidadArticulosCarrito) ? '¿?' : info.cantidadArticulosCarrito);
         };
-        if(localStorage.getItem('cliente_id') !== null)
+        if(localStorage.getItem('cliente_id') === null)
+        {
+            infoCliente.id = 0;
+            infoCliente.perfil =  'cliente';
+        }
+        else
         {
             infoCliente.id = parseInt(localStorage.getItem('cliente_id'));
             if(localStorage.getItem('cliente_perfil') === null)
@@ -358,6 +359,10 @@ document.addEventListener
                                 jsonArticulosEnCarrito.error + '".');
                         }
                         arePestPrAdministrar.innerHTML = articulosPaginados;
+                        const arePestPrAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#productos>table#tabla-articulos>tbody')[0];
+                        const arePestOfAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#ofertas>table#tabla-ofertas>tbody')[0];
+                        const arePestUsAdministrar = administrar.getElementsByTagName('main>div.tabs-content>div#usuarios>table#tabla-usuarios>tbody')[0];
+                        // TODO: Completar aquí
                     }
                     else
                     {
@@ -385,12 +390,12 @@ document.addEventListener
                 if ((evento.ctrlKey && evento.altKey && evento.shiftKey && evento.key === 'A') || (evento.key === 'a') || (evento.key === 'A'))
                 {
                     evento.preventDefault();
-                    if(localStorage.getItem('cliente_id') === null)
+                    if((localStorage.getItem('cliente_id') === null) || ((infoCliente.apellido == null) && (infoCliente.nombre == null)))
                     {
                         // Este diálogo pide credenciales para ingresar como usuario cliente para iniciar una compra
                         // o administrador para abm de productos y abm de ofertas.
                         // Se identifica si corresponde a un usuario o a un administrador según su nombre de usuario que se ingresa.
-                        // ¿Cómo hacer para que sea agradable para el usuario?
+                        // TODO: ¿Cómo hacer para que sea agradable para el usuario?
                         login.showModal();
                         dialogoAbierto = 'login';
                         inputUsuaLogin.value = '';
@@ -515,6 +520,10 @@ document.addEventListener
                                 '            </tbody>' + saltoDeLinea +
                                 '          </table>' + saltoDeLinea;
                             tagPrincipCarrito.innerHTML = tablaDeArticulosEnCarrito;
+                            botonQuitaCarrito.disabled = true;
+                            botonQuitaCarrito.value = 'quitar';
+                            botonModifCarrito.disabled = true;
+                            botonModifCarrito.value = 'modificar';
                             carrito.style.width = '770px';
                             alto = alto * 49 + 253;
                             carrito.style.height = alto.toString() + 'px';
@@ -1468,23 +1477,18 @@ document.addEventListener
                                 const fechaActual = new Date();
                                 const anyoAct = fechaActual.getFullYear();
                                 const mesAct = fechaActual.getMonth();
-
                                 // Nombres de los meses para el título
                                 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
                                 mesTituloAltaArticulo.textContent = `${meses[mesAct]} ${anyoAct}`;
-
                                 const primerDiaSemana = new Date(anyoAct, mesAct, 1).getDay(); // Día de la semana del día 1 (0=Dom, 1=Lun...)
                                 const totalDias = new Date(anyoAct, mesAct + 1, 0).getDate();  // Total de días en el mes
-
                                 let html = '<tr>';
                                 let diaCuenta = 1;
-
                                 // Rellenar espacios vacíos de la primera semana
                                 for (let i = 0; i < primerDiaSemana; i++)
                                 {
                                     html += '<td class="vacio"></td>';
                                 }
-
                                 // Generar los días del mes
                                 for (let i = primerDiaSemana; diaCuenta <= totalDias; i++)
                                 {
@@ -1495,7 +1499,6 @@ document.addEventListener
                                     html += `<td class="dia-click" data-dia="${diaCuenta}">${diaCuenta}</td>`;
                                     diaCuenta++;
                                 }
-
                                 html += '</tr>';
                                 calendariAltaArticulo.innerHTML = html;
                             }
@@ -1669,13 +1672,17 @@ document.addEventListener
                     {
                         login.showModal();
                         dialogoAbierto = 'login';
-                        // TODO: debería indicar al diálogo login que luego de aceptar, tiene que abrir cantProducto para el id del botón que presionó
-                        // el usuario, con un input hidden.
+                        inputUsuarioLogin.value = '';
+                        inputContrasLogin.value = '';
+                        inputUsuarioLogin.focus();
                     }
                 }
-                cantProducto.showModal();
-                inputArtIdCantProducto.value = parseInt(evento.currentTarget.id);
-                dialogoAbierto = 'cantProducto';
+                else
+                {
+                    cantProducto.showModal();
+                    inputArtIdCantProducto.value = parseInt(evento.currentTarget.id);
+                    dialogoAbierto = 'cantProducto';
+                }
             });
         });
         document.getElementById('administrarBtn').addEventListener('click', async function(evento)
@@ -1687,6 +1694,31 @@ document.addEventListener
         {
             evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'c'}));
+        });
+        botonXsupLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonCancLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonRecuLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'r', 'code': 'KeyR', 'altKey': true, 'bubbles': true}));
+        });
+        botonCreaLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'e', 'code': 'KeyE', 'altKey': true, 'bubbles': true}));
+        });
+        botonAcepLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
         botonXsupCuadroMensaje.addEventListener('click', async function(evento)
         {
@@ -1904,15 +1936,12 @@ document.addEventListener
                 {
                     anterior.classList.remove('seleccionado');
                 }
-                
                 // Marcar el nuevo
                 evento.target.classList.add('seleccionado');
-                
                 const fechaActual = new Date();
                 const mesAct = fechaActual.getMonth();
                 // Nombres de los meses para el título
                 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
                 // Actualizar el valor visual del cuadro combinado y cerrar la lista
                 const diaSeleccionado = evento.target.dataset.dia;
                 inputFechAltaArticulo.textContent = `${diaSeleccionado} de ${meses[mesAct]}`;

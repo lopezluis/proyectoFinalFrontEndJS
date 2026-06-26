@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="assets/css/readme_md.css">
+<link rel="stylesheet" href="css/readme.css">
 
 # Proyecto Final
 
@@ -53,6 +53,20 @@ Con la siguiente estructura:
   <button id="%identi%">Agregar al carrito</button>
 </div>
 ~~~
+
+## Comentarios
+
+Correspondientes al código JavaScript.
+
+La siguiente:
+
+~~~JavaScript(/home/llopez/Público/talentoTechCABAminEducacion/frontEndJS/proyectoFinalFrontEndJS/servicios/assets/js/index.js:82:12)
+~~~
+
+Es la estructura de datos (struct) para mantener detalles del cliente o visitante y obtener si quién está visitando la página del supermercado,
+es un cliente que ya ha comprado antes. Si es un visitante nuevo, es necesario obtener información de su perfil para almacenarla.
+No tiene sentido que el visitante ponga artículos en su carrito y efectivice una compra y no se le pueda cobrar ni haya donde entregar los
+artículos.
 
 ## Modo de Uso
 

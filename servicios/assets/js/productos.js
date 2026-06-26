@@ -3,6 +3,65 @@ document.addEventListener
     'DOMContentLoaded',
     async function()
     {
+        const login = document.getElementById('login');
+        const botonXsupLogin = login.getElementsByTagName('button')[0];
+        const botonCancLogin = login.getElementsByTagName('button')[1];
+        const botonRecuLogin = login.getElementsByTagName('button')[2];
+        const botonCreaLogin = login.getElementsByTagName('button')[3];
+        const botonAcepLogin = login.getElementsByTagName('button')[4];
+        const inputUsuaLogin = login.getElementsByTagName('input')[0];
+        const inputCntrLogin = login.getElementsByTagName('input')[1];
+        const cuadroMensaje = document.getElementById('cuadroMensaje');
+        const botonXsupCuadroMensaje = cuadroMensaje.getElementsByTagName('button')[0];
+        const botonCerrCuadroMensaje = cuadroMensaje.getElementsByTagName('button')[1];
+        const textoTituCuadroMensaje = cuadroMensaje.getElementsByTagName('p')[0];
+        const textoMensCuadroMensaje = cuadroMensaje.getElementsByTagName('p')[1];
+        const cuadroSiNo = document.getElementById('cuadroSiNo');
+        const botonXsCuadroSiNo = cuadroSiNo.getElementsByTagName('button')[0];
+        const botonSiCuadroSiNo = cuadroSiNo.getElementsByTagName('button')[1];
+        const botonNoCuadroSiNo = cuadroSiNo.getElementsByTagName('button')[2];
+        const textoTiCuadroSiNo = cuadroSiNo.getElementsByTagName('p')[0];
+        const textoMeCuadroSiNo = cuadroSiNo.getElementsByTagName('p')[1];
+        const carrito = document.getElementById('carrito');
+        const botonXsupeCarrito = carrito.getElementsByTagName('button')[0];
+        const botonCanceCarrito = carrito.getElementsByTagName('button')[1];
+        const botonFinalCarrito = carrito.getElementsByTagName('button')[2];
+        const botonAnulaCarrito = carrito.getElementsByTagName('button')[3];
+        const botonQuitaCarrito = carrito.getElementsByTagName('button')[4];
+        const botonModifCarrito = carrito.getElementsByTagName('button')[5];
+        const botonPagarCarrito = carrito.getElementsByTagName('button')[6];
+        const tagPrincipCarrito = carrito.getElementsByTagName('main')[0];
+        const altaCliente = document.getElementById('altaCliente');
+        const botonXsupeAltaCliente = altaCliente.getElementsByTagName('button')[0];
+        const botonCanceAltaCliente = altaCliente.getElementsByTagName('button')[1];
+        const botonAceptAltaCliente = altaCliente.getElementsByTagName('button')[2];
+        const inputNombrAltaCliente = altaCliente.getElementsByTagName('input')[0];
+        const inputApellAltaCliente = altaCliente.getElementsByTagName('input')[1];
+        const inputTelefAltaCliente = altaCliente.getElementsByTagName('input')[2];
+        const inputEmailAltaCliente = altaCliente.getElementsByTagName('input')[3];
+        const inputUsuarAltaCliente = altaCliente.getElementsByTagName('input')[4];
+        const inputContrAltaCliente = altaCliente.getElementsByTagName('input')[5];
+        const inputDirecAltaCliente = altaCliente.getElementsByTagName('textarea')[0];
+        const perfil = document.getElementById('perfil');
+        const botonXsupPerfil = perfil.getElementsByTagName('button')[0];
+        const botonCancPerfil = perfil.getElementsByTagName('button')[1];
+        const botonAcepPerfil = perfil.getElementsByTagName('button')[2];
+        const comboPerfPerfil = perfil.getElementsByTagName('select')[0];
+        const cantProducto = document.getElementById('cantidad_producto');
+        const botonXsupeCantProducto = cantProducto.getElementsByTagName('button')[0];
+        const botonCanceCantProducto = cantProducto.getElementsByTagName('button')[1];
+        const botonPagarCantProducto = cantProducto.getElementsByTagName('button')[2];
+        const inputArtIdCantProducto = cantProducto.getElementsByTagName('input')[0];
+        const inputCantiCantProducto = cantProducto.getElementsByTagName('input')[1];
+        const administrar = document.getElementById('administrar');
+        const botonXsupAdministrar = administrar.getElementsByTagName('button')[0];
+        const botonProdAdministrar = administrar.getElementsByTagName('button')[1];
+        const botonOferAdministrar = administrar.getElementsByTagName('button')[2];
+        const botonUsuaAdministrar = administrar.getElementsByTagName('button')[3];
+        const botonAgreAdministrar = administrar.getElementsByTagName('button')[4];
+        const botonQuitAdministrar = administrar.getElementsByTagName('button')[5];
+        const botonModiAdministrar = administrar.getElementsByTagName('button')[6];
+        const botonCerrAdministrar = administrar.getElementsByTagName('button')[7];
         const altaArticulo = document.getElementById('altaArticulo');
         const botonXsupAltaArticulo = altaArticulo.getElementsByTagName('button')[0];
         const botonCancAltaArticulo = altaArticulo.getElementsByTagName('button')[1];
@@ -17,86 +76,23 @@ document.addEventListener
         const selecCateAltaArticulo = altaArticulo.getElementsByTagName('select')[0];
         const selecImagAltaArticulo = altaArticulo.getElementsByTagName('select')[0];
         const textaNotaAltaArticulo = altaArticulo.getElementsByTagName('textarea')[0];
-        const cuadroMensaje = document.getElementById('cuadroMensaje');
-        const botonXsupCuadroMensaje = cuadroMensaje.getElementsByTagName('button')[0];
-        const botonCerrCuadroMensaje = cuadroMensaje.getElementsByTagName('button')[1];
-        const textoTituloCuadroMensaje = cuadroMensaje.getElementsByTagName('p')[0];
-        const textoMensajCuadroMensaje = cuadroMensaje.getElementsByTagName('p')[1];
-        const cuadroSiNo = document.getElementById('cuadroSiNo');
-        const botonXsupCuadroSiNo = cuadroSiNo.getElementsByTagName('button')[0];
-        const boton_Si_CuadroSiNo = cuadroSiNo.getElementsByTagName('button')[1];
-        const boton_No_CuadroSiNo = cuadroSiNo.getElementsByTagName('button')[2];
-        const textoTituloCuadroSiNo = cuadroSiNo.getElementsByTagName('p')[0];
-        const textoMensajCuadroSiNo = cuadroSiNo.getElementsByTagName('p')[1];
-        const perfil = document.getElementById('perfil');
-        const botonXsupPerfil = perfil.getElementsByTagName('button')[0];
-        const botonCancPerfil = perfil.getElementsByTagName('button')[1];
-        const botonAcepPerfil = perfil.getElementsByTagName('button')[2];
-        const comboPerfPerfil = perfil.getElementsByTagName('select')[0];
-        const cantProducto = document.getElementById('cantidad_producto');
-        const botonXsupeCantProducto = cantProducto.getElementsByTagName('button')[0];
-        const botonCanceCantProducto = cantProducto.getElementsByTagName('button')[1];
-        const botonPagarCantProducto = cantProducto.getElementsByTagName('button')[2];
-        const inputArtIdCantProducto = cantProducto.getElementsByTagName('input')[0];
-        const inputCantiCantProducto = cantProducto.getElementsByTagName('input')[1];
-        const carrito = document.getElementById('carrito');
-        const botonXsupeCarrito = carrito.getElementsByTagName('button')[0];
-        const botonCanceCarrito = carrito.getElementsByTagName('button')[1];
-        const botonPagarCarrito = carrito.getElementsByTagName('button')[2];
-        const tagPrincipCarrito = carrito.getElementsByTagName('main')[0];
-        const tagPrTablaCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead');
-        const tagPrTaBodCarrito = carrito.getElementsByTagName('main>table#tabla-datos>tbody')[0];
-        const tagPrInpFiCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead>tr>th>div.th-contenedor>input.filtro-columna')[0];
-        const tagPrTitOrCarrito = carrito.getElementsByTagName('main>table#tabla-datos>thead>tr>th>div.th-contenedor>span.th-titulo')[0];
-        const altaCliente = document.getElementById('altaCliente');
-        const botonXsupeAltaCliente = altaCliente.getElementsByTagName('button')[0];
-        const botonCanceAltaCliente = altaCliente.getElementsByTagName('button')[1];
-        const botonAceptAltaCliente = altaCliente.getElementsByTagName('button')[2];
-        const inputNombrAltaCliente = altaCliente.getElementsByTagName('input')[0];
-        const inputApellAltaCliente = altaCliente.getElementsByTagName('input')[1];
-        const inputTelefAltaCliente = altaCliente.getElementsByTagName('input')[2];
-        const inputEmailAltaCliente = altaCliente.getElementsByTagName('input')[3];
-        const inputUsuarAltaCliente = altaCliente.getElementsByTagName('input')[4];
-        const inputContrAltaCliente = altaCliente.getElementsByTagName('input')[5];
-        const inputDirecAltaCliente = altaCliente.getElementsByTagName('textarea')[0];
-        const login = document.getElementById('login');
-        const botonXsupLogin = login.getElementsByTagName('button')[0];
-        const botonCancLogin = login.getElementsByTagName('button')[1];
-        const botonRecuLogin = login.getElementsByTagName('button')[2];
-        const botonCreaLogin = login.getElementsByTagName('button')[3];
-        const botonAcepLogin = login.getElementsByTagName('button')[4];
-        const inputUsuarioLogin = login.getElementsByTagName('input')[0];
-        const inputContrasLogin = login.getElementsByTagName('input')[1];
-        const administracion = document.getElementById('administrar');
-        const botonXsupAdministracion = administracion.getElementsByTagName('button')[0];
-        const botonProdAdministracion = administracion.getElementsByTagName('button')[1];
-        const botonOferAdministracion = administracion.getElementsByTagName('button')[2];
-        const botonUsuaAdministracion = administracion.getElementsByTagName('button')[3];
-        const botonAgreAdministracion = administracion.getElementsByTagName('button')[4];
-        const botonQuitAdministracion = administracion.getElementsByTagName('button')[5];
-        const botonModiAdministracion = administracion.getElementsByTagName('button')[6];
-        const botonCerrAdministracion = administracion.getElementsByTagName('button')[7];
         let servidorActivo = 0;
         let dialogoAbierto = '';
-        let respuesta = null;
-        // Estructura de datos (struct) para mantener detalles del cliente o visitante y obtener si quién está visitando la página del supermercado,
-        // es un cliente que ya ha comprado antes. Si es un visitante nuevo, es necesario obtener información de su perfil para almacenarla.
-        // No tiene sentido que el visitante ponga artículos en su carrito y efectivice una compra y no se le pueda cobrar ni haya donde entregar los
-        // artículos.
-        const infoCliente =
+        let respuestaServidor = null;
+        let infoCliente =
         {
-            id: localStorage.getItem('cliente_id') === null ? null : parseInt(localStorage.getItem('cliente_id')),
+            id: 0,
             nombre: '',
             apellido: '',
             telefono: '',
             direccion: '',
             email: '',
-            perfil: '',
-            fingerprint: null
+            perfil: 'cliente',
+            fingerprint: null,
+            cantidadArticulosCarrito: NaN
         };
         const cantidad_articulos_carrito = async (info) =>
         {
-            let respuestaServidor = null;
             try
             {
                 respuestaServidor = await fetch
@@ -115,8 +111,8 @@ document.addEventListener
             catch (error)
             {
                 cuadroMensaje.showModal();
-                textoTituloCuadroMensaje.innerText = 'Error';
-                textoMensajCuadroMensaje.innerHTML = 'Error al obtener la cantidad de artículos en el carrito.<br />Mensaje: "' + error + '".';
+                textoTituCuadroMensaje.innerText = 'Error';
+                textoMensCuadroMensaje.innerHTML = 'Error al obtener la cantidad de artículos en el carrito.<br />Mensaje: "' + error + '".';
                 cuadroMensaje.style.width = '320px';
                 cuadroMensaje.style.height = '214px';
                 dialogoAbierto = 'cuadroMensaje';
@@ -155,8 +151,8 @@ document.addEventListener
         catch (error)
         {
             cuadroMensaje.showModal();
-            textoTituloCuadroMensaje.innerText = 'Error';
-            textoMensajCuadroMensaje.innerHTML = 'No se pudo calcular la huella digital.<br />Respuesta: "' + error + '".';
+            textoTituCuadroMensaje.innerText = 'Error';
+            textoMensCuadroMensaje.innerHTML = 'No se pudo calcular la huella digital.<br />Respuesta: "' + error + '".';
             cuadroMensaje.style.width = '320px';
             cuadroMensaje.style.height = '214px';
             dialogoAbierto = 'cuadroMensaje';
@@ -165,7 +161,7 @@ document.addEventListener
         }
         try
         {
-            respuesta = await fetch
+            respuestaServidor = await fetch
             (
                 'http://www.luislopez.com.ar:3000/api/info_cliente',
                 {
@@ -182,8 +178,8 @@ document.addEventListener
         catch (error)
         {
             cuadroMensaje.showModal();
-            textoTituloCuadroMensaje.innerText = 'Error';
-            textoMensajCuadroMensaje.innerHTML = 'El servidor no está activo o es inaccesible<br />' +
+            textoTituCuadroMensaje.innerText = 'Error';
+            textoMensCuadroMensaje.innerHTML = 'El servidor no está activo o es inaccesible<br />' +
                                                  'al consultar la información del cliente.<br />' +
                                                  'Por favor, contacte al soporte para levantar al servidor.';
             cuadroMensaje.style.width = '320px';
@@ -194,9 +190,9 @@ document.addEventListener
         }
         if(servidorActivo === 1)
         {
-            if(respuesta.status == 200)
+            if(respuestaServidor.status == 200)
             {
-                const cliente = await respuesta.json();
+                const cliente = await respuestaServidor.json();
                 if (cliente.exito == true)
                 {
                     infoCliente.id = cliente.id;
@@ -212,7 +208,7 @@ document.addEventListener
             // Escritura de las tarjetas en el área de trabajo de la página de productos del supermercado
             try
             {
-                respuesta = await fetch
+                respuestaServidor = await fetch
                 (
                     'http://www.luislopez.com.ar:3000/api/articulos',
                     {
@@ -223,17 +219,17 @@ document.addEventListener
             catch (error)
             {
                 cuadroMensaje.showModal();
-                textoTituloCuadroMensaje.innerText = 'Error';
-                textoMensajCuadroMensaje.innerHTML = 'Error del servidor al cargar datos de productos.<br />Mensaje: "' + error + '".';
+                textoTituCuadroMensaje.innerText = 'Error';
+                textoMensCuadroMensaje.innerHTML = 'Error del servidor al cargar datos de productos.<br />Mensaje: "' + error + '".';
                 cuadroMensaje.style.width = '320px';
                 cuadroMensaje.style.height = '214px';
                 dialogoAbierto = 'cuadroMensaje';
                 botonCerrCuadroMensaje.focus();
                 console.error('Error del servidor al cargar datos de productos. Mensaje: "' + error + '".');
             }
-            if (respuesta.ok)
+            if (respuestaServidor.ok)
             {
-                const articulos = await respuesta.json();
+                const articulos = await respuestaServidor.json();
                 const seccionProductos = document.querySelector('html>body>main>section.productos');
                 if(articulos.exito)
                 {
@@ -257,8 +253,8 @@ document.addEventListener
                 else
                 {
                     cuadroMensaje.showModal();
-                    textoTituloCuadroMensaje.innerText = 'Error';
-                    textoMensajCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de productos.<br /> Respuesta: "' + articulos.error + '".';
+                    textoTituCuadroMensaje.innerText = 'Error';
+                    textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de productos.<br /> Respuesta: "' + articulos.error + '".';
                     cuadroMensaje.style.width = '320px';
                     cuadroMensaje.style.height = '214px';
                     dialogoAbierto = 'cuadroMensaje';
@@ -279,12 +275,8 @@ document.addEventListener
                 if ((event.ctrlKey && event.altKey && event.shiftKey && event.key === 'A') || (event.key === 'a') || (event.key === 'A'))
                 {
                     event.preventDefault();
-                    if(localStorage.getItem('cliente_id') === null)
+                    if((localStorage.getItem('cliente_id') === null) || ((infoCliente.apellido == null) && (infoCliente.nombre == null)))
                     {
-                        // Este diálogo pide credenciales para ingresar como usuario cliente para iniciar una compra
-                        // o administrador para abm de productos y abm de ofertas.
-                        // Se identifica si corresponde a un usuario o a un administrador según su nombre de usuario que se ingresa.
-                        // ¿Cómo hacer para que sea agradable para el usuario?
                         login.showModal();
                         dialogoAbierto = 'login';
                         inputUsuarioLogin.value = '';
@@ -294,12 +286,16 @@ document.addEventListener
                     else
                     {
                         cuadroSiNo.showModal();
-                        textoTituloCuadroSiNo.innerText = infoCliente.apellido + ', ' + infoCliente.nombre;
-                        textoMensajCuadroSiNo.innerHTML = '¿Desea finalizar la sesión?';
-                        cuadroSiNo.style.width = '500px';
+                        textoTiCuadroSiNo.innerHTML = infoCliente.apellido + ',&nbsp;' + infoCliente.nombre + '&nbsp;&nbsp;&nbsp;';
+                        textoMeCuadroSiNo.innerHTML = '¿Desea finalizar la sesión?';
+                        let contextoTextoTitulo = document.createElement('canvas').getContext('2d');
+                        contextoTextoTitulo.font = 'font-style: normal; font-variant: normal; font-weight: bold; font-stretch: normal; font-size: 26px;' +
+                            ' font-family: Arial, sans-serif;';
+                        cuadroSiNo.style.width =
+                            (Math.round(contextoTextoTitulo.measureText(document.querySelector('dialog#cuadroSiNo>form>header>p').innerText).width) + 238) + 'px';
                         cuadroSiNo.style.height = '140px';
                         dialogoAbierto = 'cuadroSiNo';
-                        boton_Si_CuadroSiNo.focus();
+                        botonSiCuadroSiNo.focus();
                     }
                 }
                 else
@@ -312,7 +308,7 @@ document.addEventListener
                         event.preventDefault();
                         try
                         {
-                            respuesta = await fetch
+                            respuestaServidor = await fetch
                             (
                                 'http://www.luislopez.com.ar:3000/api/precantidad',
                                 {
@@ -328,8 +324,8 @@ document.addEventListener
                         catch (error)
                         {
                             cuadroMensaje.showModal();
-                            textoTituloCuadroMensaje.innerText = 'Error';
-                            textoMensajCuadroMensaje.innerHTML = 'El servidor no muestra la cantidad de<br />' +
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'El servidor no muestra la cantidad de<br />' +
                                                                  'artículos en tu carrito. Responde:<br />' +
                                                                  error;
                             cuadroMensaje.style.width = '320px';
@@ -338,12 +334,12 @@ document.addEventListener
                             botonCerrCuadroMensaje.focus();
                             console.error('Error: El servidor no muestra la cantidad de artículos en el carrito. Respuesta: "' + error + '".');
                         }
-                        const jsonCantidad = await respuesta.json();
-                        if((respuesta.status == 200) && jsonCantidad.exito)
+                        const jsonCantidad = await respuestaServidor.json();
+                        if((respuestaServidor.status == 200) && jsonCantidad.exito)
                         {
                             try
                             {
-                                respuesta = await fetch
+                                respuestaServidor = await fetch
                                 (
                                     'http://www.luislopez.com.ar:3000/api/artic_en_carrito',
                                     {
@@ -359,8 +355,8 @@ document.addEventListener
                             catch (error)
                             {
                                 cuadroMensaje.showModal();
-                                textoTituloCuadroMensaje.innerText = 'Error';
-                                textoMensajCuadroMensaje.innerHTML = 'El servidor no responde el detalle de<br />' +
+                                textoTituCuadroMensaje.innerText = 'Error';
+                                textoMensCuadroMensaje.innerHTML = 'El servidor no responde el detalle de<br />' +
                                                                      'artículos en tu carrito. Dice:<br />' +
                                                                      error;
                                 cuadroMensaje.style.width = '320px';
@@ -371,7 +367,7 @@ document.addEventListener
                             }
                             carrito.showModal();
                             dialogoAbierto = 'carrito';
-                            const jsonArticulosEnCarrito = await respuesta.json();
+                            const jsonArticulosEnCarrito = await respuestaServidor.json();
                             const saltoDeLinea = String.fromCharCode(10);
                             if (parseInt(jsonCantidad.numero) > 0)
                             {
@@ -421,8 +417,8 @@ document.addEventListener
                                 else
                                 {
                                     cuadroMensaje.showModal();
-                                    textoTituloCuadroMensaje.innerText = 'Error';
-                                    textoMensajCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de productos.<br /> Respuesta: "' +
+                                    textoTituCuadroMensaje.innerText = 'Error';
+                                    textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de productos.<br /> Respuesta: "' +
                                         jsonArticulosEnCarrito.error + '".';
                                     cuadroMensaje.style.width = '320px';
                                     cuadroMensaje.style.height = '214px';
@@ -433,6 +429,10 @@ document.addEventListener
                                 tablaDeArticulosEnCarrito +=
                                     '            </tbody>' + saltoDeLinea +
                                     '          </table>' + saltoDeLinea;
+                                botonQuitaCarrito.disabled = true;
+                                botonQuitaCarrito.value = 'quitar';
+                                botonModifCarrito.disabled = true;
+                                botonModifCarrito.value = 'modificar';
                                 tagPrincipCarrito.innerHTML = tablaDeArticulosEnCarrito;
                                 alto = alto * 50 + 230;
                                 carrito.style.height = alto.toString() + 'px';
@@ -450,16 +450,212 @@ document.addEventListener
                         else
                         {
                             cuadroMensaje.showModal();
-                            textoTituloCuadroMensaje.innerText = 'Error';
-                            textoMensajCuadroMensaje.innerHTML = 'El servidor no muestra la cantidad de<br />' +
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'El servidor no muestra la cantidad de<br />' +
                                                                  'artículos en tu carrito. Devuelve estado:<br />' +
-                                                                 respuesta.status + '. Mensaje: "' + respuesta.error + '".';
+                                                                 respuestaServidor.status + '. Mensaje: "' + respuestaServidor.error + '".';
                             cuadroMensaje.style.width = '320px';
                             cuadroMensaje.style.height = '214px';
                             dialogoAbierto = 'cuadroMensaje';
                             botonCerrCuadroMensaje.focus();
-                            console.error('Error: El servidor no muestra la cantidad de artículos en tu carrito. Devuelve estado: ' + respuesta.status + '. Mensaje: "' + respuesta.error + '".');
+                            console.error('Error: El servidor no muestra la cantidad de artículos en tu carrito. Devuelve estado: ' + respuestaServidor.status + '. Mensaje: "' + respuestaServidor.error + '".');
                         }
+                    }
+                }
+                break;
+            case 'login':
+                if (evento.altKey)
+                {
+                    switch (evento.key)
+                    {
+                    case 'x': // xlocrea
+                    case 'X':
+                    case 'c':
+                    case 'C':
+                        evento.preventDefault();
+                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+                        break;
+                    case 'l':
+                    case 'L':
+                        evento.preventDefault();
+                        inputUsuaLogin.focus();
+                        break;
+                    case 'o':
+                    case 'O':
+                        evento.preventDefault();
+                        inputCntrLogin.focus();
+                        break;
+                    case 'r':
+                    case 'R':
+                        evento.preventDefault();
+                        login.close();
+                        cuadroMensaje.showModal();
+                        textoTituCuadroMensaje.innerText = 'ToDo';
+                        textoMensCuadroMensaje.innerHTML = 'Implementar la recuperación de credenciales.';
+                        cuadroMensaje.style.width = '346px';
+                        cuadroMensaje.style.height = '140px';
+                        dialogoAbierto = 'cuadroMensaje';
+                        botonCerrCuadroMensaje.focus();
+                        break;
+                    case 'e':
+                    case 'E':
+                        evento.preventDefault();
+                        login.close();
+                        altaCliente.showModal();
+                        dialogoAbierto = 'altaCliente';
+                        inputNombrAltaCliente.focus();
+                        break;
+                    case 'a':
+                    case 'A':
+                        evento.preventDefault();
+                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
+                    }
+                }
+                else
+                {
+                    switch (evento.key)
+                    {
+                    case 'Escape':
+                        evento.preventDefault();
+                        login.close();
+                        dialogoAbierto = '';
+                        break;
+                    case 'Enter':
+                        evento.preventDefault();
+                        try
+                        {
+                            respuestaServidor = await fetch
+                            (
+                                'http://www.luislopez.com.ar:3000/api/acceso',
+                                {
+                                    method: 'POST',
+                                    headers:
+                                    {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({'usuario': inputUsuaLogin.value, 'contrasena': inputCntrLogin.value})
+                                }
+                            );
+                            servidorActivo = 1;
+                        }
+                        catch (error)
+                        {
+                            login.close();
+                            cuadroMensaje.showModal();
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'El servidor no está activo o es inaccesible<br />' +
+                                                                 'al consultar las credenciales del cliente.<br />' +
+                                                                 'Por favor, contacte al soporte para levantar al servidor.';
+                            cuadroMensaje.style.width = '320px';
+                            cuadroMensaje.style.height = '214px';
+                            dialogoAbierto = 'cuadroMensaje';
+                            botonCerrCuadroMensaje.focus();
+                            console.error(
+                                'Error: El servidor no está activo o es inaccesible al consultar las credenciales del cliente. Respuesta: "' +
+                                error + '".');
+                        }
+                        login.close();
+                        if ((servidorActivo === 1) && (respuestaServidor.status == 200))
+                        {
+                            const jsonAceptacion = await respuestaServidor.json();
+                            if (jsonAceptacion.exito == true)
+                            {
+                                if (jsonAceptacion.recordset.length > 1)
+                                {
+                                    infoCliente.id = jsonAceptacion.recordset[0].id;
+                                    localStorage.setItem('cliente_id', infoCliente.id);
+                                    infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                    infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                    infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                    infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                    infoCliente.email = jsonAceptacion.recordset[0].email;
+                                    perfil.showModal();
+                                    dialogoAbierto = 'perfil';
+                                    comboPerfPerfil.innerHTML = '';
+                                    for (let i = (jsonAceptacion.recordset.length - 1); i >= 0; i--)
+                                    {
+                                        comboPerfPerfil.insertAdjacentHTML('beforeend',
+                                            `<option value="${jsonAceptacion.recordset[i].id_categoria}">` +
+                                            `${jsonAceptacion.recordset[i].nombre_categoria}` +
+                                            '</option>');
+                                    }
+                                }
+                                else
+                                {
+                                    if (jsonAceptacion.recordset.length == 0)
+                                    {
+                                        // El usuario escribió mal sus credenciales o no tiene acceso
+                                        cuadroMensaje.showModal();
+                                        textoTituCuadroMensaje.innerText = 'Error';
+                                        textoMensCuadroMensaje.innerHTML = 'Las credenciales ingresadas son inválidas.<br />' +
+                                                                             'Por favor, verifíquelas e intente nuevamente.';
+                                        cuadroMensaje.style.width = '340px';
+                                        cuadroMensaje.style.height = '164px';
+                                        dialogoAbierto = 'cuadroMensaje';
+                                        botonCerrCuadroMensaje.focus();
+                                        infoCliente.cliente_id = 0;
+                                        localStorage.removeItem('cliente_id');
+                                        infoCliente.perfil = '';
+                                        localStorage.removeItem('cliente_perfil');
+                                    }
+                                    else
+                                    {
+                                        // El usuario que accedió tiene un solo perfil, seguramente cliente,
+                                        // dado que ser administrador sin ser cliente. no tendría sentido.
+                                        switch (jsonAceptacion.recordset[0].nombre_categoria)
+                                        {
+                                        case 'administrador':
+                                            infoCliente.id = jsonAceptacion.recordset[0].id;
+                                            localStorage.setItem('cliente_id', infoCliente.id);
+                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                            infoCliente.email = jsonAceptacion.recordset[0].email;
+                                            infoCliente.perfil = 'administrador';
+                                            localStorage.setItem('cliente_perfil', infoCliente.perfil);
+                                            await mostrarDialogoAdministrar();
+                                            break;
+                                        case 'cliente':
+                                            dialogoAbierto = '';
+                                            infoCliente.id = jsonAceptacion.recordset[0].id;
+                                            localStorage.setItem('cliente_id', infoCliente.id);
+                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
+                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
+                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
+                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
+                                            infoCliente.email = jsonAceptacion.recordset[0].email;
+                                            infoCliente.perfil = 'cliente';
+                                            localStorage.setItem('cliente_perfil', infoCliente.perfil);
+                                            break;
+                                        default:
+                                            // Nunca se debería poder acceder a este punto, si se accede, es porque se agregó
+                                            // a la base de datos una nueva categoría y no se implementó en el código.
+                                            localStorage.removeItem('cliente_id');
+                                            cuadroMensaje.showModal();
+                                            textoTituCuadroMensaje.innerText = 'Error Interno';
+                                            textoMensCuadroMensaje.innerHTML = 'Por favor, consulte con el administrador.';
+                                            cuadroMensaje.style.width = '340px';
+                                            cuadroMensaje.style.height = '164px';
+                                            dialogoAbierto = 'cuadroMensaje';
+                                            botonCerrCuadroMensaje.focus();
+                                        }
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                cuadroMensaje.showModal();
+                                textoTituCuadroMensaje.innerText = 'Error';
+                                textoMensCuadroMensaje.innerHTML = jsonAceptacion.error;
+                                cuadroMensaje.style.width = '320px';
+                                cuadroMensaje.style.height = '214px';
+                                dialogoAbierto = 'cuadroMensaje';
+                                botonCerrCuadroMensaje.focus();
+                                console.error('Error: "' + jsonAceptacion.error + '".');
+                            }
+                        }
+                        cantidad_articulos_carrito(infoCliente);
                     }
                 }
                 break;
@@ -619,7 +815,7 @@ document.addEventListener
                         perfil.close();
                         if (infoCliente.perfil === 'administrador')
                         {
-                            administracion.showModal();
+                            administrar.showModal();
                             dialogoAbierto = 'administrar';
                         }
                         else
@@ -668,7 +864,7 @@ document.addEventListener
                         let cantidadProductoPonerCarrito = parseFloat(inputCantiCantProducto.value) || 1;
                         try
                         {
-                            respuesta = await fetch
+                            respuestaServidor = await fetch
                             (
                                 'http://www.luislopez.com.ar:3000/api/agregar_al_carrito',
                                 {
@@ -694,17 +890,17 @@ document.addEventListener
                         {
                             cantProducto.close();
                             cuadroMensaje.showModal();
-                            textoTituloCuadroMensaje.innerText = 'Error';
-                            textoMensajCuadroMensaje.innerHTML = 'El servidor no logra agregar el producto al carrito.';
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'El servidor no logra agregar el producto al carrito.';
                             cuadroMensaje.style.width = '374px';
                             cuadroMensaje.style.height = '142px';
                             dialogoAbierto = 'cuadroMensaje';
                             botonCerrCuadroMensaje.focus();
                             console.error('Error: El servidor no logra agregar el producto al carrito. Mensaje: "' + error + '".');
                         }
-                        if (respuesta.status == 200)
+                        if (respuestaServidor.status == 200)
                         {
-                            const jsonCantidad = await respuesta.json();
+                            const jsonCantidad = await respuestaServidor.json();
                             if (jsonCantidad.exito == true)
                             {
                                 document.querySelector('html>body>header>div>div.encabezado>div.botonera>button#carritoBtn>span').innerText = `${jsonCantidad.numero}`;
@@ -712,11 +908,11 @@ document.addEventListener
                         }
                         else
                         {
-                            // respuesta.status es 500 u otro estado de error
-                            const jsonCantidad = await respuesta.json();
+                            // respuestaServidor.status es 500 u otro estado de error
+                            const jsonCantidad = await respuestaServidor.json();
                             cuadroMensaje.showModal();
-                            textoTituloCuadroMensaje.innerText = 'Error';
-                            textoMensajCuadroMensaje.innerHTML = 'El servidor devuelve estado ' + parseInt(respuesta.status) +
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'El servidor devuelve estado ' + parseInt(respuestaServidor.status) +
                                 ' al agregar el producto al carrito. Mensaje: "' + jsonCantidad.error + '".';
                             cuadroMensaje.style.width = '254px';
                             cuadroMensaje.style.height = '216px';
@@ -836,7 +1032,7 @@ document.addEventListener
                         infoCliente.email = inputEmailAltaCliente.value;
                         try
                         {
-                            respuesta = await fetch
+                            respuestaServidor = await fetch
                             (
                                 'http://www.luislopez.com.ar:3000/api/altaCliente',
                                 {
@@ -867,16 +1063,16 @@ document.addEventListener
                             console.error('Error al insertar el nuevo cliente en la base de datos. Resultado: ', error);
                             altaCliente.close();
                             cuadroMensaje.showModal();
-                            textoTituloCuadroMensaje.innerText = 'Error';
-                            textoMensajCuadroMensaje.innerHTML = 'Error al insertar el nuevo cliente en la base de datos.<br />Resultado: ' + error;
+                            textoTituCuadroMensaje.innerText = 'Error';
+                            textoMensCuadroMensaje.innerHTML = 'Error al insertar el nuevo cliente en la base de datos.<br />Resultado: ' + error;
                             cuadroMensaje.style.width = '320px';
                             cuadroMensaje.style.height = '214px';
                             dialogoAbierto = 'cuadroMensaje';
                             botonCerrCuadroMensaje.focus();
                         }
-                        if (respuesta.status = 200)
+                        if (respuestaServidor.status = 200)
                         {
-                            const datos = await respuesta.json();
+                            const datos = await respuestaServidor.json();
                             if(datos.exito)
                             {
                                 infoCliente.id = datos.nuevoIdCliente;
@@ -886,194 +1082,6 @@ document.addEventListener
                             }
                         }
                         break;
-                    }
-                }
-                break;
-            case 'login':
-                if (event.altKey)
-                {
-                    switch (event.key)
-                    {
-                    case 'x': // xlocrea
-                    case 'X':
-                    case 'c':
-                    case 'C':
-                        event.preventDefault();
-                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
-                        break;
-                    case 'l':
-                    case 'L':
-                        event.preventDefault();
-                        inputUsuarioLogin.focus();
-                        break;
-                    case 'o':
-                    case 'O':
-                        event.preventDefault();
-                        inputContrasLogin.focus();
-                        break;
-                    case 'r':
-                    case 'R':
-                        event.preventDefault();
-                        login.close();
-                        cuadroMensaje.showModal();
-                        textoTituloCuadroMensaje.innerText = 'ToDo';
-                        textoMensajCuadroMensaje.innerHTML = 'Implementar la recuperación de credenciales.';
-                        cuadroMensaje.style.width = '346px';
-                        cuadroMensaje.style.height = '140px';
-                        dialogoAbierto = 'cuadroMensaje';
-                        botonCerrCuadroMensaje.focus();
-                        break;
-                    case 'e':
-                    case 'E':
-                        event.preventDefault();
-                        login.close();
-                        altaCliente.showModal();
-                        dialogoAbierto = 'altaCliente';
-                        inputNombrAltaCliente.focus();
-                        break;
-                    case 'a':
-                    case 'A':
-                        event.preventDefault();
-                        document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
-                    }
-                }
-                else
-                {
-                    switch (event.key)
-                    {
-                    case 'Escape':
-                        event.preventDefault();
-                        login.close();
-                        dialogoAbierto = '';
-                        break;
-                    case 'Enter':
-                        event.preventDefault();
-                        try
-                        {
-                            respuesta = await fetch
-                            (
-                                'http://www.luislopez.com.ar:3000/api/acceso',
-                                {
-                                    method: 'POST',
-                                    headers:
-                                    {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify({'usuario': inputUsuarioLogin.value, 'contrasena': inputContrasLogin.value})
-                                }
-                            );
-                            servidorActivo = 1;
-                        }
-                        catch (error)
-                        {
-                            login.close();
-                            cuadroMensaje.showModal();
-                            textoTituloCuadroMensaje.innerText = 'Error';
-                            textoMensajCuadroMensaje.innerHTML = 'El servidor no está activo o es inaccesible<br />' +
-                                                                 'al consultar las credenciales del cliente.<br />' +
-                                                                 'Por favor, contacte al soporte para levantar al servidor.';
-                            cuadroMensaje.style.width = '320px';
-                            cuadroMensaje.style.height = '214px';
-                            dialogoAbierto = 'cuadroMensaje';
-                            botonCerrCuadroMensaje.focus();
-                            console.error('Error: El servidor no está activo o es inaccesible al consultar las credenciales del cliente. Respuesta: "' +
-                                error + '".');
-                        }
-                        login.close();
-                        if ((servidorActivo === 1) && (respuesta.status == 200))
-                        {
-                            const jsonAceptacion = await respuesta.json();
-                            if (jsonAceptacion.exito == true)
-                            {
-                                if (jsonAceptacion.recordset.length > 1)
-                                {
-                                    infoCliente.id = jsonAceptacion.recordset[0].id;
-                                    localStorage.setItem('cliente_id', infoCliente.id);
-                                    infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
-                                    infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
-                                    infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
-                                    infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
-                                    infoCliente.email = jsonAceptacion.recordset[0].email;
-                                    perfil.showModal();
-                                    dialogoAbierto = 'perfil';
-                                    comboPerfPerfil.innerHTML = '';
-                                    for (let i = (jsonAceptacion.recordset.length - 1); i >= 0; i--)
-                                    {
-                                        comboPerfPerfil.insertAdjacentHTML('beforeend',
-                                            `<option value="${jsonAceptacion.recordset[i].id_categoria}">${jsonAceptacion.recordset[i].nombre_categoria}</option>`);
-                                    }
-                                }
-                                else
-                                {
-                                    if (jsonAceptacion.recordset.length == 0)
-                                    {
-                                        // El usuario escribió mal sus credenciales o no tiene acceso
-                                        cuadroMensaje.showModal();
-                                        textoTituloCuadroMensaje.innerText = 'Error';
-                                        textoMensajCuadroMensaje.innerHTML = 'Las credenciales ingresadas son inválidas.<br />' +
-                                                                             'Por favor, verifíquelas e intente nuevamente.';
-                                        cuadroMensaje.style.width = '340px';
-                                        cuadroMensaje.style.height = '164px';
-                                        dialogoAbierto = 'cuadroMensaje';
-                                        botonCerrCuadroMensaje.focus();
-                                    }
-                                    else
-                                    {
-                                        // El usuario que accedió tiene un solo perfil, seguramente cliente,
-                                        // dado que ser administrador sin ser cliente. no tendría sentido.
-                                        switch (jsonAceptacion.recordset[0].nombre_categoria)
-                                        {
-                                        case 'administrador':
-                                            infoCliente.id = jsonAceptacion.recordset[0].id;
-                                            localStorage.setItem('cliente_id', infoCliente.id);
-                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
-                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
-                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
-                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
-                                            infoCliente.email = jsonAceptacion.recordset[0].email;
-                                            infoCliente.perfil = 'administrador';
-                                            administracion.showModal();
-                                            dialogoAbierto = 'administrar';
-                                            break;
-                                        case 'cliente':
-                                            infoCliente.id = jsonAceptacion.recordset[0].id;
-                                            localStorage.setItem('cliente_id', infoCliente.id);
-                                            infoCliente.nombre = jsonAceptacion.recordset[0].nombre;
-                                            infoCliente.apellido = jsonAceptacion.recordset[0].apellido;
-                                            infoCliente.telefono = jsonAceptacion.recordset[0].telefono;
-                                            infoCliente.direccion = jsonAceptacion.recordset[0].direccion;
-                                            infoCliente.email = jsonAceptacion.recordset[0].email;
-                                            dialogoAbierto = '';
-                                            infoCliente.perfil = 'cliente';
-                                            break;
-                                        default:
-                                            // Nunca se debería nunca poder acceder a este punto, si se puede, es necesario
-                                            // identificar y reproducir la acción, para asegurar ejecución correcta.
-                                            localStorage.removeItem('cliente_id');
-                                            cuadroMensaje.showModal();
-                                            textoTituloCuadroMensaje.innerText = 'Error Interno';
-                                            textoMensajCuadroMensaje.innerHTML = 'Por favor, consulte con el administrador.';
-                                            cuadroMensaje.style.width = '340px';
-                                            cuadroMensaje.style.height = '164px';
-                                            dialogoAbierto = 'cuadroMensaje';
-                                            botonCerrCuadroMensaje.focus();
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                cuadroMensaje.showModal();
-                                textoTituloCuadroMensaje.innerText = 'Error';
-                                textoMensajCuadroMensaje.innerHTML = jsonAceptacion.error;
-                                cuadroMensaje.style.width = '320px';
-                                cuadroMensaje.style.height = '214px';
-                                dialogoAbierto = 'cuadroMensaje';
-                                botonCerrCuadroMensaje.focus();
-                                console.error('Error: ' + jsonAceptacion.error);
-                            }
-                        }
-                        cantidad_articulos_carrito(infoCliente);
                     }
                 }
                 break;
@@ -1092,53 +1100,48 @@ document.addEventListener
                     case 'p':
                     case 'P':
                         event.preventDefault();
-                        botonProdAdministracion.classList.add('active');
-                        botonOferAdministracion.classList.remove('active');
-                        botonUsuaAdministracion.classList.remove('active');
+                        botonProdAdministrar.classList.add('active');
+                        botonOferAdministrar.classList.remove('active');
+                        botonUsuaAdministrar.classList.remove('active');
                         break;
                     case 'o':
                     case 'O':
                         event.preventDefault();
-                        botonProdAdministracion.classList.remove('active');
-                        botonOferAdministracion.classList.add('active');
-                        botonUsuaAdministracion.classList.remove('active');
+                        botonProdAdministrar.classList.remove('active');
+                        botonOferAdministrar.classList.add('active');
+                        botonUsuaAdministrar.classList.remove('active');
                         break;
                     case 'u':
                     case 'U':
                         event.preventDefault();
-                        botonProdAdministracion.classList.remove('active');
-                        botonOferAdministracion.classList.remove('active');
-                        botonUsuaAdministracion.classList.add('active');
+                        botonProdAdministrar.classList.remove('active');
+                        botonOferAdministrar.classList.remove('active');
+                        botonUsuaAdministrar.classList.add('active');
                         break;
                     case 'a':
                     case 'A':
                         event.preventDefault();
-                        if (botonProdAdministracion.classList.contains('active'))
+                        if (botonProdAdministrar.classList.contains('active'))
                         {
-                            administracion.close();
+                            administrar.close();
                             altaArticulo.showModal();
                             dialogoAbierto = 'altaArticulo';
                             {
                                 const fechaActual = new Date();
                                 const anyoAct = fechaActual.getFullYear();
                                 const mesAct = fechaActual.getMonth();
-
                                 // Nombres de los meses para el título
                                 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
                                 mesTituloAltaArticulo.textContent = `${meses[mesAct]} ${anyoAct}`;
-
                                 const primerDiaSemana = new Date(anyoAct, mesAct, 1).getDay(); // Día de la semana del día 1 (0=Dom, 1=Lun...)
                                 const totalDias = new Date(anyoAct, mesAct + 1, 0).getDate();  // Total de días en el mes
-
                                 let html = '<tr>';
                                 let diaCuenta = 1;
-
                                 // Rellenar espacios vacíos de la primera semana
                                 for (let i = 0; i < primerDiaSemana; i++)
                                 {
                                     html += '<td class="vacio"></td>';
                                 }
-
                                 // Generar los días del mes
                                 for (let i = primerDiaSemana; diaCuenta <= totalDias; i++)
                                 {
@@ -1149,13 +1152,12 @@ document.addEventListener
                                     html += `<td class="dia-click" data-dia="${diaCuenta}">${diaCuenta}</td>`;
                                     diaCuenta++;
                                 }
-
                                 html += '</tr>';
                                 calendariAltaArticulo.innerHTML = html;
                             }
                             try
                             {
-                                respuesta = await fetch
+                                respuestaServidor = await fetch
                                 (
                                     'http://www.luislopez.com.ar:3000/api/lista_categ_art',
                                     {
@@ -1167,8 +1169,8 @@ document.addEventListener
                             catch(error)
                             {
                                 cuadroMensaje.showModal();
-                                textoTituloCuadroMensaje.innerText = 'Error';
-                                textoMensajCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de categorías solicitada.<br /> Respuesta: "' +
+                                textoTituCuadroMensaje.innerText = 'Error';
+                                textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de categorías solicitada.<br /> Respuesta: "' +
                                     error + '".';
                                 cuadroMensaje.style.width = '320px';
                                 cuadroMensaje.style.height = '214px';
@@ -1176,9 +1178,9 @@ document.addEventListener
                                 botonCerrCuadroMensaje.focus();
                                 console.error('Error: El servidor no devuelve la lista de categorías solicitada. Respuesta: "' + error + '".');
                             }
-                            if (respuesta.status == 200)
+                            if (respuestaServidor.status == 200)
                             {
-                                const categorias = await respuesta.json();
+                                const categorias = await respuestaServidor.json();
                                 const listaCategorias = document.querySelector('html>body>dialog#altaArticulo>form>main>select#categoria');
                                 for (let i = (categorias.dataset.length - 1); i >= 0; i--)
                                 {
@@ -1190,10 +1192,10 @@ document.addEventListener
                         }
                         else
                         {
-                            if (botonOferAdministracion.classList.contains('active'))
+                            if (botonOferAdministrar.classList.contains('active'))
                             {
                                 // TODO: Llamar al servidor para agregar una oferta
-                                administracion.close();
+                                administrar.close();
                                 altaOferta.showModal();
                                 dialogoAbierto = 'altaOferta';
                             }
@@ -1202,19 +1204,19 @@ document.addEventListener
                     case 'q':
                     case 'Q':
                         event.preventDefault();
-                        if (botonProdAdministracion.classList.contains('active'))
+                        if (botonProdAdministrar.classList.contains('active'))
                         {
                             // TODO: Llamar al servidor para quitar un producto
-                            administracion.close();
+                            administrar.close();
                             bajaArticulo.showModal();
                             dialogoAbierto = 'bajaArticulo';
                         }
                         else
                         {
-                            if (botonOferAdministracion.classList.contains('active'))
+                            if (botonOferAdministrar.classList.contains('active'))
                             {
                                 // TODO: Llamar al servidor para quitar una oferta
-                                administracion.close();
+                                administrar.close();
                                 bajaOferta.showModal();
                                 dialogoAbierto = 'bajaOferta';
                             }
@@ -1223,19 +1225,19 @@ document.addEventListener
                     case 'm':
                     case 'M':
                         event.preventDefault();
-                        if (botonProdAdministracion.classList.contains('active'))
+                        if (botonProdAdministrar.classList.contains('active'))
                         {
                             // TODO: Llamar al servidor para modificar un producto
-                            administracion.close();
+                            administrar.close();
                             modiArticulo.showModal();
                             dialogoAbierto = 'modiArticulo';
                         }
                         else
                         {
-                            if (botonOferAdministracion.classList.contains('active'))
+                            if (botonOferAdministrar.classList.contains('active'))
                             {
                                 // TODO: Llamar al servidor para modificar una oferta
-                                administracion.close();
+                                administrar.close();
                                 modiOferta.showModal();
                                 dialogoAbierto = 'modiOferta';
                             }
@@ -1247,7 +1249,7 @@ document.addEventListener
                     if (event.key === 'Escape')
                     {
                         event.preventDefault();
-                        administracion.close();
+                        administrar.close();
                         dialogoAbierto = '';
                     }
                 }
@@ -1259,9 +1261,9 @@ document.addEventListener
         const botonesConIdNumerico = Array.from(document.querySelectorAll('button[id]')).filter(elemento => {return /\d+/.test(elemento.id);});
         botonesConIdNumerico.forEach(boton =>
         {
-            boton.addEventListener('click', async function(event)
+            boton.addEventListener('click', async function(evento)
             {
-                event.preventDefault();
+                evento.preventDefault();
                 if (infoCliente.id === null)
                 {
                     infoCliente.id = localStorage.getItem('cliente_id');
@@ -1269,13 +1271,17 @@ document.addEventListener
                     {
                         login.showModal();
                         dialogoAbierto = 'login';
-                        // TODO: debería indicar al diálogo login que luego de aceptar, tiene que llamar a cantProducto para el id del botón que se presionó
-                        // Un input hidden
+                        inputUsuarioLogin.value = '';
+                        inputContrasLogin.value = '';
+                        inputUsuarioLogin.focus();
                     }
                 }
-                cantProducto.showModal();
-                inputArtIdCantProducto.value = parseInt(event.currentTarget.id);
-                dialogoAbierto = 'cantProducto';
+                else
+                {
+                    cantProducto.showModal();
+                    inputArtIdCantProducto.value = parseInt(evento.currentTarget.id);
+                    dialogoAbierto = 'cantProducto';
+                }
             });
         });
         document.getElementById('administrarBtn').addEventListener('click', async function(event)
@@ -1287,6 +1293,31 @@ document.addEventListener
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'c'}));
+        });
+        botonXsupLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonCancLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        botonRecuLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'r', 'code': 'KeyR', 'altKey': true, 'bubbles': true}));
+        });
+        botonCreaLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'e', 'code': 'KeyE', 'altKey': true, 'bubbles': true}));
+        });
+        botonAcepLogin.addEventListener('click', async function(evento)
+        {
+            evento.preventDefault();
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
         botonXsupAltaArticulo.addEventListener('click', async function(event)
         {
@@ -1320,25 +1351,25 @@ document.addEventListener
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        // textoTituloCuadroMensaje click no tiene acción
-        // textoMensajCuadroMensaje click no tiene acción
-        botonXsupCuadroSiNo.addEventListener('click', async function(event)
+        // textoTituCuadroMensaje click no tiene acción
+        // textoMensCuadroMensaje click no tiene acción
+        botonXsCuadroSiNo.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        boton_Si_CuadroSiNo.addEventListener('click', async function(event)
+        botonSiCuadroSiNo.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 's', 'code': 'KeyS', 'altKey': true, 'bubbles': true}));
         });
-        boton_No_CuadroSiNo.addEventListener('click', async function(event)
+        botonNoCuadroSiNo.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'n', 'code': 'KeyN', 'altKey': true, 'bubbles': true}));
         });
-        // textoTituloCuadroSiNo click no tiene acción
-        // textoMensajCuadroSiNo click no tiene acción
+        // textoTiCuadroSiNo click no tiene acción
+        // textoMeCuadroSiNo click no tiene acción
         botonXsupPerfil.addEventListener('click', async function(event)
         {
             event.preventDefault();
@@ -1429,42 +1460,42 @@ document.addEventListener
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
         });
-        botonXsupAdministracion.addEventListener('click', async function(event)
+        botonXsupAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
         });
-        botonProdAdministracion.addEventListener('click', async function(event)
+        botonProdAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p', 'code': 'KeyP', 'altKey': true, 'bubbles': true}));
         });
-        botonOferAdministracion.addEventListener('click', async function(event)
+        botonOferAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'o', 'code': 'KeyO', 'altKey': true, 'bubbles': true}));
         });
-        botonUsuaAdministracion.addEventListener('click', async function(event)
+        botonUsuaAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'u', 'code': 'KeyO', 'altKey': true, 'bubbles': true}));
         });
-        botonAgreAdministracion.addEventListener('click', async function(event)
+        botonAgreAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a', 'code': 'KeyA', 'altKey': true, 'bubbles': true}));
         });
-        botonQuitAdministracion.addEventListener('click', async function(event)
+        botonQuitAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'q', 'code': 'KeyQ', 'altKey': true, 'bubbles': true}));
         });
-        botonModiAdministracion.addEventListener('click', async function(event)
+        botonModiAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'm', 'code': 'KeyM', 'altKey': true, 'bubbles': true}));
         });
-        botonCerrAdministracion.addEventListener('click', async function(event)
+        botonCerrAdministrar.addEventListener('click', async function(event)
         {
             event.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
@@ -1484,15 +1515,12 @@ document.addEventListener
                 {
                     anterior.classList.remove('seleccionado');
                 }
-                
                 // Marcar el nuevo
                 event.target.classList.add('seleccionado');
-                
                 const fechaActual = new Date();
                 const mesAct = fechaActual.getMonth();
                 // Nombres de los meses para el título
                 const meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-
                 // Actualizar el valor visual del cuadro combinado y cerrar la lista
                 const diaSeleccionado = event.target.dataset.dia;
                 inputFechAltaArticulo.textContent = `${diaSeleccionado} de ${meses[mesAct]}`;
@@ -1504,29 +1532,24 @@ document.addEventListener
             if (evento.target.classList.contains('filtro-columna'))
             {
                 const filas = tagPrTaBodCarrito.querySelectorAll('tr');
-                
                 filas.forEach
                 (
                     fila =>
                     {
                         let mostrarFila = true;
-                    
                         // Evaluamos cada input de filtro existente
                         tagPrInpFiCarrito.forEach
                         (
                             (input, indiceColumna) =>
                             {
                                 const valorFiltro = input.value.toLowerCase().trim();
-                                
                                 // Si el input está vacío, no restringe esta columna
                                 if (valorFiltro === '')
                                 {
                                     return;
                                 }
-                                
                                 // Obtenemos el texto de la celda correspondiente a esta columna
                                 const textoCelda = fila.children[indiceColumna].textContent.toLowerCase();
-                                
                                 // Si la celda NO incluye lo que busca el usuario, marcamos la fila para ocultar
                                 if (!textoCelda.includes(valorFiltro))
                                 {
@@ -1534,7 +1557,6 @@ document.addEventListener
                                 }
                             }
                         );
-                    
                         // Aplicamos el cambio visual en base al resultado de todos los inputs
                         if (mostrarFila)
                         {
@@ -1558,11 +1580,9 @@ document.addEventListener
             {
                 return;
             }  
-            
             const thPadre = tituloCliqueado.closest('th');
             const indiceColumna = parseInt(thPadre.dataset.columna);
             const tipoDato = thPadre.dataset.tipo;
-            
             if (columnaActual === indiceColumna)
             {
                 ordenAscendente = !ordenAscendente;
@@ -1572,11 +1592,9 @@ document.addEventListener
                 ordenAscendente = true;
                 columnaActual = indiceColumna;
             }
-            
             // Actualizar indicadores visuales (flechas)
             tagPrTitOrCarrito.forEach(t => t.classList.remove('orden-asc', 'orden-desc'));
             tituloCliqueado.classList.add(ordenAscendente ? 'orden-asc' : 'orden-desc');
-            
             // Ordenar las filas en memoria
             const filasArray = Array.from(tagPrTaBodCarrito.querySelectorAll('tr'));
             filasArray.sort
@@ -1585,7 +1603,6 @@ document.addEventListener
                 {
                     const celdaA = filaA.children[indiceColumna].textContent.trim();
                     const celdaB = filaB.children[indiceColumna].textContent.trim();
-                    
                     if (tipoDato === 'numero')
                     {
                         return ordenAscendente ? celdaA - celdaB : celdaB - celdaA;
@@ -1596,7 +1613,6 @@ document.addEventListener
                     }
                 }
             );
-            
             // Reinyectar filas ordenadas manteniendo los filtros actuales
             filasArray.forEach(fila => tagPrTaBodCarrito.appendChild(fila));
         });

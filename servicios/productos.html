@@ -97,6 +97,33 @@
         </div>
       </div>
     </footer>
+    <dialog id="login"> <!-- teclas xlocrea -->
+      <form>
+        <header>
+          <p>Acceso</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p>Por favor:<br>
+            Identifíquese con sus credenciales y presione el botón "Aceptar".<br>
+            Si olvidó sus credenciales, presione el botón "Recuperar".<br>
+            Si quiere crear nuevas, presione el botón "Crear".<br>
+            O presione "Cancelar" para cerrar el cuadro.</p>
+          <label for="usuario">C<span style="text-decoration: underline;">l</span>iente:</label>
+          <input type="text" id="usuario" name="usuario" required />
+          <label for="contrasena">C<span style="text-decoration: underline;">o</span>ntraseña:</label>
+          <input type="password" id="contrasena" name="contrasena" required />
+        </main>
+        <!-- Atención: el atributo "for" de un label solo se puede utilizar si se lo referencia a un control que tenga su
+             atributo "name" con el mismo valor que el "for". Además ambos tienen que estar englobados por <form></form>. -->
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="recuperar"><span style="text-decoration: underline;">R</span>ecuperar</button>
+          <button type="submit" value="crear">Cr<span style="text-decoration: underline;">e</span>ar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
+        </footer>
+      </form>
+    </dialog>
     <dialog id="altaArticulo">
       <form>
         <header>
@@ -152,6 +179,21 @@
         </main>
         <footer>
           <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="cuadroSiNo"> <!-- teclas xsn-->
+      <form>
+        <header>
+          <p></p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <p></p>
+        </main>
+        <footer>
+          <button type="submit" value="si"><span style="text-decoration: underline;">S</span>i</button>
+          <button type="submit" value="no"><span style="text-decoration: underline;">N</span>o</button>
         </footer>
       </form>
     </dialog>
@@ -241,33 +283,6 @@
         </main>
         <footer>
           <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
-          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
-        </footer>
-      </form>
-    </dialog>
-    <dialog id="login"> <!-- teclas con acción: xlocrea -->
-      <form>
-        <header>
-          <p>Acceso</p>
-          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
-        </header>
-        <main>
-          <p>Por favor:<br>
-            Identifíquese con sus credenciales y presione el botón "Aceptar".<br>
-            Si olvidó sus credenciales, presione el botón "Recuperar".<br>
-            Si quiere crear nuevas, presione el botón "Crear".<br>
-            O presione "Cancelar" para cerrar el cuadro.</p>
-          <label for="usuario">C<span style="text-decoration: underline;">l</span>iente:</label>
-          <input type="text" id="usuario" name="usuario" required />
-          <label for="contrasena">C<span style="text-decoration: underline;">o</span>ntraseña:</label>
-          <input type="password" id="contrasena" name="contrasena" required />
-        </main>
-        <!-- Atención: el atributo "for" de un label solo se puede utilizar si se lo referencia a un control que tenga su
-             atributo "name" con el mismo valor que el "for". Además ambos tienen que estar englobados por <form></form>. -->
-        <footer>
-          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
-          <button type="submit" value="recuperar"><span style="text-decoration: underline;">R</span>ecuperar</button>
-          <button type="submit" value="crear">Cr<span style="text-decoration: underline;">e</span>ar</button>
           <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
         </footer>
       </form>
