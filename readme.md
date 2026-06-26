@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/readme.css">
+<link rel="stylesheet" href="documentacion/css/readme.css">
 
 # Proyecto Final
 
