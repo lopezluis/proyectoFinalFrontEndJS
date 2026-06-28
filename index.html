@@ -85,7 +85,7 @@
         </div>
         <div class="footer-col">
           <h6>Ubicación</h6>
-          <p>Av. Rivadavia 1234, CABA</p>
+          <p>Av. Rivadavia 1141, CABA</p>
           <p style="font-style: italic; margin-top: 0.5rem;">Próximamente en Palermo</p>
         </div>
         <div class="footer-col">
@@ -176,20 +176,22 @@
           <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
         </header>
         <main>
-          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
+          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre: <span style="color: red;">*</span></label>
           <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
-          <label for="apellido">A<span style="text-decoration: underline;">p</span>ellido:</label>
+          <label for="apellido">A<span style="text-decoration: underline;">p</span>ellido: <span style="color: red;">*</span></label>
           <input type="text" id="apellido" name="apellido" autocomplete="family-name" required placeholder="Apellido" />
-          <label for="telefono"><span style="text-decoration: underline;">T</span>eléfono:</label>
+          <label for="telefono"><span style="text-decoration: underline;">T</span>eléfono: <span style="color: red;">*</span></label>
           <input type="text" id="telefono" name="telefono" required placeholder="+54 11 7890 1234" />
-          <label for="direccion"><span style="text-decoration: underline;">D</span>ireccion:</label>
-          <textarea id="direccion" name="direccion" rows="5" cols="45" placeholder="Av. Rivadavia N° 1000&#10;Piso 1 Departamento A&#10;entre calles Pichincha y Pasco&#10;C1225AAR Ciudad Autónoma de Buenos Aires&#10;Argentina" maxlength="200" wrap="soft" required></textarea>
-          <label for="email">C<span style="text-decoration: underline;">o</span>rreo electrónico:</label>
+          <label for="direccion"><span style="text-decoration: underline;">D</span>ireccion: <span style="color: red;">*</span></label>
+          <textarea id="direccion" name="direccion" rows="5" cols="45" placeholder="Av. Rivadavia N° 1141&#10;Piso 1 Departamento A&#10;entre calles Libertad y Cerrito&#10;C1033AAB Ciudad Autónoma de Buenos Aires&#10;Argentina" maxlength="200" wrap="soft" required></textarea>
+          <label for="email">C<span style="text-decoration: underline;">o</span>rreo electrónico: <span style="color: red;">*</span></label>
           <input type="email" id="email" name="email" autocomplete="off" required placeholder="tu_mail@servidor.com" />
-          <label for="usuario"><span style="text-decoration: underline;">U</span>suario:</label>
+          <label for="usuario"><span style="text-decoration: underline;">U</span>suario: <span style="color: red;">*</span></label>
           <input type="text" id="usuario" name="usuario" required placeholder="" />
-          <label for="contrasena">Cont<span style="text-decoration: underline;">r</span>aseña:</label>
+          <label for="contrasena">Cont<span style="text-decoration: underline;">r</span>aseña: <span style="color: red;">*</span></label>
           <input type="password" id="contrasena" name="contrasena" required placeholder="" />
+          <p>Notas: Los cuadros que en su etiqueta se visualiza<br />un asterisco rojo (<span style="color: red;">*</span>), son ingresos obligatorios.<br />
+          El usuario no puede repetirse, si ocurre el sistema<br />le avisará para que ingrese otro.</p>
         </main>
         <footer>
           <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>

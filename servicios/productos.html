@@ -49,7 +49,6 @@
     </header>
     <main>
       <section class="productos">
-        <h2>Productos</h2>
       </section>
     </main>
     <!-- Sección de Servicios (encima del footer) -->
@@ -124,50 +123,6 @@
         </footer>
       </form>
     </dialog>
-    <dialog id="altaArticulo">
-      <form>
-        <header>
-          <p>Agregar articulo</p>
-          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
-        </header>
-        <main>
-          <label for="combo-input-fecha"><span style="text-decoration: underline;">F</span>echa:</label>
-          <div class="combo-calendario">
-            <!-- El cuadro de texto superior -->
-            <div id="combo-input-fecha" class="combo-input-fecha">Seleccione un día...</div>
-            <!-- El cuadro de lista oculto que contiene el calendario -->
-            <div id="combo-lista-fecha" class="combo-lista-fecha hidden">
-              <div id="mes-titulo-fecha" class="mes-titulo-fecha"></div>
-              <table>
-                <thead>
-                  <tr><th>D</th><th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th></tr>
-                </thead>
-                <tbody id="calendario-dias"></tbody>
-              </table>
-            </div>
-          </div>
-          <!--input type="date" id="fecha" name="fecha" required placeholder="Fecha" -->
-          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
-          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
-          <label for="precio"><span style="text-decoration: underline;">P</span>recio:</label>
-          <input type="text" id="precio" name="precio" autocomplete="given-name" required placeholder="Apellido" />
-          <!-- select categoria a partir del query: 'SELECT id, nombre FROM superacasa.devel.categ_art WHERE activo = TRUE;' -->
-          <label for="categoria">Ca<span style="text-decoration: underline;">t</span>egoría:</label>
-          <select id="categoria" name="categoria" required></select>
-          <label for="notas">N<span style="text-decoration: underline;">o</span>tas:</label>
-          <textarea id="notas" name="notas" rows="8" cols="64" placeholder="Cualquier acotación o recordatorio&#10;que necesite para este artículo." maxlength="500" wrap="soft" required></textarea>
-          <label for="descripcion"><span style="text-decoration: underline;">D</span>escripción:</label>
-          <input type="text" id="descripcion" name="descripcion" autocomplete="given-name" required placeholder="Descripción" />
-          <!-- select a partir de archivos existentes en el directorio: '/var/www/html/superACasa/servicios/assets/images/prod/' -->
-          <label for="imagen"><span style="text-decoration: underline;">I</span>magen:</label>
-          <select id="imagen" name="imagen" required></select>
-        </main>
-        <footer>
-          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
-          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
-        </footer>
-      </form>
-    </dialog>
     <dialog id="cuadroMensaje"> <!-- teclas con acción xc-->
       <form>
         <header>
@@ -197,18 +152,51 @@
         </footer>
       </form>
     </dialog>
-    <dialog id="cuadroSiNo"> <!-- teclas con acción xsn-->
+    <dialog id="carrito"> <!-- teclas: xcfaqmp -->
       <form>
         <header>
-          <p></p>
+          <p>Carrito de Compras</p>
           <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
         </header>
         <main>
-          <p></p>
         </main>
         <footer>
-          <button type="submit" value="si"><span style="text-decoration: underline;">S</span>i</button>
-          <button type="submit" value="no"><span style="text-decoration: underline;">N</span>o</button>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar&#10;Diálogo</button>
+          <button type="submit" value="finalizar"><span style="text-decoration: underline;">F</span>inalizar&#10;Compra</button>
+          <button type="submit" value="anular"><span style="text-decoration: underline;">A</span>nular&#10;Compra</button>
+          <button type="submit" value="quitar" disabled><span style="text-decoration: underline;">Q</span>uitar&#10;Producto</button>
+          <button type="submit" value="modificar" disabled><span style="text-decoration: underline;">M</span>odificar&#10;Cantidad</button>
+          <button type="submit" value="pagar"><span style="text-decoration: underline;">P</span>agar&#10;Compra</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="altaCliente"> <!-- teclas: xnptdourca -->
+      <form>
+        <header>
+          <p>Nuevo Cliente</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre: <span style="color: red;">*</span></label>
+          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
+          <label for="apellido">A<span style="text-decoration: underline;">p</span>ellido: <span style="color: red;">*</span></label>
+          <input type="text" id="apellido" name="apellido" autocomplete="family-name" required placeholder="Apellido" />
+          <label for="telefono"><span style="text-decoration: underline;">T</span>eléfono: <span style="color: red;">*</span></label>
+          <input type="text" id="telefono" name="telefono" required placeholder="+54 11 7890 1234" />
+          <label for="direccion"><span style="text-decoration: underline;">D</span>ireccion: <span style="color: red;">*</span></label>
+          <textarea id="direccion" name="direccion" rows="5" cols="45" placeholder="Av. Rivadavia N° 1141&#10;Piso 1 Departamento A&#10;entre calles Libertad y Cerrito&#10;C1033AAB Ciudad Autónoma de Buenos Aires&#10;Argentina" maxlength="200" wrap="soft" required></textarea>
+          <label for="email">C<span style="text-decoration: underline;">o</span>rreo electrónico: <span style="color: red;">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="off" required placeholder="tu_mail@servidor.com" />
+          <label for="usuario"><span style="text-decoration: underline;">U</span>suario: <span style="color: red;">*</span></label>
+          <input type="text" id="usuario" name="usuario" required placeholder="" />
+          <label for="contrasena">Cont<span style="text-decoration: underline;">r</span>aseña: <span style="color: red;">*</span></label>
+          <input type="password" id="contrasena" name="contrasena" required placeholder="" />
+          <p>Notas: Los cuadros que en su etiqueta se visualiza<br />un asterisco rojo (<span style="color: red;">*</span>), son ingresos obligatorios.<br />
+          El usuario no puede repetirse, si ocurre el sistema<br />le avisará para que ingrese otro.</p>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
         </footer>
       </form>
     </dialog>
@@ -238,48 +226,6 @@
           <input type="hidden" id="articuloId" name="articuloId" value="0">
           <label for="cantidad">Ca<span style="text-decoration: underline;">n</span>tidad:</label>
           <input type="number" id="cantidad" name="cantidad" min="1" value="1" required />
-        </main>
-        <footer>
-          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
-          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
-        </footer>
-      </form>
-    </dialog>
-    <dialog id="carrito"> <!-- teclas con acción: xcp -->
-      <form>
-        <header>
-          <p>Carrito de Compras</p>
-          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
-        </header>
-        <main>
-        </main>
-        <footer>
-          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
-          <button type="submit" value="confirm" disabled><span style="text-decoration: underline;">P</span>agar</button>
-        </footer>
-      </form>
-    </dialog>
-    <dialog id="altaCliente"> <!-- teclas con acción: xnptdourca -->
-      <form>
-        <header>
-          <p>Nuevo Cliente</p>
-          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
-        </header>
-        <main>
-          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
-          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
-          <label for="apellido">A<span style="text-decoration: underline;">p</span>ellido:</label>
-          <input type="text" id="apellido" name="apellido" autocomplete="family-name" required placeholder="Apellido" />
-          <label for="telefono"><span style="text-decoration: underline;">T</span>eléfono:</label>
-          <input type="text" id="telefono" name="telefono" required placeholder="+54 11 7890 1234" />
-          <label for="direccion"><span style="text-decoration: underline;">D</span>ireccion:</label>
-          <textarea id="direccion" name="direccion" rows="5" cols="45" placeholder="Av. Rivadavia N° 1000&#10;Piso 1 Departamento A&#10;entre calles Pichincha y Pasco&#10;C1225AAR Ciudad Autónoma de Buenos Aires&#10;Argentina" maxlength="200" wrap="soft" required></textarea>
-          <label for="email">C<span style="text-decoration: underline;">o</span>rreo electrónico:</label>
-          <input type="email" id="email" name="email" autocomplete="off" required placeholder="tu_mail@servidor.com" />
-          <label for="usuario"><span style="text-decoration: underline;">U</span>suario:</label>
-          <input type="text" id="usuario" name="usuario" required placeholder="" />
-          <label for="contrasena">Cont<span style="text-decoration: underline;">r</span>aseña:</label>
-          <input type="password" id="contrasena" name="contrasena" required placeholder="" />
         </main>
         <footer>
           <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
@@ -344,6 +290,50 @@
           <button><span style="text-decoration: underline;">Q</span>uitar</button>
           <button><span style="text-decoration: underline;">M</span>odificar</button>
           <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>errar</button>
+        </footer>
+      </form>
+    </dialog>
+    <dialog id="altaArticulo">
+      <form>
+        <header>
+          <p>Agregar articulo</p>
+          <button formmethod="dialog" aria-label="close"><span style="text-decoration: underline;">X</span></button>
+        </header>
+        <main>
+          <label for="combo-input-fecha"><span style="text-decoration: underline;">F</span>echa:</label>
+          <div class="combo-calendario">
+            <!-- El cuadro de texto superior -->
+            <div id="combo-input-fecha" class="combo-input-fecha">Seleccione un día...</div>
+            <!-- El cuadro de lista oculto que contiene el calendario -->
+            <div id="combo-lista-fecha" class="combo-lista-fecha hidden">
+              <div id="mes-titulo-fecha" class="mes-titulo-fecha"></div>
+              <table>
+                <thead>
+                  <tr><th>D</th><th>L</th><th>M</th><th>X</th><th>J</th><th>V</th><th>S</th></tr>
+                </thead>
+                <tbody id="calendario-dias"></tbody>
+              </table>
+            </div>
+          </div>
+          <!--input type="date" id="fecha" name="fecha" required placeholder="Fecha" -->
+          <label for="nombre"><span style="text-decoration: underline;">N</span>ombre:</label>
+          <input type="text" id="nombre" name="nombre" autocomplete="given-name" required placeholder="Nombre" />
+          <label for="precio"><span style="text-decoration: underline;">P</span>recio:</label>
+          <input type="text" id="precio" name="precio" autocomplete="given-name" required placeholder="Apellido" />
+          <!-- select categoria a partir del query: 'SELECT id, nombre FROM superacasa.devel.categ_art WHERE activo = TRUE;' -->
+          <label for="categoria">Ca<span style="text-decoration: underline;">t</span>egoría:</label>
+          <select id="categoria" name="categoria" required></select>
+          <label for="notas">N<span style="text-decoration: underline;">o</span>tas:</label>
+          <textarea id="notas" name="notas" rows="8" cols="64" placeholder="Cualquier acotación o recordatorio&#10;que necesite para este artículo." maxlength="500" wrap="soft" required></textarea>
+          <label for="descripcion"><span style="text-decoration: underline;">D</span>escripción:</label>
+          <input type="text" id="descripcion" name="descripcion" autocomplete="given-name" required placeholder="Descripción" />
+          <!-- select a partir de archivos existentes en el directorio: '/var/www/html/superACasa/servicios/assets/images/prod/' -->
+          <label for="imagen"><span style="text-decoration: underline;">I</span>magen:</label>
+          <select id="imagen" name="imagen" required></select>
+        </main>
+        <footer>
+          <button type="submit" value="cancel"><span style="text-decoration: underline;">C</span>ancelar</button>
+          <button type="submit" value="confirm" autofocus><span style="text-decoration: underline;">A</span>ceptar</button>
         </footer>
       </form>
     </dialog>

@@ -68,6 +68,25 @@ es un cliente que ya ha comprado antes. Si es un visitante nuevo, es necesario o
 No tiene sentido que el visitante ponga artículos en su carrito y efectivice una compra y no se le pueda cobrar ni haya donde entregar los
 artículos.
 
+El visitante al sitio, ¿ha comprado antes en el supermercado? Si compró, y luego borró su localStorage, no sabremos. Caso contrario,
+verificamos si existe información en la base de datos a partir de la huella digital de su navegador.
+
+TODO: Averiguar, ¿qué tan preciso es basarse en el fingerprint para obtener info desde el servidor, por la posibilidad que se recupere desde
+base de datos un cliente incorrecto.
+
+TODO: ¿Qué sucede si el visitante al sitio, está utilizando una computadora pública, o de algún locutorio con servicio a Internet o café con WiFi?
+
+El diálogo login pide credenciales para ingresar como usuario cliente para iniciar una compra o administrador para abm de productos y abm de ofertas.
+
+Se identifica si corresponde a un usuario o a un administrador según su nombre de usuario que se ingresa.
+
+TODO: ¿Cómo hacer para que el dialogo login sea agradable para el usuario? ¿se puede? Creo que no.
+
+Cuando se presiona la letra "c" el la página de ofertas o en la pagina de productos, se muestra el contenido del carrito de compras, contiene la acción de finalizar la compra, pagar, cancelar la compra,
+eliminar productos del carrito y modificar la cantidad de un determinado producto.
+
+TODO: Revisar calidad de implementación de la funcionalidad del carrito de compras.
+
 ## Modo de Uso
 
 Tanto en la página Ofertas o index.html, como en la página Productos o productos.html, se puede observar, en la esquina superior derecha, 2 íconos, el primero con el aspecto de un engranaje, que llamaremos **Login**, y el segundo con aspecto de carrito de compras, que llamaremos simplemente **Carrito**.

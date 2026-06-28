@@ -4,8 +4,8 @@ documentacion/*.pdf
 documentacion/database.md
 servidor/*
 .htaccess
-bash.copiarApache2
-bash.transferirApache2
+bash.copiarNodeJs
+bash.transferirNodeJs
 getRecordSetArticulos.js
 package.json
 package-lock.json

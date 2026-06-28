@@ -119,6 +119,7 @@ document.addEventListener
                 botonCerrCuadroMensaje.focus();
                 console.error('Error al obtener la cantidad de artículos en el carrito. Mensaje: "' + error + '".');
             }
+            info.cantidadArticulosCarrito = NaN;
             if((respuestaServidor.status === 200) && respuestaServidor.ok)
             {
                 const jsonCantidad = await respuestaServidor.json();
@@ -133,7 +134,8 @@ document.addEventListener
         if(localStorage.getItem('cliente_id') === null)
         {
             infoCliente.id = 0;
-            infoCliente.perfil =  'cliente';
+            infoCliente.perfil =  null;
+            localStorage.removeItem('cliente_perfil');
         }
         else
         {
@@ -164,7 +166,7 @@ document.addEventListener
         {
             cuadroMensaje.showModal();
             textoTituCuadroMensaje.innerText = 'Error';
-            textoMensCuadroMensaje.innerHTML = 'No se pudo calcular la huella digital.<br /> Respuesta: ' + error;
+            textoMensCuadroMensaje.innerHTML = 'No se pudo calcular la huella digital.<br />Respuesta: "' + error + '".';
             cuadroMensaje.style.width = '320px';
             cuadroMensaje.style.height = '214px';
             dialogoAbierto = 'cuadroMensaje';
@@ -214,8 +216,11 @@ document.addEventListener
                     infoCliente.telefono = cliente.telefono;
                     infoCliente.direccion = cliente.direccion;
                     infoCliente.email = cliente.email;
-                    infoCliente.perfil =  'cliente';
-                    localStorage.setItem('cliente_perfil', infoCliente.perfil);
+                    if((infoCliente.perfil !== 'cliente') && (infoCliente.perfil !== 'administrador'))
+                    {
+                        infoCliente.perfil =  'cliente';
+                        localStorage.setItem('cliente_perfil', infoCliente.perfil);
+                    }
                 }
             }
             await cantidad_articulos_carrito(infoCliente);
@@ -244,39 +249,56 @@ document.addEventListener
             {
                 const articulos = await respuestaServidor.json();
                 const seccionProductos = document.querySelector('html>body>main>section.productos');
-                if(articulos.recordset.length > 0)
+                if(articulos.exito)
                 {
-                    seccionProductos.insertAdjacentHTML('beforeend', '<h2>Ofertas del Día</h2>');
-                    articulos.recordset.forEach
-                    (
-                        prod =>
-                        {
-                            const saltoDeLinea = String.fromCharCode(10);
-                            const tarjeta =
-                            '        <div class="card">' + saltoDeLinea +
-                            `          <span class="promocion">${prod.promo_nombre}</span>` + saltoDeLinea +
-                            `          <img src="${prod.imgsrc}" alt="${prod.nombre}">` + saltoDeLinea +
-                            `          <h3>${prod.nombre}</h3>` + saltoDeLinea +
-                            `          <p>${prod.descripcion}</p>` + saltoDeLinea +
-                            `          <p>Precio: \$${prod.precio}</p>` + saltoDeLinea +
-                            `          <button id="${prod.id}">Agregar al carrito</button>` + saltoDeLinea +
-                            '        </div>' + saltoDeLinea;
-                            seccionProductos.insertAdjacentHTML('beforeend', tarjeta);
-                        }
-                    );
+                    if(articulos.recordset.length > 0)
+                    {
+                        seccionProductos.insertAdjacentHTML('beforeend', '        <h2>Ofertas del Día</h2>');
+                        articulos.recordset.forEach
+                        (
+                            prod =>
+                            {
+                                const saltoDeLinea = String.fromCharCode(10);
+                                const tarjeta =
+                                '        <div class="card">' + saltoDeLinea +
+                                `          <span class="promocion">${prod.promo_nombre}</span>` + saltoDeLinea +
+                                `          <img src="${prod.imgsrc}" alt="${prod.nombre}">` + saltoDeLinea +
+                                `          <h3>${prod.nombre}</h3>` + saltoDeLinea +
+                                `          <p>${prod.descripcion}</p>` + saltoDeLinea +
+                                `          <p>Precio: \$${prod.precio}</p>` + saltoDeLinea +
+                                `          <button id="${prod.id}">Agregar al carrito</button>` + saltoDeLinea +
+                                '        </div>' + saltoDeLinea;
+                                seccionProductos.insertAdjacentHTML('beforeend', tarjeta);
+                            }
+                        );
+                    }
+                    else
+                    {
+                        seccionProductos.insertAdjacentHTML('beforeend', '        <h2>No hay ofertas activas el día de hoy.</h2>');
+                    }
+                }
+                else
+                {
+                    cuadroMensaje.showModal();
+                    textoTituCuadroMensaje.innerText = 'Error';
+                    textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve ofertas activas.<br /> Respuesta: "' + articulos.error + '".';
+                    cuadroMensaje.style.width = '320px';
+                    cuadroMensaje.style.height = '214px';
+                    dialogoAbierto = 'cuadroMensaje';
+                    botonCerrCuadroMensaje.focus();
+                    console.error('Error: El servidor no devuelve ofertas activas. Respuesta: "' + articulos.error + '".');
                 }
             }
             else
             {
                 cuadroMensaje.showModal();
                 textoTituCuadroMensaje.innerText = 'Error';
-                textoMensCuadroMensaje.innerHTML = 'El servidor no responde las ofertas activas.<br />' +
-                                                     'Respuesta: "' + error + '".';
-                cuadroMensaje.style.width = '320px';
-                cuadroMensaje.style.height = '214px';
+                textoMensCuadroMensaje.innerHTML = 'El servidor no responde las ofertas activas.';
+                cuadroMensaje.style.width = '192px';
+                cuadroMensaje.style.height = '166px';
                 dialogoAbierto = 'cuadroMensaje';
                 botonCerrCuadroMensaje.focus();
-                console.error('Error: El servidor no responde las ofertas activas. Respuesta: "' + error + '".');
+                console.error('Error: El servidor no responde las ofertas activas.');
             }
         }
         else
@@ -390,12 +412,8 @@ document.addEventListener
                 if ((evento.ctrlKey && evento.altKey && evento.shiftKey && evento.key === 'A') || (evento.key === 'a') || (evento.key === 'A'))
                 {
                     evento.preventDefault();
-                    if((localStorage.getItem('cliente_id') === null) || ((infoCliente.apellido == null) && (infoCliente.nombre == null)))
+                    if((localStorage.getItem('cliente_id') === null) || !infoCliente.apellido)
                     {
-                        // Este diálogo pide credenciales para ingresar como usuario cliente para iniciar una compra
-                        // o administrador para abm de productos y abm de ofertas.
-                        // Se identifica si corresponde a un usuario o a un administrador según su nombre de usuario que se ingresa.
-                        // TODO: ¿Cómo hacer para que sea agradable para el usuario?
                         login.showModal();
                         dialogoAbierto = 'login';
                         inputUsuaLogin.value = '';
@@ -649,7 +667,7 @@ document.addEventListener
                             tagPrincipCarrito.innerHTML =
                                 '          <p>Aún no pusiste productos en tu carrito.</p>' + saltoDeLinea;
                             tagPrincipCarrito.style.height = '50px';
-                            botonCanceCarrito.style.left = '74px';
+                            botonCanceCarrito.style.left = '108px';
                             botonCanceCarrito.style.position = 'fixed';
                             botonCanceCarrito.style.top = '84px';
                             botonFinalCarrito.style.visibility = 'hidden';
@@ -667,8 +685,8 @@ document.addEventListener
                             botonPagarCarrito.style.visibility = 'hidden';
                             botonPagarCarrito.style.position = 'fixed';
                             botonPagarCarrito.style.right = 0;
-                            carrito.style.width = '302px';
-                            carrito.style.height = '144px';
+                            carrito.style.width = '332px';
+                            carrito.style.height = '158px';
                         }
                     }
                 }
@@ -713,6 +731,13 @@ document.addEventListener
                         login.close();
                         altaCliente.showModal();
                         dialogoAbierto = 'altaCliente';
+                        inputNombrAltaCliente.value = '';
+                        inputApellAltaCliente.value = '';
+                        inputTelefAltaCliente.value = '';
+                        inputDirecAltaCliente.value = '';
+                        inputEmailAltaCliente.value = '';
+                        inputUsuarAltaCliente.value = '';
+                        inputContrAltaCliente.value = '';
                         inputNombrAltaCliente.focus();
                         break;
                     case 'a':
@@ -879,7 +904,6 @@ document.addEventListener
                     case 'c':
                     case 'C':
                         evento.preventDefault();
-                        // Naturalmente quiero unificar el punto de cierre del cuadro, por eso genero el evento en lugar de cerrar directo
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
                     }
                 }
@@ -889,7 +913,7 @@ document.addEventListener
                     {
                         evento.preventDefault();
                         cuadroMensaje.close();
-                        dialogoAbierto = '';
+                        dialogoAbierto = (botonCerrCuadroMensaje.value.substring(0, 5) === 'cancel') ? '' : botonCerrCuadroMensaje.value;
                     }
                 }
                 break;
@@ -909,7 +933,6 @@ document.addEventListener
                     case 'S':
                         evento.preventDefault();
                         document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Enter'}));
-                        break;
                     }
                 }
                 else
@@ -1005,12 +1028,12 @@ document.addEventListener
                                 let quitar = botonQuitaCarrito.value.slice(7, -1).trim();
                                 if(await validarCadenaNumerica(quitar))
                                 {
-                                    // const respuesta = await fetch(`/api/articulo/detalles?id=${idArticulo}`);
-                                    // if (!respuesta.ok)
+                                    // respuestaServidor = await fetch(`/api/articulo/detalles?id=${idArticulo}`);
+                                    // if (!respuestaServidor.ok)
                                     // {
-                                    //     throw new Error(`Error en el servidor: ${respuesta.status}`);
+                                    //     throw new Error(`Error en el servidor: ${respuestaServidor.status}`);
                                     // }
-                                    // const datosDetalle = await respuesta.json();
+                                    // const datosDetalle = await respuestaServidor.json();
                                     // const btnConfirmar = document.getElementById("btn-confirmar");
                                     // if (btnConfirmar)
                                     // {
@@ -1218,61 +1241,86 @@ document.addEventListener
                         break;
                     case 'Enter':
                         evento.preventDefault();
-                        infoCliente.nombre = inputNombrAltaCliente.value;
-                        infoCliente.apellido = inputApellAltaCliente.value;
-                        infoCliente.telefono = inputTelefAltaCliente.value;
-                        infoCliente.direccion = inputDirecAltaCliente.value;
-                        infoCliente.email = inputEmailAltaCliente.value;
-                        try
+                        if(!inputNombrAltaCliente.value || !inputApellAltaCliente.value || !inputTelefAltaCliente.value || !inputDirecAltaCliente.value ||
+                            !inputEmailAltaCliente.value || !inputUsuarAltaCliente.value || !inputContrAltaCliente.value)
                         {
-                            respuesta = await fetch
-                            (
-                                'http://www.luislopez.com.ar:3000/api/altaCliente',
-                                {
-                                    method: 'POST',
-                                    headers:
-                                    {
-                                        'Content-Type': 'application/json'
-                                    },
-                                    body: JSON.stringify
-                                    (
-                                        {
-                                            nombre: inputNombrAltaCliente.value,
-                                            apellido: inputApellAltaCliente.value,
-                                            telefono: inputTelefAltaCliente.value,
-                                            direccion: inputDirecAltaCliente.value,
-                                            email: inputEmailAltaCliente.value,
-                                            usuario: inputUsuarAltaCliente.value,
-                                            contrasena: inputContrAltaCliente.value
-                                        }
-                                    )
-                                }
-                            );
-                            altaCliente.close();
-                            dialogoAbierto = '';
-                        }
-                        catch (error)
-                        {
-                            console.error('Error al insertar el nuevo cliente en la base de datos. Resultado: ', error);
-                            altaCliente.close();
                             cuadroMensaje.showModal();
-                            textoTituCuadroMensaje.innerText = 'Error';
-                            textoMensCuadroMensaje.innerHTML = 'Error al insertar el nuevo cliente en la base de datos.<br />Resultado: ' + error;
+                            textoTituCuadroMensaje.innerText = 'Recuerde';
+                            textoMensCuadroMensaje.innerHTML = 'Los cuadros de texto que en su etiqueta, se visualiza un asterisco rojo (<span style="color: red;">*</span>),' +
+                                ' deben ser ingresados en forma obligatoria.';
+                            botonCerrCuadroMensaje.value = 'altaCliente';
                             cuadroMensaje.style.width = '320px';
-                            cuadroMensaje.style.height = '214px';
+                            cuadroMensaje.style.height = '188px';
                             dialogoAbierto = 'cuadroMensaje';
                             botonCerrCuadroMensaje.focus();
                         }
-                        if (respuesta.status = 200)
+                        else
                         {
-                            const datos = await respuesta.json();
-                            if(datos.exito)
+                            try
                             {
+                                respuestaServidor = await fetch
+                                (
+                                    'http://www.luislopez.com.ar:3000/api/altaCliente',
+                                    {
+                                        method: 'POST',
+                                        headers:
+                                        {
+                                            'Content-Type': 'application/json'
+                                        },
+                                        body: JSON.stringify
+                                        (
+                                            {
+                                                nombre: inputNombrAltaCliente.value,
+                                                apellido: inputApellAltaCliente.value,
+                                                telefono: inputTelefAltaCliente.value,
+                                                direccion: inputDirecAltaCliente.value,
+                                                email: inputEmailAltaCliente.value,
+                                                usuario: inputUsuarAltaCliente.value,
+                                                contrasena: inputContrAltaCliente.value
+                                            }
+                                        )
+                                    }
+                                );
+                            }
+                            catch (error)
+                            {
+                                console.error('Error al insertar el nuevo cliente en la base de datos. Resultado: ', error);
+                                altaCliente.close();
+                                cuadroMensaje.showModal();
+                                textoTituCuadroMensaje.innerText = 'Error';
+                                textoMensCuadroMensaje.innerHTML = 'Error al insertar el nuevo cliente en la base de datos.<br />Resultado: ' + error;
+                                cuadroMensaje.style.width = '320px';
+                                cuadroMensaje.style.height = '214px';
+                                dialogoAbierto = 'cuadroMensaje';
+                                botonCerrCuadroMensaje.focus();
+                            }
+                            const datos = await respuestaServidor.json();
+                            if((respuestaServidor.status = 200) && (datos.exito))
+                            {
+                                cuadroMensaje.showModal();
                                 infoCliente.id = datos.nuevoIdCliente;
+                                infoCliente.nombre = inputNombrAltaCliente.value;
+                                infoCliente.apellido = inputApellAltaCliente.value;
+                                infoCliente.telefono = inputTelefAltaCliente.value;
+                                infoCliente.direccion = inputDirecAltaCliente.value;
+                                infoCliente.email = inputEmailAltaCliente.value;
                                 infoCliente.perfil = 'cliente';
+                                altaCliente.close();
+                                dialogoAbierto = '';
                                 // Se asume que datos.relacion fue correctamente guardado, porque datos.exito es verdadero
                                 localStorage.setItem('cliente_id', infoCliente.id);
                                 localStorage.setItem('cliente_perfil', infoCliente.perfil);
+                            }
+                            else
+                            {
+                                altaCliente.close();
+                                textoTituCuadroMensaje.innerText = 'Error';
+                                textoMensCuadroMensaje.innerHTML = 'El servidor devuelve estado ' + parseInt(respuestaServidor.status) +
+                                    ' al agregar el cliente nuevo. Mensaje: "' + datos.error + '".';
+                                cuadroMensaje.style.width = '254px';
+                                cuadroMensaje.style.height = '216px';
+                                dialogoAbierto = 'cuadroMensaje';
+                                botonCerrCuadroMensaje.focus();
                             }
                         }
                         break;
@@ -1370,7 +1418,7 @@ document.addEventListener
                         let cantidadProductoPonerCarrito = parseFloat(inputCantiCantProducto.value) || 1;
                         try
                         {
-                            respuesta = await fetch
+                            respuestaServidor = await fetch
                             (
                                 'http://www.luislopez.com.ar:3000/api/agregar_al_carrito',
                                 {
@@ -1404,9 +1452,9 @@ document.addEventListener
                             botonCerrCuadroMensaje.focus();
                             console.error('Error: El servidor no logra agregar el producto al carrito. Mensaje: "' + error + '".');
                         }
-                        if (respuesta.status == 200)
+                        const jsonCantidad = await respuestaServidor.json();
+                        if (respuestaServidor.status == 200)
                         {
-                            const jsonCantidad = await respuesta.json();
                             if (jsonCantidad.exito == true)
                             {
                                 document.querySelector('html>body>header>div>div.encabezado>div.botonera>button#carritoBtn>span').innerText = `${jsonCantidad.numero}`;
@@ -1414,11 +1462,10 @@ document.addEventListener
                         }
                         else
                         {
-                            // respuesta.status es 500 u otro estado de error
-                            const jsonCantidad = await respuesta.json();
+                            // respuestaServidor.status es 500 u otro estado de error
                             cuadroMensaje.showModal();
                             textoTituCuadroMensaje.innerText = 'Error';
-                            textoMensCuadroMensaje.innerHTML = 'El servidor devuelve estado ' + parseInt(respuesta.status) +
+                            textoMensCuadroMensaje.innerHTML = 'El servidor devuelve estado ' + parseInt(respuestaServidor.status) +
                                 ' al agregar el producto al carrito. Mensaje: "' + jsonCantidad.error + '".';
                             cuadroMensaje.style.width = '254px';
                             cuadroMensaje.style.height = '216px';
@@ -1504,7 +1551,7 @@ document.addEventListener
                             }
                             try
                             {
-                                respuesta = await fetch
+                                respuestaServidor = await fetch
                                 (
                                     'http://www.luislopez.com.ar:3000/api/lista_categ_art',
                                     {
@@ -1516,8 +1563,8 @@ document.addEventListener
                             catch(error)
                             {
                                 cuadroMensaje.showModal();
-                                textoTituloCuadroMensaje.innerText = 'Error';
-                                textoMensajCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de categorías solicitada.<br /> Respuesta: "' +
+                                textoTituCuadroMensaje.innerText = 'Error';
+                                textoMensCuadroMensaje.innerHTML = 'El servidor no devuelve la lista de categorías solicitada.<br /> Respuesta: "' +
                                     error + '".';
                                 cuadroMensaje.style.width = '320px';
                                 cuadroMensaje.style.height = '214px';
@@ -1525,9 +1572,9 @@ document.addEventListener
                                 botonCerrCuadroMensaje.focus();
                                 console.error('Error: El servidor no devuelve la lista de categorías solicitada. Respuesta: "' + error + '".');
                             }
-                            if (respuesta.status == 200)
+                            if (respuestaServidor.status == 200)
                             {
-                                const categorias = await respuesta.json();
+                                const categorias = await respuestaServidor.json();
                                 const listaCategorias = document.querySelector('html>body>dialog#altaArticulo>form>main>select#categoria');
                                 for (let i = (categorias.dataset.length - 1); i >= 0; i--)
                                 {
@@ -1672,9 +1719,9 @@ document.addEventListener
                     {
                         login.showModal();
                         dialogoAbierto = 'login';
-                        inputUsuarioLogin.value = '';
-                        inputContrasLogin.value = '';
-                        inputUsuarioLogin.focus();
+                        inputUsuaLogin.value = '';
+                        inputCntrLogin.value = '';
+                        inputUsuaLogin.focus();
                     }
                 }
                 else
@@ -1823,6 +1870,13 @@ document.addEventListener
         {
             evento.preventDefault();
             document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'Escape'}));
+        });
+        inputDirecAltaCliente.addEventListener('keydown', function(evento)
+        {
+            if(evento.key === 'Enter')
+            {
+                event.stopPropagation();
+            }
         });
         botonCanceAltaCliente.addEventListener('click', async function(evento)
         {

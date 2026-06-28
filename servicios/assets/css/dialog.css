@@ -672,7 +672,7 @@ dialog#altaCliente
     margin: 10px;
     border: solid 1px var(--azul-muy-oscuro);
     width: 400px;
-    height: 470px;
+    height: 564px;
     border-radius: 10px;
     color: var(--azul-muy-oscuro);
 }
@@ -717,7 +717,7 @@ dialog#altaCliente>form>main
 dialog#altaCliente>form>main>label
 {
     display: inline-block;
-    width: 140px;
+    width: 146px;
 }
 
 dialog#altaCliente>form>main>input
@@ -729,6 +729,11 @@ dialog#altaCliente>form>main>input
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 5px;
+}
+
+dialog#altaCliente>form>main>textarea
+{
+    resize: none;
 }
 
 dialog#altaCliente>form>footer
